@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env node;
 
 require("yargs")
   .scriptName("detox-doctor")
@@ -9,12 +9,12 @@ require("yargs")
     (yargs) => {
       yargs.positional("os", {
         type: "string",
-        default: "Blah",
+        default: "MacOS",
         describe: "The OS the user is on",
       });
     },
     function (argv) {
-      console.log("Hello", argv.os, "you're in detox-doctor");
-    }
-  )
+      require("./detox-doctor.js")("linux");
+      console.log("Hello", argv.os, ",you're in detox-doctor");
+    })
   .help().argv;
