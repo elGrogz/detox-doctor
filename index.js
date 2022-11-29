@@ -14,7 +14,7 @@ require("yargs")
       });
     },
     function (argv) {
-      require("./detox-doctor.js")("linux");
+      require("./detox-doctor.js")(argv.os);
       console.log("Hello", argv.os, ",you're in detox-doctor");
     })
   .help().argv;
