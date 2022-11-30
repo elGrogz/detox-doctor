@@ -6,7 +6,6 @@ import linuxOsCheck from "./environmentChecks/linux.js";
 const detoxDoctor = (os) => {
     switch (os) {
         case "darwin":
-            // console.log(chalk.green("hello macos"))
             macOsCheck(); // function to start checking macos for environmental stuff
             break;
         case "win32":

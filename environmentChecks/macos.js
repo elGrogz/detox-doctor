@@ -11,22 +11,26 @@ const macOsCheck = () => {
     const androidCommandLineToolsVariable = "$ANDROID_HOME/cmdline-tools/latest/bin"
 
     const shell = process.env.SHELL;
-    const homeDirectory = homedir();
 
-    console.log("shell: ", shell)
+    // console.log("env: ", process.env)
 
-    if (shell === "/bin/zsh" && (fs.existsSync(`${homeDirectory}/.zshrc`))) {
-        console.log("homedir: ", homeDirectory);
-        console.log("hello zshrc!");
 
-        const zshrcContents = fs.readFileSync(`${homeDirectory}/.zshrc`, "utf-8");
+    // Verify Android studio is installed 
+    if (fs.existsSync('/Applications/Android Studio.app')) {
+        console.log(chalk.green("✅ Android Studio installed at: /Applications/Android Studio.app"));
+    } else {
+        console.log(chalk.red("❌ Android Studio not installed"));
+    }
+
+    // Verify Shell Env variables are set
+    if (shell === "/bin/zsh" && (fs.existsSync(`${process.env.HOME}/.zshrc`))) {
+        const zshrcContents = fs.readFileSync(`${process.env.HOME}/.zshrc`, "utf-8");
 
         if (zshrcContents.includes(javahomeEnvVariable)) {
-            console.log(chalk.green("✅ Shell profile contains javahome:", javahomeEnvVariable));
+            console.log(chalk.green("✅ Shell profile contains Javahome:", javahomeEnvVariable));
         } else {
-            console.log(chalk.red("❌ Shell profile does not contain javahome variable:", javahomeEnvVariable));
+            console.log(chalk.red("❌ Shell profile does not contain Javahome variable:", javahomeEnvVariable));
         }
-
 
         if (zshrcContents.includes(androidHomeEnvVariable)) {
             console.log(chalk.green("✅ Shell profile contains Android Home:", androidHomeEnvVariable));
