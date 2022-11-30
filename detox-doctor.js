@@ -1,10 +1,9 @@
 module.exports = (os) => {
-    console.log("your OS: ", os)
     switch (os) {
-        case "MacOS":
+        case "darwin":
             console.log("hello macos")
             break;
-        case "Windows":
+        case "win32":
             console.log("hello windows")
             break;
         case "Linux":
