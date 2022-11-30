@@ -25,9 +25,9 @@
 // emulator -avd test_emulator
 
 
-const { program } = require("commander");
-const inquirer = require("inquirer");
-const detoxDoctor = require("./detoxDoctor.js");
+import { program } from "commander";
+import inquirer from "inquirer";
+import detoxDoctor from "./detoxDoctor.js";
 
 program
   .name("detox-doctor")

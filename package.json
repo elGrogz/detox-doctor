@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "dependencies": {
     "chalk": "^5.1.2",
     "commander": "^9.4.1",

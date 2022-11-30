@@ -1,21 +1,20 @@
-module.exports = () => {
-    const fs = require('fs');
-    const homedir = require('os').homedir();
+import fs from 'fs';
+import { homedir } from 'os';
 
+const macOsCheck = () => {
     const javahomeEnvVariable = "export JAVA_HOME=`/usr/libexec/java_home`"
     const androidHomeEnvVariable = "export ANDROID_HOME=$HOME/Library/Android/sdk"
 
-    console.log("we're in macos now yayyyy");
-
     const shell = process.env.SHELL;
+    const homeDirectory = homedir();
 
     console.log("shell: ", shell)
 
-    if (shell === "/bin/zsh" && (fs.existsSync(`${homedir}/.zshrc`))) {
-        console.log("homedir: ", homedir);
+    if (shell === "/bin/zsh" && (fs.existsSync(`${homeDirectory}/.zshrc`))) {
+        console.log("homedir: ", homeDirectory);
         console.log("hello zshrc!");
 
-        const zshrcContents = fs.readFileSync(`${homedir}/.zshrc`, "utf-8");
+        const zshrcContents = fs.readFileSync(`${homeDirectory}/.zshrc`, "utf-8");
 
         if (zshrcContents.includes(javahomeEnvVariable)) {
             console.log("✅ Shell profile contains javahome:", javahomeEnvVariable)
@@ -29,5 +28,9 @@ module.exports = () => {
         } else {
             console.log("❌ Shell profile does not contain Android Home variable:", androidHomeEnvVariable)
         }
+    } else {
+        console.log("unexpected shell")
     }
 }
+
+export default macOsCheck;
