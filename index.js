@@ -7,24 +7,27 @@
 // Name of AVD
 
 const { program } = require("commander");
-const detoxDoctor = require("./detox-doctor.js");
+const detoxDoctor = require("./detoxDoctor.js");
 
 program
   .name("detox-doctor")
   .description("CLI tool to help you setup your local environment for running Detox tests")
-  .option("-e, --check-mobile-environment", "flag to tell detox-doctor to check the user's local environment for running detox tests", false)
+  .command("check")
+  // .option("-e, --check-mobile-environment", "flag to tell detox-doctor to check the user's local environment for running detox tests", false)
   .option("-i, --full-environment-install", "tell ", false)
   .option("-e, --check-mobile-environment", "flag to tell detox-doctor to check the user's local environment for running detox tests", false)
   .option("-e, --check-mobile-environment", "flag to tell detox-doctor to check the user's local environment for running detox tests", false)
+  .action((options) => {
+    const os = process.platform; //https://nodejs.org/api/process.html#processplatform
+    if (os) {
+      detoxDoctor(os);
+    }
+  })
   .parse();
 
-const options = program.opts();
-const os = process.platform; //https://nodejs.org/api/process.html#processplatform
-console.log({options})
+// const options = program.opts();
+// console.log({options})
 
-if (os && options.checkMobileEnvironment) {
-  detoxDoctor(os);
-}
 
 // require("yargs")
 //   .scriptName("detox-doctor")
