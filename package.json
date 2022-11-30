@@ -1,7 +1,8 @@
 {
   "dependencies": {
+    "chalk": "^5.1.2",
     "commander": "^9.4.1",
-    "inquirer": "^9.1.4",
+    "inquirer": "^8.2.5",
     "yargs": "^17.6.2"
   }
 }

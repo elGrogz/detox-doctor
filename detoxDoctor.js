@@ -1,7 +1,8 @@
+
 module.exports = (os) => {
     switch (os) {
         case "darwin":
-            console.log("hello macos")
+            // console.log(chalk.green("hello macos"))
             // function to start checking macos for environmental stuff
             require("./environmentChecks/macos")();
             break;
