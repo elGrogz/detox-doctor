@@ -1,8 +1,8 @@
 import fs from 'fs';
 import chalk from 'chalk';
-import { homedir } from 'os';
+import { exec } from "child_process"
 
-const macOsCheck = () => {
+const macOsCheck = async () => {
     const javahomeEnvVariable = "export JAVA_HOME=`/usr/libexec/java_home`"
     const androidHomeEnvVariable = "export ANDROID_HOME=$HOME/Library/Android/sdk"
     const androidEmulatorVariable = "$ANDROID_HOME/emulator"
@@ -12,7 +12,7 @@ const macOsCheck = () => {
 
     const shell = process.env.SHELL;
 
-    // console.log("env: ", process.env)
+    console.log("env: ", process.env.NODE_BIN)
 
 
     // Verify Android studio is installed 
@@ -21,6 +21,19 @@ const macOsCheck = () => {
     } else {
         console.log(chalk.red("❌ Android Studio not installed"));
     }
+
+    // Verify Java is installed correctly
+    exec("java --version", (error, stdout, stderr) => {
+        if (error) {
+            console.log(chalk.red("❌ Could not get java version"));
+        }
+        if (stderr) {
+            console.log(chalk.red("❌ Could not get java version"));
+        }
+        if (stdout) {
+            console.log(chalk.green("✅ Java version:", stdout.replace("\n", ", ")));
+        }
+    })
 
     // Verify Shell Env variables are set
     if (shell === "/bin/zsh" && (fs.existsSync(`${process.env.HOME}/.zshrc`))) {
