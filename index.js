@@ -9,22 +9,21 @@
 // ANDROID CHECKS TO MAKE:
 // - Android Studio (with Homebrew) ✅
 // - Java 11 (with Homebrew - `brew install --cask zulu11`) ✅
-// - Install SDK, command line tools, NDK, CMake ✅
+// - Install SDK, command line tools, NDK, CMake 
 
-// - Env vars:
-// # Android environmental variables
-// export JAVA_HOME=`/usr/libexec/java_home`
-// export ANDROID_HOME=$HOME/Library/Android/sdk
-// export PATH=$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/tools/bin/sdkmanager:$ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/latest/bin
+// ANDROID ENV VARS:
+// export JAVA_HOME=`/usr/libexec/java_home`  ✅
+// export ANDROID_HOME=$HOME/Library/Android/sdk  ✅
+// export PATH=$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/tools/bin/sdkmanager:$ANDROID_HOME/platform-tools:$ANDROID_HOME/cmdline-tools/latest/bin  ✅
 
-// INSTALL STEPS FOR ANDROID
+// INSTALL STEPS FOR ANDROID:
 // sdkmanager --install emulator
 // sdkmanager "system-images;android-30;default;arm64-v8a"
 // sdkmanager --licenses
 // avdmanager create avd -n test_emulator -k "system-images;android-30;default;arm64-v8a"
 // emulator -avd test_emulator
 
-// OTHER STUFF
+// OTHER STUFF:
 // Have a way of saving errors and output a report at the end
 // check architecture for M1 vs intel
 // iOS install steps
