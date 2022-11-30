@@ -24,6 +24,11 @@
 // avdmanager create avd -n test_emulator -k "system-images;android-30;default;arm64-v8a"
 // emulator -avd test_emulator
 
+// OTHER STUFF
+// Have a way of saving errors and output a report at the end
+// check architecture for M1 vs intel
+// iOS install steps
+
 
 import { program } from "commander";
 import inquirer from "inquirer";
@@ -33,10 +38,6 @@ program
   .name("detox-doctor")
   .description("CLI tool to help you setup your local environment for running Detox tests")
   .command("check")
-  // .option("-e, --check-mobile-environment", "flag to tell detox-doctor to check the user's local environment for running detox tests", false)
-  .option("-i, --full-environment-install", "tell ", false)
-  .option("-e, --check-mobile-environment", "flag to tell detox-doctor to check the user's local environment for running detox tests", false)
-  .option("-e, --check-mobile-environment", "flag to tell detox-doctor to check the user's local environment for running detox tests", false)
   .action((options) => {
     const os = process.platform; //https://nodejs.org/api/process.html#processplatform
     if (os) {
