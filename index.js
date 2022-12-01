@@ -9,7 +9,7 @@
 // ANDROID CHECKS TO MAKE:
 // - Android Studio (with Homebrew) ✅
 // - Java 11 (with Homebrew - `brew install --cask zulu11`) ✅
-// - Install SDK, command line tools, NDK, CMake 
+// - Install SDK, command line tools, NDK, CMake
 
 // ANDROID ENV VARS:
 // export JAVA_HOME=`/usr/libexec/java_home`  ✅
@@ -28,42 +28,34 @@
 // check architecture for M1 vs intel
 // iOS install steps
 
-
 import { program } from "commander";
-import inquirer from "inquirer";
 import detoxDoctor from "./detoxDoctor.js";
+import chalk from "chalk";
+
+const keypress = async () => {
+  process.stdin.setRawMode(true);
+  return new Promise((resolve) =>
+    process.stdin.once("data", () => {
+      process.stdin.setRawMode(false);
+      resolve;
+    })
+  );
+};
 
 program
   .name("detox-doctor")
-  .description("CLI tool to help you setup your local environment for running Detox tests")
+  .description(
+    "CLI tool to help you setup your local environment for running Detox tests"
+  )
   .command("check")
-  .action((options) => {
+  .action(async (options) => {
     const os = process.platform; //https://nodejs.org/api/process.html#processplatform
     if (os) {
+      console.log(
+        chalk.blueBright("Welcome to Detox Doctor - press any key to continue")
+      );
+      await keypress();
       detoxDoctor(os);
     }
   })
   .parse();
-
-// const options = program.opts();
-// console.log({options})
-
-
-// require("yargs")
-//   .scriptName("detox-doctor")
-//   // .usage("$0 <cmd> [args]")
-//   .command(
-//     "start",
-//     "Start Detox Doctor",
-//     // (yargs) => {
-//     //   yargs.positional("os", {
-//     //     type: "string",
-//     //     default: "MacOS",
-//     //     describe: "The OS the user is on",
-//     //   });
-//     // },
-//     function (argv) {
-//       console.log("Welcome to detox-doctor");
-//       require("./detox-doctor.js")(argv.os);
-//     })
-//   .help().argv;
