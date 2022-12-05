@@ -32,12 +32,14 @@ import { program } from "commander";
 import detoxDoctor from "./detoxDoctor.js";
 import chalk from "chalk";
 
-const keypress = async () => {
+const keypress = (os) => {
   process.stdin.setRawMode(true);
+
   return new Promise((resolve) =>
-    process.stdin.once("data", () => {
+    process.stdin.on("data", () => {
       process.stdin.setRawMode(false);
-      resolve;
+      detoxDoctor(os);
+      resolve();
     })
   );
 };
@@ -48,14 +50,15 @@ program
     "CLI tool to help you setup your local environment for running Detox tests"
   )
   .command("check")
-  .action(async (options) => {
+  .action((options) => {
     const os = process.platform; //https://nodejs.org/api/process.html#processplatform
     if (os) {
       console.log(
         chalk.blueBright("Welcome to Detox Doctor - press any key to continue")
       );
-      await keypress();
-      detoxDoctor(os);
+      keypress(os).then(() => {
+        process.exit();
+      });
     }
   })
   .parse();
