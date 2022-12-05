@@ -36,7 +36,7 @@ const keypress = (os) => {
   process.stdin.setRawMode(true);
 
   return new Promise((resolve) =>
-    process.stdin.on("data", () => {
+    process.stdin.once("data", () => {
       process.stdin.setRawMode(false);
       detoxDoctor(os);
       resolve();
@@ -54,7 +54,9 @@ program
     const os = process.platform; //https://nodejs.org/api/process.html#processplatform
     if (os) {
       console.log(
-        chalk.blueBright("Welcome to Detox Doctor - press any key to continue")
+        chalk.blueBright(
+          "Welcome to Detox Doctor - press any key to continue..."
+        )
       );
       keypress(os).then(() => {
         process.exit();
