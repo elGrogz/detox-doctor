@@ -8,7 +8,7 @@ const detoxDoctor = (os) => {
     case "darwin":
       console.log(
         chalk.white(
-          `\nChecking ${chalk.blueBright.bgGreenBright(
+          `\nChecking ${chalk.blueBright.bold.bgGreenBright(
             " MacOS "
           )} configuration for running Detox tests...\n`
         )
@@ -18,7 +18,7 @@ const detoxDoctor = (os) => {
     case "win32":
       console.log(
         chalk.white(
-          `\nChecking ${chalk.blueBright.bgGreenBright(
+          `\nChecking ${chalk.blueBright.bold.bgGreenBright(
             " Windows "
           )} configuration for running Detox tests...\n`
         )
@@ -28,7 +28,7 @@ const detoxDoctor = (os) => {
     case "linux":
       console.log(
         chalk.white(
-          `\nChecking ${chalk.blueBright.bgGreenBright(
+          `\nChecking ${chalk.blueBright.bold.bgGreenBright(
             " Linux "
           )} configuration for running Detox tests...\n`
         )
@@ -36,7 +36,7 @@ const detoxDoctor = (os) => {
       linuxOsCheck(); // function to start checking linux for environmental stuff
       break;
     default:
-      console.log(chalk.red("Unrecognised OS"));
+      console.log(chalk.red.bold("Unrecognised OS"));
       break;
   }
 };

@@ -54,7 +54,7 @@ program
     const os = process.platform; //https://nodejs.org/api/process.html#processplatform
     if (os) {
       console.log(
-        chalk.blueBright.bgGreenBright(
+        chalk.blueBright.bold.bgGreenBright(
           "\nWelcome to Detox Doctor - press any key to continue...\n"
         )
       );
