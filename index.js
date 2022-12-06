@@ -50,12 +50,12 @@ program
     "CLI tool to help you setup your local environment for running Detox tests"
   )
   .command("check")
-  .action((options) => {
+  .action(() => {
     const os = process.platform; //https://nodejs.org/api/process.html#processplatform
     if (os) {
       console.log(
-        chalk.blueBright(
-          "Welcome to Detox Doctor - press any key to continue..."
+        chalk.blueBright.bgGreenBright(
+          "\nWelcome to Detox Doctor - press any key to continue...\n"
         )
       );
       keypress(os).then(() => {
