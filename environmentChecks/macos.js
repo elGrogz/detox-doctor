@@ -27,8 +27,8 @@ const macOsCheck = async () => {
 
   // Verify Java is installed correctly
   await exec("java --version", (error, stdout, stderr) => {
-    if (error || stdout) {
-      console.log(chalk.red("❌ Could not get java version"));
+    if (error || stderr) {
+      console.error(chalk.red("❌ Could not get java version"));
     }
     if (stdout) {
       console.log(chalk.green("✅ Java version:", stdout.replace("\n", ", ")));
@@ -140,8 +140,8 @@ const macOsCheck = async () => {
 
   // Verify Android tools are working correctly
   await exec("sdkmanager --version", (error, stdout, stderr) => {
-    if (error || stdout) {
-      console.log(chalk.red("❌ SDK Manager not running correctly"));
+    if (error || stderr) {
+      console.error(chalk.red("❌ SDK Manager not running correctly"));
     }
     if (stdout) {
       console.log(chalk.green("✅ SDK Manager version:", stdout));
