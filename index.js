@@ -37,10 +37,9 @@ const keypress = (os) => {
 
   return new Promise((resolve) =>
     process.stdin.once("data", () => {
-      process.stdin.setRawMode(false);
-      detoxDoctor(os);
-      resolve();
-    })
+    process.stdin.setRawMode(false);
+    detoxDoctor(os).then(() => {resolve()})
+    }) 
   );
 };
 
@@ -58,7 +57,8 @@ program
           "\nWelcome to Detox Doctor - press any key to continue...\n"
         )
       );
-      keypress(os).then(() => {
+      keypress(os)
+      .then(() => {
         process.exit();
       });
     }

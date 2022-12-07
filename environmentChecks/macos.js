@@ -1,6 +1,6 @@
 import fs from "fs";
 import chalk from "chalk";
-import { exec } from "child_process";
+import { execSync } from "child_process";
 
 const macOsCheck = async () => {
   const javahomeEnvVariable = "export JAVA_HOME=`/usr/libexec/java_home`";
@@ -14,6 +14,11 @@ const macOsCheck = async () => {
 
   const shell = process.env.SHELL;
 
+  // MAIN SYSTEM CHECKS
+  console.log(
+    chalk.blueBright.bold.bgGreenBright("\nChecking Android and Java stuff:")
+  );
+
   // Verify Android studio is installed
   if (fs.existsSync("/Applications/Android Studio.app")) {
     console.log(
@@ -26,16 +31,20 @@ const macOsCheck = async () => {
   }
 
   // Verify Java is installed correctly
-  await exec("java --version", (error, stdout, stderr) => {
-    if (error || stderr) {
-      console.error(chalk.red("❌ Could not get java version"));
-    }
-    if (stdout) {
-      console.log(chalk.green("✅ Java version:", stdout.replace("\n", ", ")));
-    }
-  });
+  try {
+    let response = execSync("java --version");
+    console.log(chalk.green("✅ Java version:", response));
+  } catch (error) {
+    console.error(chalk.red("❌ Could not get java version: ", error));
+  }
 
-  // Verify Shell Env variables are set
+  // ENV VARS CHECK
+  console.log(
+    chalk.blueBright.bold.bgGreenBright(
+      "\nChecking system environmental variables:"
+    )
+  );
+
   if (shell === "/bin/zsh" && fs.existsSync(`${process.env.HOME}/.zshrc`)) {
     const zshrcContents = fs.readFileSync(
       `${process.env.HOME}/.zshrc`,
@@ -139,14 +148,18 @@ const macOsCheck = async () => {
   }
 
   // Verify Android tools are working correctly
-  await exec("sdkmanager --version", (error, stdout, stderr) => {
-    if (error || stderr) {
-      console.error(chalk.red("❌ SDK Manager not running correctly"));
-    }
-    if (stdout) {
-      console.log(chalk.green("✅ SDK Manager version:", stdout));
-    }
-  });
+  console.log(
+    chalk.blueBright.bold.bgGreenBright(
+      "\nChecking Android tools are installed correctly:"
+    )
+  );
+
+  try {
+    const sdkResult = execSync("sdkmanager --version");
+    console.log(chalk.green("✅ SDK Manager version:", sdkResult));
+  } catch (error) {
+    console.error(chalk.red("❌ Could not get java version: ", error));
+  }
 };
 
 export default macOsCheck;
