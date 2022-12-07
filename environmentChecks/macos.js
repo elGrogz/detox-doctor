@@ -38,6 +38,8 @@ const macOsCheck = async () => {
     console.error(chalk.red("❌ Could not get java version: ", error));
   }
 
+  // verify cmake, NDK, etc
+
   // ENV VARS CHECK
   console.log(
     chalk.blueBright.bold.bgGreenBright(
@@ -166,6 +168,13 @@ const macOsCheck = async () => {
     console.log(chalk.green("✅ Emulator version:", emulatorResult)); //todo: truncate line
   } catch (error) {
     console.error(chalk.red("❌ Could not get Emulator version: ", error));
+  }
+
+  try {
+    const avdResult = execSync("avdmanager list avd");
+    console.log(chalk.green("✅ AVDs available:", avdResult)); //todo: truncate line
+  } catch (error) {
+    console.error(chalk.red("❌ Could not get AVDs version: ", error));
   }
 };
 
