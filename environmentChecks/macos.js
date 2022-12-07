@@ -156,9 +156,16 @@ const macOsCheck = async () => {
 
   try {
     const sdkResult = execSync("sdkmanager --version");
-    console.log(chalk.green("✅ SDK Manager version:", sdkResult));
+    console.log(chalk.green("✅ SDK Manager version:", sdkResult)); //todo: truncate line
   } catch (error) {
-    console.error(chalk.red("❌ Could not get java version: ", error));
+    console.error(chalk.red("❌ Could not get SDK Manager version: ", error));
+  }
+
+  try {
+    const emulatorResult = execSync("emulator -version");
+    console.log(chalk.green("✅ Emulator version:", emulatorResult)); //todo: truncate line
+  } catch (error) {
+    console.error(chalk.red("❌ Could not get Emulator version: ", error));
   }
 };
 
