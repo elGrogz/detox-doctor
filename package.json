@@ -6,11 +6,11 @@
   "author": "gregorgilchrist@gmail.com",
   "license": "MIT",
   "type": "module",
-  "bin": "./index.js",
   "dependencies": {
     "chalk": "^5.1.2",
     "commander": "^9.4.1",
     "inquirer": "^8.2.5",
     "yargs": "^17.6.2"
-  }
+  },
+  "bin": "./index.js"
 }
