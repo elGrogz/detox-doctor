@@ -1,6 +1,7 @@
 import fs from "fs";
 import chalk from "chalk";
 import { execSync } from "child_process";
+import NodeDetector from "../utils/node-checker.js";
 
 const macOsCheck = async () => {
   const javahomeEnvVariable = "export JAVA_HOME=`/usr/libexec/java_home`";
@@ -18,6 +19,9 @@ const macOsCheck = async () => {
   console.log(
     chalk.blueBright.bold.bgGreenBright("\nChecking Android and Java stuff:")
   );
+
+  // Verify Node is installed
+  NodeDetector.getNodeVersion();
 
   // Verify Android studio is installed
   if (fs.existsSync("/Applications/Android Studio.app")) {

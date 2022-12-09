@@ -1,6 +1,6 @@
-import macOsCheck from "./environmentChecks/macos.js";
-import windowsOsCheck from "./environmentChecks/windows.js";
-import linuxOsCheck from "./environmentChecks/linux.js";
+import macOsCheck from "./operatingSystemChecks/macos.js";
+import windowsOsCheck from "./operatingSystemChecks/windows.js";
+import linuxOsCheck from "./operatingSystemChecks/linux.js";
 import chalk from "chalk";
 
 const detoxDoctor = (os) => {

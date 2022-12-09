@@ -49,7 +49,7 @@ program
   .description(
     "CLI tool to help you setup your local environment for running Detox tests"
   )
-  .command("check")
+  .action(() => {
     const os = process.platform; //https://nodejs.org/api/process.html#processplatform
     if (os) {
       console.log(
