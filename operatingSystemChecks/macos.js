@@ -20,6 +20,8 @@ const macOsCheck = async () => {
     chalk.blueBright.bold.bgGreenBright("\nChecking Android and Java stuff:")
   );
 
+  // console.log(process.env);
+
   // Verify Node is installed
   NodeDetector.getNodeVersion();
 
