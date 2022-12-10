@@ -1,5 +1,6 @@
 import fs from "fs";
 import chalk from "chalk";
+import { execSync } from "child_process";
 
 const javahomeEnvVariable = "export JAVA_HOME=`/usr/libexec/java_home`";
 const androidHomeEnvVariable = "export ANDROID_HOME=$HOME/Library/Android/sdk";
@@ -13,6 +14,27 @@ const cmakeDirectory = `${process.env.ANDROID_HOME}/cmake`;
 const shell = process.env.SHELL;
 
 class AndroidToolsChecker {
+  static checkAndroidStudioInstallion() {
+    if (fs.existsSync("/Applications/Android Studio.app")) {
+      console.log(
+        chalk.green(
+          "✅ Android Studio installed at: /Applications/Android Studio.app"
+        )
+      );
+    } else {
+      console.log(chalk.red("❌ Android Studio not installed"));
+    }
+  }
+
+  static checkJavaInstallation() {
+    try {
+      let response = execSync("java --version");
+      console.log(chalk.green("✅ Java version:", response));
+    } catch (error) {
+      console.error(chalk.red("❌ Could not get java version: ", error));
+    }
+  }
+
   static checkCmakeInstallation() {
     if (fs.existsSync(cmakeDirectory)) {
       const cmakeVersions = fs
@@ -25,7 +47,7 @@ class AndroidToolsChecker {
 
       console.log(
         chalk.green(
-          `✅ Cmake versions available at: ${cmakeDirectory}\nAvailable versions: ${cmakeVersions.toString()}`
+          `✅ Cmake versions available at: ${cmakeDirectory}\nAvailable CMake versions: ${cmakeVersions.toString()}`
         )
       );
     } else {

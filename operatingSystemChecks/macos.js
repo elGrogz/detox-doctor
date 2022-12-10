@@ -20,25 +20,8 @@ const macOsCheck = async () => {
     )
   );
 
-  if (fs.existsSync("/Applications/Android Studio.app")) {
-    console.log(
-      chalk.green(
-        "✅ Android Studio installed at: /Applications/Android Studio.app"
-      )
-    );
-  } else {
-    console.log(chalk.red("❌ Android Studio not installed"));
-  }
-
-  // Verify Java is installed correctly
-  try {
-    let response = execSync("java --version");
-    console.log(chalk.green("✅ Java version:", response));
-  } catch (error) {
-    console.error(chalk.red("❌ Could not get java version: ", error));
-  }
-
-  // verify cmake, NDK, etc
+  AndroidToolsChecker.checkAndroidStudioInstallion();
+  AndroidToolsChecker.checkJavaInstallation();
   AndroidToolsChecker.checkCmakeInstallation();
 
   // Verify iOS system setup
