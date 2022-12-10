@@ -182,6 +182,33 @@ class AndroidToolsChecker {
       console.log("unexpected shell");
     }
   }
+
+  static checkSdkVersion() {
+    try {
+      const sdkResult = execSync("sdkmanager --version");
+      console.log(chalk.green("✅ SDK Manager version:", sdkResult)); //todo: truncate line
+    } catch (error) {
+      console.error(chalk.red("❌ Could not get SDK Manager version: ", error));
+    }
+  }
+
+  static checkEmulatorVersion() {
+    try {
+      const emulatorResult = execSync("emulator -version");
+      console.log(chalk.green("✅ Emulator version:", emulatorResult)); //todo: truncate line
+    } catch (error) {
+      console.error(chalk.red("❌ Could not get Emulator version: ", error));
+    }
+  }
+
+  static checkAvdVersion() {
+    try {
+      const avdResult = execSync("avdmanager list avd");
+      console.log(chalk.green("✅ AVDs available:", avdResult)); //todo: truncate line
+    } catch (error) {
+      console.error(chalk.red("❌ Could not get AVDs version: ", error));
+    }
+  }
 }
 
 export default AndroidToolsChecker;
