@@ -7,13 +7,19 @@ import ShellProfileChecker from "../utils/shellProfileChecker.js";
 const macOsCheck = async () => {
   // MAIN SYSTEM CHECKS
   console.log(
-    chalk.blueBright.bold.bgGreenBright("\nChecking Android and Java stuff:")
+    chalk.blueBright.bold.bgGreenBright("\nChecking Node installation")
   );
 
   // Verify Node is installed
   NodeDetector.getNodeVersion();
 
-  // Verify Android studio is installed
+  // Verify Android setup
+  console.log(
+    chalk.blueBright.bold.bgGreenBright(
+      "\nChecking system setup for Android 🤖"
+    )
+  );
+
   if (fs.existsSync("/Applications/Android Studio.app")) {
     console.log(
       chalk.green(
@@ -34,6 +40,11 @@ const macOsCheck = async () => {
 
   // verify cmake, NDK, etc
 
+  // Verify iOS system setup
+  console.log(
+    chalk.blueBright.bold.bgGreenBright("\nChecking system setup for iOS ")
+  );
+
   // ENV VARS CHECK
   console.log(
     chalk.blueBright.bold.bgGreenBright(
@@ -42,7 +53,7 @@ const macOsCheck = async () => {
   );
   ShellProfileChecker.check();
 
-  // Verify Android tools are working correctly
+  // ANDROID TOOLS CHECK
   console.log(
     chalk.blueBright.bold.bgGreenBright(
       "\nChecking Android tools are installed correctly:"
