@@ -1,6 +1,5 @@
 import fs from "fs";
 import chalk from "chalk";
-import { execSync } from "child_process";
 
 const javahomeEnvVariable = "export JAVA_HOME=`/usr/libexec/java_home`";
 const androidHomeEnvVariable = "export ANDROID_HOME=$HOME/Library/Android/sdk";
@@ -9,11 +8,32 @@ const androidSdkManagerVariable = "$ANDROID_HOME/tools/bin/sdkmanager";
 const androidPlatformToolsVariable = "$ANDROID_HOME/platform-tools";
 const androidCommandLineToolsVariable =
   "$ANDROID_HOME/cmdline-tools/latest/bin";
+const cmakeDirectory = `${process.env.ANDROID_HOME}/cmake`;
 
 const shell = process.env.SHELL;
 
-class ShellProfileChecker {
-  static check() {
+class AndroidToolsChecker {
+  static checkCmakeInstallation() {
+    if (fs.existsSync(cmakeDirectory)) {
+      const cmakeVersions = fs
+        .readdirSync(cmakeDirectory, { withFileTypes: true })
+        .filter((item) => {
+          item.isDirectory();
+          return item;
+        })
+        .map((directory) => directory.name);
+
+      console.log(
+        chalk.green(
+          `✅ Cmake versions available at: ${cmakeDirectory}\nAvailable versions: ${cmakeVersions.toString()}`
+        )
+      );
+    } else {
+      console.log(chalk.red("❌ Cmake not installed"));
+    }
+  }
+
+  static checkEnvironmentalVariables() {
     if (shell === "/bin/zsh" && fs.existsSync(`${process.env.HOME}/.zshrc`)) {
       const zshrcContents = fs.readFileSync(
         `${process.env.HOME}/.zshrc`,
@@ -121,4 +141,4 @@ class ShellProfileChecker {
   }
 }
 
-export default ShellProfileChecker;
+export default AndroidToolsChecker;

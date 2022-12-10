@@ -2,7 +2,7 @@ import fs from "fs";
 import chalk from "chalk";
 import { execSync } from "child_process";
 import NodeDetector from "../utils/nodeChecker.js";
-import ShellProfileChecker from "../utils/shellProfileChecker.js";
+import AndroidToolsChecker from "../utils/androidToolsChecker.js";
 
 const macOsCheck = async () => {
   // MAIN SYSTEM CHECKS
@@ -39,6 +39,7 @@ const macOsCheck = async () => {
   }
 
   // verify cmake, NDK, etc
+  AndroidToolsChecker.checkCmakeInstallation();
 
   // Verify iOS system setup
   console.log(
@@ -51,7 +52,7 @@ const macOsCheck = async () => {
       "\nChecking system environmental variables:"
     )
   );
-  ShellProfileChecker.check();
+  AndroidToolsChecker.checkEnvironmentalVariables();
 
   // ANDROID TOOLS CHECK
   console.log(
