@@ -10,6 +10,7 @@ const androidPlatformToolsVariable = "$ANDROID_HOME/platform-tools";
 const androidCommandLineToolsVariable =
   "$ANDROID_HOME/cmdline-tools/latest/bin";
 const cmakeDirectory = `${process.env.ANDROID_HOME}/cmake`;
+const ndkDirectory = `${process.env.ANDROID_HOME}/ndk`;
 
 const shell = process.env.SHELL;
 
@@ -52,6 +53,26 @@ class AndroidToolsChecker {
       );
     } else {
       console.log(chalk.red("❌ Cmake not installed"));
+    }
+  }
+
+  static checkNdkInstallion() {
+    if (fs.existsSync(ndkDirectory)) {
+      const ndkVersions = fs
+        .readdirSync(ndkDirectory, { withFileTypes: true })
+        .filter((item) => {
+          item.isDirectory();
+          return item;
+        })
+        .map((directory) => directory.name);
+
+      console.log(
+        chalk.green(
+          `✅ NDK versions available at: ${ndkDirectory}\nAvailable NDK versions: ${ndkVersions.toString()}`
+        )
+      );
+    } else {
+      console.log(chalk.red("❌ NDK not installed"));
     }
   }
 

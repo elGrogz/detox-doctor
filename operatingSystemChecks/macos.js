@@ -23,6 +23,7 @@ const macOsCheck = async () => {
   AndroidToolsChecker.checkAndroidStudioInstallion();
   AndroidToolsChecker.checkJavaInstallation();
   AndroidToolsChecker.checkCmakeInstallation();
+  AndroidToolsChecker.checkNdkInstallion();
 
   // Verify iOS system setup
   console.log(
