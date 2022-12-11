@@ -249,7 +249,13 @@ class AndroidToolsChecker {
   static checkAvdVersion() {
     try {
       const avdResult = execSync("avdmanager list avd");
-      console.log(chalk.green("✅ AVDs available:", avdResult)); //todo: truncate line
+      const avdString = avdResult.toString();
+      const regex = /Name:(.*)/g;
+      const regexResult = avdString.match(regex);
+      const strippedResult = regexResult.map((result) =>
+        result.replace(/Name: /, " ")
+      );
+      console.log(chalk.green("✅ AVDs available:", strippedResult)); //todo: truncate line
     } catch (error) {
       console.error(chalk.red("❌ Could not get AVDs: ", error));
     }
