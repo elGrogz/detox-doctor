@@ -237,7 +237,10 @@ class AndroidToolsChecker {
   static checkEmulatorVersion() {
     try {
       const emulatorResult = execSync("emulator -version");
-      console.log(chalk.green("✅ Emulator version:", emulatorResult)); //todo: truncate line
+      const emulatorString = emulatorResult.toString();
+      const regex = /Android emulator version(.*)/;
+      const regexResult = regex.exec(emulatorString);
+      console.log(chalk.green("✅", regexResult[0])); //todo: truncate line
     } catch (error) {
       console.error(chalk.red("❌ Could not get Emulator version: ", error));
     }
