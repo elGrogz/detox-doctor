@@ -12,6 +12,7 @@ const androidCommandLineToolsVariable =
 const cmakeDirectory = `${process.env.ANDROID_HOME}/cmake`;
 const ndkDirectory = `${process.env.ANDROID_HOME}/ndk`;
 const commandLineToolsDirectory = `${process.env.ANDROID_HOME}/cmdline-tools/latest/bin`;
+const platformsDirectory = `${process.env.ANDROID_HOME}/platforms`;
 
 const shell = process.env.SHELL;
 
@@ -201,6 +202,26 @@ class AndroidToolsChecker {
       );
     } else {
       console.log(chalk.red("❌ Command Line tools not installed"));
+    }
+  }
+
+  static checkPlatforms() {
+    if (fs.existsSync(platformsDirectory)) {
+      const platforms = fs
+        .readdirSync(platformsDirectory, { withFileTypes: true })
+        .filter((item) => {
+          item.isDirectory();
+          return item;
+        })
+        .map((directory) => directory.name);
+
+      console.log(
+        chalk.green(
+          `✅ Platforms available at: ${platformsDirectory}\nAvailable Platforms: ${platforms.toString()}`
+        )
+      );
+    } else {
+      console.log(chalk.red("❌ Platforms available"));
     }
   }
 

@@ -20,16 +20,12 @@ const macOsCheck = async () => {
     )
   );
 
+  AndroidToolsChecker.checkPlatforms();
   AndroidToolsChecker.checkCommandLineTools();
   AndroidToolsChecker.checkAndroidStudioInstallion();
   AndroidToolsChecker.checkJavaInstallation();
   AndroidToolsChecker.checkCmakeInstallation();
   AndroidToolsChecker.checkNdkInstallion();
-
-  // Verify iOS system setup
-  console.log(
-    chalk.blueBright.bold.bgGreenBright("\nChecking system setup for iOS ")
-  );
 
   // ENV VARS CHECK
   console.log(
@@ -49,6 +45,11 @@ const macOsCheck = async () => {
   AndroidToolsChecker.checkSdkVersion();
   AndroidToolsChecker.checkEmulatorVersion();
   AndroidToolsChecker.checkAvdVersion();
+
+  // Verify iOS system setup
+  console.log(
+    chalk.blueBright.bold.bgGreenBright("\nChecking system setup for iOS ")
+  );
 };
 
 export default macOsCheck;
