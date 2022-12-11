@@ -9,7 +9,7 @@
 // ANDROID CHECKS TO MAKE:
 // - Android Studio (with Homebrew) ✅
 // - Java 11 (with Homebrew - `brew install --cask zulu11`) ✅
-// - Install SDK, command line tools, NDK, CMake
+// - Install SDK, command line tools, NDK, CMake ✅
 
 // ANDROID ENV VARS:
 // export JAVA_HOME=`/usr/libexec/java_home`  ✅

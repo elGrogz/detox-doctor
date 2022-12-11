@@ -20,6 +20,7 @@ const macOsCheck = async () => {
     )
   );
 
+  AndroidToolsChecker.checkCommandLineTools();
   AndroidToolsChecker.checkAndroidStudioInstallion();
   AndroidToolsChecker.checkJavaInstallation();
   AndroidToolsChecker.checkCmakeInstallation();

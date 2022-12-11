@@ -11,6 +11,7 @@ const androidCommandLineToolsVariable =
   "$ANDROID_HOME/cmdline-tools/latest/bin";
 const cmakeDirectory = `${process.env.ANDROID_HOME}/cmake`;
 const ndkDirectory = `${process.env.ANDROID_HOME}/ndk`;
+const commandLineToolsDirectory = `${process.env.ANDROID_HOME}/cmdline-tools/latest/bin`;
 
 const shell = process.env.SHELL;
 
@@ -183,6 +184,26 @@ class AndroidToolsChecker {
     }
   }
 
+  static checkCommandLineTools() {
+    if (fs.existsSync(commandLineToolsDirectory)) {
+      const cmdlineToolsVersions = fs
+        .readdirSync(commandLineToolsDirectory, { withFileTypes: true })
+        .filter((item) => {
+          item.isDirectory();
+          return item;
+        })
+        .map((directory) => directory.name);
+
+      console.log(
+        chalk.green(
+          `✅ Command Line tools available at: ${commandLineToolsDirectory}\nAvailable Command line tools: ${cmdlineToolsVersions.toString()}`
+        )
+      );
+    } else {
+      console.log(chalk.red("❌ Command Line tools not installed"));
+    }
+  }
+
   static checkSdkVersion() {
     try {
       const sdkResult = execSync("sdkmanager --version");
@@ -206,7 +227,7 @@ class AndroidToolsChecker {
       const avdResult = execSync("avdmanager list avd");
       console.log(chalk.green("✅ AVDs available:", avdResult)); //todo: truncate line
     } catch (error) {
-      console.error(chalk.red("❌ Could not get AVDs version: ", error));
+      console.error(chalk.red("❌ Could not get AVDs: ", error));
     }
   }
 }
