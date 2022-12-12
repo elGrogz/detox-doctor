@@ -228,7 +228,12 @@ class AndroidToolsChecker {
   static checkSdkVersion() {
     try {
       const sdkResult = execSync("sdkmanager --version");
-      console.log(chalk.green("✅ SDK Manager version:", sdkResult));
+      console.log(
+        chalk.green(
+          "✅ SDK Manager version:",
+          sdkResult.toString().replace(/[\r\n]/gm, "") // \r is a windows line break, \n is a UNIX one
+        )
+      );
     } catch (error) {
       console.error(chalk.red("❌ Could not get SDK Manager version: ", error));
     }

@@ -51,6 +51,7 @@ const macOsCheck = async () => {
   );
 
   IosToolsChecker.checkXcodePath();
+  IosToolsChecker.checkAppleSimUtils();
 };
 
 export default macOsCheck;

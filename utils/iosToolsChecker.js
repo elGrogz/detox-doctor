@@ -5,9 +5,27 @@ class IosToolsChecker {
   static checkXcodePath() {
     try {
       const xcodePathResult = execSync("xcode-select -p");
-      console.log(chalk.green("✅ Xcode Installed at:", xcodePathResult));
+      console.log(
+        chalk.green(
+          "✅ Xcode Installed at:",
+          xcodePathResult.toString().replace(/[\r\n]/gm, "")
+        )
+      );
     } catch (error) {
       console.error(chalk.red("❌ Could not find Xcode installation:", error));
+    }
+  }
+
+  static checkAppleSimUtils() {
+    try {
+      const appleSimUtilsPath = execSync("which applesimutils");
+      console.log(
+        chalk.green("✅ applesimutils installed at:", appleSimUtilsPath)
+      );
+    } catch (error) {
+      console.error(
+        chalk.red("❌ Could not find applesimutils installation:", error)
+      );
     }
   }
 }
