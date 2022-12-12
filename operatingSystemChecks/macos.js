@@ -1,8 +1,7 @@
-import fs from "fs";
 import chalk from "chalk";
-import { execSync } from "child_process";
 import NodeDetector from "../utils/nodeChecker.js";
 import AndroidToolsChecker from "../utils/androidToolsChecker.js";
+import IosToolsChecker from "../utils/iosToolsChecker.js";
 
 const macOsCheck = async () => {
   // MAIN SYSTEM CHECKS
@@ -50,6 +49,8 @@ const macOsCheck = async () => {
   console.log(
     chalk.blueBright.bold.bgGreenBright("\nChecking system setup for iOS ")
   );
+
+  IosToolsChecker.checkXcodePath();
 };
 
 export default macOsCheck;

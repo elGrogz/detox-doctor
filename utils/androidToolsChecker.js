@@ -228,7 +228,7 @@ class AndroidToolsChecker {
   static checkSdkVersion() {
     try {
       const sdkResult = execSync("sdkmanager --version");
-      console.log(chalk.green("✅ SDK Manager version:", sdkResult)); //todo: truncate line
+      console.log(chalk.green("✅ SDK Manager version:", sdkResult));
     } catch (error) {
       console.error(chalk.red("❌ Could not get SDK Manager version: ", error));
     }
@@ -240,7 +240,7 @@ class AndroidToolsChecker {
       const emulatorString = emulatorResult.toString();
       const regex = /Android emulator version(.*)/;
       const regexResult = regex.exec(emulatorString);
-      console.log(chalk.green("✅", regexResult[0])); //todo: truncate line
+      console.log(chalk.green("✅", regexResult[0]));
     } catch (error) {
       console.error(chalk.red("❌ Could not get Emulator version: ", error));
     }
@@ -255,7 +255,7 @@ class AndroidToolsChecker {
       const strippedResult = regexResult.map((result) =>
         result.replace(/Name: /, " ")
       );
-      console.log(chalk.green("✅ AVDs available:", strippedResult)); //todo: truncate line
+      console.log(chalk.green("✅ AVDs available:", strippedResult));
     } catch (error) {
       console.error(chalk.red("❌ Could not get AVDs: ", error));
     }

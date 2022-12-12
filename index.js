@@ -32,7 +32,7 @@ import { program } from "commander";
 import detoxDoctor from "./detoxDoctor.js";
 import chalk from "chalk";
 
-const keypress = (os) => {
+const startDetoxDoctorWithKeypress = (os) => {
   process.stdin.setRawMode(true);
 
   return new Promise((resolve) =>
@@ -57,7 +57,7 @@ program
           "\nWelcome to Detox Doctor - press any key to continue...\n"
         )
       );
-      keypress(os).then(() => {
+      startDetoxDoctorWithKeypress(os).then(() => {
         console.log(chalk.bgBlue("\nChecks complete!"));
         process.exit();
       });
