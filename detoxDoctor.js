@@ -8,7 +8,7 @@ const detoxDoctor = (os) => {
     case "darwin":
       console.log(
         chalk.white(
-          `\nChecking ${chalk.blueBright.bold.bgGreenBright(
+          `\nChecking ${chalk.bold.bgBlue(
             " MacOS "
           )} configuration for running Detox tests...\n`
         )
@@ -18,7 +18,7 @@ const detoxDoctor = (os) => {
     case "win32":
       console.log(
         chalk.white(
-          `\nChecking ${chalk.blueBright.bold.bgGreenBright(
+          `\nChecking ${chalk.bold.bgBlue(
             " Windows "
           )} configuration for running Detox tests...\n`
         )
@@ -28,7 +28,7 @@ const detoxDoctor = (os) => {
     case "linux":
       console.log(
         chalk.white(
-          `\nChecking ${chalk.blueBright.bold.bgGreenBright(
+          `\nChecking ${chalk.bold.bgBlue(
             " Linux "
           )} configuration for running Detox tests...\n`
         )

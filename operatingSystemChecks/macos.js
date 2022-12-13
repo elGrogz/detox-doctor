@@ -6,7 +6,7 @@ import IosToolsChecker from "../utils/iosToolsChecker.js";
 const macOsCheck = async () => {
   // MAIN SYSTEM CHECKS
   console.log(
-    chalk.blueBright.bold.bgGreenBright("\nChecking Node installation")
+    chalk.magentaBright.bold.underline("\nChecking Node installation")
   );
 
   // Verify Node is installed
@@ -14,9 +14,7 @@ const macOsCheck = async () => {
 
   // Verify Android setup
   console.log(
-    chalk.blueBright.bold.bgGreenBright(
-      "\nChecking system setup for Android 🤖"
-    )
+    chalk.magentaBright.bold.underline("\nChecking system setup for Android 🤖")
   );
 
   AndroidToolsChecker.checkPlatforms();
@@ -28,7 +26,7 @@ const macOsCheck = async () => {
 
   // ENV VARS CHECK
   console.log(
-    chalk.blueBright.bold.bgGreenBright(
+    chalk.magentaBright.bold.underline(
       "\nChecking system environmental variables:"
     )
   );
@@ -36,7 +34,7 @@ const macOsCheck = async () => {
 
   // ANDROID TOOLS CHECK
   console.log(
-    chalk.blueBright.bold.bgGreenBright(
+    chalk.magentaBright.bold.underline(
       "\nChecking Android tools are installed correctly:"
     )
   );
@@ -47,7 +45,7 @@ const macOsCheck = async () => {
 
   // Verify iOS system setup
   console.log(
-    chalk.blueBright.bold.bgGreenBright("\nChecking system setup for iOS ")
+    chalk.magentaBright.bold.underline("\nChecking system setup for iOS ")
   );
 
   IosToolsChecker.checkXcodePath();
