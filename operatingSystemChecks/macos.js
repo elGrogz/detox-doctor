@@ -2,6 +2,7 @@ import chalk from "chalk";
 import NodeDetector from "../utils/nodeChecker.js";
 import AndroidToolsChecker from "../utils/androidToolsChecker.js";
 import IosToolsChecker from "../utils/iosToolsChecker.js";
+import NpmToolsChecker from "../utils/npmToolsChecker.js";
 
 const macOsCheck = async () => {
   // MAIN SYSTEM CHECKS
@@ -50,6 +51,12 @@ const macOsCheck = async () => {
 
   IosToolsChecker.checkXcodePath();
   IosToolsChecker.checkAppleSimUtils();
+
+  // Verify NPM tools setup
+  console.log(
+    chalk.magentaBright.bold.underline("\nChecking system setup for NPM Tools")
+  );
+  NpmToolsChecker.checkForDetoxCli();
 };
 
 export default macOsCheck;
