@@ -50,7 +50,7 @@ class AndroidToolsChecker {
 
       console.log(
         chalk.green(
-          `✅ Cmake versions available at: ${cmakeDirectory}\nAvailable CMake versions: ${cmakeVersions.toString()}`
+          `✅ Cmake versions available at: ${cmakeDirectory}\n   Available CMake versions: ${cmakeVersions.toString()}`
         )
       );
     } else {
@@ -70,7 +70,7 @@ class AndroidToolsChecker {
 
       console.log(
         chalk.green(
-          `✅ NDK versions available at: ${ndkDirectory}\nAvailable NDK versions: ${ndkVersions.toString()}`
+          `✅ NDK versions available at: ${ndkDirectory}\n   Available NDK versions: ${ndkVersions.toString()}`
         )
       );
     } else {
@@ -192,7 +192,7 @@ class AndroidToolsChecker {
 
       console.log(
         chalk.green(
-          `✅ Command Line tools available at: ${commandLineToolsDirectory}\nAvailable Command line tools: ${cmdlineToolsVersions.toString()}`
+          `✅ Command Line tools available at: ${commandLineToolsDirectory}\n   Available Command line tools: ${cmdlineToolsVersions.toString()}`
         )
       );
     } else {
@@ -212,7 +212,7 @@ class AndroidToolsChecker {
 
       console.log(
         chalk.green(
-          `✅ Platforms available at: ${platformsDirectory}\nAvailable Platforms: ${platforms.toString()}`
+          `✅ Platforms available at: ${platformsDirectory}\n   Available Platforms: ${platforms.toString()}`
         )
       );
     } else {
