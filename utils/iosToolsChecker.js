@@ -1,3 +1,4 @@
+import { printLocation } from "./logger.js";
 import { execSync } from "child_process";
 import chalk from "chalk";
 
@@ -8,7 +9,7 @@ class IosToolsChecker {
       console.log(
         chalk.green(
           "✅ Xcode Installed at:",
-          xcodePathResult.toString().replace(/[\r\n]/gm, "")
+          printLocation(xcodePathResult.toString().replace(/[\r\n]/gm, ""))
         )
       );
     } catch (error) {
@@ -20,7 +21,10 @@ class IosToolsChecker {
     try {
       const appleSimUtilsPath = execSync("which applesimutils");
       console.log(
-        chalk.green("✅ applesimutils installed at:", appleSimUtilsPath)
+        chalk.green(
+          "✅ applesimutils installed at:",
+          printLocation(appleSimUtilsPath)
+        )
       );
     } catch (error) {
       console.error(

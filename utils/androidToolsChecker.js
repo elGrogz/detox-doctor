@@ -1,7 +1,9 @@
 import fs from "fs";
 import chalk from "chalk";
 import { execSync } from "child_process";
+import { printLocation } from "./logger.js";
 
+const androidStudioAppLocation = "/Applications/Android Studio.app";
 const javahomeEnvVariable = "export JAVA_HOME=`/usr/libexec/java_home`";
 const androidHomeEnvVariable = "ANDROID_HOME=$HOME/Library/Android/sdk";
 const androidEmulatorVariable = "$ANDROID_HOME/emulator";
@@ -18,10 +20,12 @@ const shell = process.env.SHELL;
 
 class AndroidToolsChecker {
   static checkAndroidStudioInstallion() {
-    if (fs.existsSync("/Applications/Android Studio.app")) {
+    if (fs.existsSync(androidStudioAppLocation)) {
       console.log(
         chalk.green(
-          "✅ Android Studio installed at: /Applications/Android Studio.app"
+          `✅ Android Studio installed at: ${printLocation(
+            androidStudioAppLocation
+          )}`
         )
       );
     } else {
@@ -50,7 +54,9 @@ class AndroidToolsChecker {
 
       console.log(
         chalk.green(
-          `✅ Cmake versions available at: ${cmakeDirectory}\n   Available CMake versions: ${cmakeVersions.toString()}`
+          `✅ Cmake versions available at: ${printLocation(
+            cmakeDirectory
+          )}\n   Available CMake versions: ${cmakeVersions.toString()}`
         )
       );
     } else {
@@ -70,7 +76,9 @@ class AndroidToolsChecker {
 
       console.log(
         chalk.green(
-          `✅ NDK versions available at: ${ndkDirectory}\n   Available NDK versions: ${ndkVersions.toString()}`
+          `✅ NDK versions available at: ${printLocation(
+            ndkDirectory
+          )}\n   Available NDK versions: ${ndkVersions.toString()}`
         )
       );
     } else {
@@ -89,13 +97,15 @@ class AndroidToolsChecker {
         console.log(
           chalk.green(
             "✅ Shell profile contains Javahome:",
-            javahomeEnvVariable
+            printLocation(javahomeEnvVariable)
           )
         );
       } else {
         console.log(
           chalk.yellow(
-            `⚠️ Shell profile does not contain JAVA_HOME variable: ${javahomeEnvVariable} - Your Android SDK environment may not be configured properly`
+            `⚠️ Shell profile does not contain JAVA_HOME variable: ${printLocation(
+              javahomeEnvVariable
+            )} - Your Android SDK environment may not be configured properly`
           )
         );
       }
@@ -104,13 +114,15 @@ class AndroidToolsChecker {
         console.log(
           chalk.green(
             "✅ Shell profile contains Android Home:",
-            androidHomeEnvVariable
+            printLocation(androidHomeEnvVariable)
           )
         );
       } else {
         console.log(
           chalk.yellow(
-            `⚠️ Shell profile does not contain the ANDROID_HOME variable: ${androidHomeEnvVariable} - Your Android SDK environment may not be configured properly`
+            `⚠️ Shell profile does not contain the ANDROID_HOME variable: ${printLocation(
+              androidHomeEnvVariable
+            )} - Your Android SDK environment may not be configured properly`
           )
         );
       }
@@ -119,13 +131,15 @@ class AndroidToolsChecker {
         console.log(
           chalk.green(
             "✅ Shell profile contains Android Emulator variable:",
-            androidEmulatorVariable
+            printLocation(androidEmulatorVariable)
           )
         );
       } else {
         console.log(
           chalk.yellow(
-            `⚠️ Shell profile does not contain the Android Emulator variable: ${androidEmulatorVariable} - Your Android SDK environment may not be configured properly`
+            `⚠️ Shell profile does not contain the Android Emulator variable: ${printLocation(
+              androidEmulatorVariable
+            )} - Your Android SDK environment may not be configured properly`
           )
         );
       }
@@ -134,13 +148,15 @@ class AndroidToolsChecker {
         console.log(
           chalk.green(
             "✅ Shell profile contains Android SDK Manager variable:",
-            androidSdkManagerVariable
+            printLocation(androidSdkManagerVariable)
           )
         );
       } else {
         console.log(
           chalk.yellow(
-            `⚠️ Shell profile does not contain the Android SDK Manager variable: ${androidSdkManagerVariable} - Your Android SDK environment may not be configured properly`
+            `⚠️ Shell profile does not contain the Android SDK Manager variable: ${printLocation(
+              androidSdkManagerVariable
+            )} - Your Android SDK environment may not be configured properly`
           )
         );
       }
@@ -149,13 +165,15 @@ class AndroidToolsChecker {
         console.log(
           chalk.green(
             "✅ Shell profile contains Android Platform Tools Variable:",
-            androidPlatformToolsVariable
+            printLocation(androidPlatformToolsVariable)
           )
         );
       } else {
         console.log(
           chalk.yellow(
-            `⚠️ Shell profile does not contain the Android Platform Tools variable: ${androidPlatformToolsVariable} - Your Android SDK environment may not be configured properly`
+            `⚠️ Shell profile does not contain the Android Platform Tools variable: ${printLocation(
+              androidPlatformToolsVariable
+            )} - Your Android SDK environment may not be configured properly`
           )
         );
       }
@@ -164,19 +182,19 @@ class AndroidToolsChecker {
         console.log(
           chalk.green(
             "✅ Shell profile contains Android Command Line Tools Variable:",
-            androidCommandLineToolsVariable
+            printLocation(androidCommandLineToolsVariable)
           )
         );
       } else {
         console.log(
           chalk.red(
             "❌ Shell profile does not contain Android Command Line Tools Variable:",
-            androidCommandLineToolsVariable
+            printLocation(androidCommandLineToolsVariable)
           )
         );
       }
     } else {
-      console.log("unexpected shell");
+      console.log("Unexpected shell");
     }
   }
 
@@ -192,7 +210,9 @@ class AndroidToolsChecker {
 
       console.log(
         chalk.green(
-          `✅ Command Line tools available at: ${commandLineToolsDirectory}\n   Available Command line tools: ${cmdlineToolsVersions.toString()}`
+          `✅ Command Line tools available at: ${printLocation(
+            commandLineToolsDirectory
+          )}\n   Available Command line tools: ${cmdlineToolsVersions.toString()}`
         )
       );
     } else {
@@ -212,7 +232,9 @@ class AndroidToolsChecker {
 
       console.log(
         chalk.green(
-          `✅ Platforms available at: ${platformsDirectory}\n   Available Platforms: ${platforms.toString()}`
+          `✅ Platforms available at: ${printLocation(
+            platformsDirectory
+          )}\n   Available Platforms: ${platforms.toString()}`
         )
       );
     } else {

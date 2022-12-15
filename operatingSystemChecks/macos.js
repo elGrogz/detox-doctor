@@ -18,10 +18,10 @@ const macOsCheck = async () => {
     chalk.magentaBright.bold.underline("\nChecking system setup for Android 🤖")
   );
 
-  AndroidToolsChecker.checkPlatforms();
-  AndroidToolsChecker.checkCommandLineTools();
   AndroidToolsChecker.checkAndroidStudioInstallion();
   AndroidToolsChecker.checkJavaInstallation();
+  AndroidToolsChecker.checkPlatforms();
+  AndroidToolsChecker.checkCommandLineTools();
   AndroidToolsChecker.checkCmakeInstallation();
   AndroidToolsChecker.checkNdkInstallion();
 

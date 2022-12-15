@@ -1,4 +1,5 @@
 import { existsSync } from "fs";
+import { printLocation } from "./logger.js";
 import chalk from "chalk";
 
 const NODE_COMMON_PATHS = [
@@ -11,7 +12,9 @@ class NodeDetector {
   static getNodeVersion() {
     for (let path of NODE_COMMON_PATHS) {
       if (existsSync(path)) {
-        console.log(chalk.green(`✅ Node binary available at: ${path}`));
+        console.log(
+          chalk.green(`✅ Node binary available at: ${printLocation(path)}`)
+        );
         return;
       }
     }
