@@ -3,7 +3,7 @@ import chalk from "chalk";
 import { execSync } from "child_process";
 
 const javahomeEnvVariable = "export JAVA_HOME=`/usr/libexec/java_home`";
-const androidHomeEnvVariable = "export ANDROID_HOME=$HOME/Library/Android/sdk";
+const androidHomeEnvVariable = "ANDROID_HOME=$HOME/Library/Android/sdk";
 const androidEmulatorVariable = "$ANDROID_HOME/emulator";
 const androidSdkManagerVariable = "$ANDROID_HOME/tools/bin/sdkmanager";
 const androidPlatformToolsVariable = "$ANDROID_HOME/platform-tools";
@@ -94,9 +94,8 @@ class AndroidToolsChecker {
         );
       } else {
         console.log(
-          chalk.red(
-            "❌ Shell profile does not contain Javahome variable:",
-            javahomeEnvVariable
+          chalk.yellow(
+            `⚠️ Shell profile does not contain JAVA_HOME variable: ${javahomeEnvVariable} - Your Android SDK environment may not be configured properly`
           )
         );
       }
@@ -110,9 +109,8 @@ class AndroidToolsChecker {
         );
       } else {
         console.log(
-          chalk.red(
-            "❌ Shell profile does not contain Android Home variable:",
-            androidHomeEnvVariable
+          chalk.yellow(
+            `⚠️ Shell profile does not contain the ANDROID_HOME variable: ${androidHomeEnvVariable} - Your Android SDK environment may not be configured properly`
           )
         );
       }
@@ -126,9 +124,8 @@ class AndroidToolsChecker {
         );
       } else {
         console.log(
-          chalk.red(
-            "❌ Shell profile does not contain Android Emulator variable:",
-            androidSdkManagerVariable
+          chalk.yellow(
+            `⚠️ Shell profile does not contain the Android Emulator variable: ${androidEmulatorVariable} - Your Android SDK environment may not be configured properly`
           )
         );
       }
@@ -142,9 +139,8 @@ class AndroidToolsChecker {
         );
       } else {
         console.log(
-          chalk.red(
-            "❌ Shell profile does not contain Android SDK Manager variable:",
-            androidSdkManagerVariable
+          chalk.yellow(
+            `⚠️ Shell profile does not contain the Android SDK Manager variable: ${androidSdkManagerVariable} - Your Android SDK environment may not be configured properly`
           )
         );
       }
@@ -158,9 +154,8 @@ class AndroidToolsChecker {
         );
       } else {
         console.log(
-          chalk.red(
-            "❌ Shell profile does not contain Android Platform Tools Variable:",
-            androidPlatformToolsVariable
+          chalk.yellow(
+            `⚠️ Shell profile does not contain the Android Platform Tools variable: ${androidPlatformToolsVariable} - Your Android SDK environment may not be configured properly`
           )
         );
       }
