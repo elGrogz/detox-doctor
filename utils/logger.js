@@ -12,13 +12,13 @@ export const printSuccess = (message) => {
 
 export const printFail = (message) => {
   console.log(
-    `${chalk.bgRed("warning")} ${printDetoxDoctor()} ✖ ${chalk.red(message)}`
+    `${chalk.bgRed("warn")} ${printDetoxDoctor()} ✖ ${chalk.red(message)}`
   );
 };
 
 export const printWarning = (message) => {
   console.log(
-    `${chalk.bgYellow("optional")} ${printDetoxDoctor()} ⚠️ ${chalk.yellow(
+    `${chalk.bgYellow("warn")} ${printDetoxDoctor()} ⚠️ ${chalk.yellow(
       message
     )}`
   );

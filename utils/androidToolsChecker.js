@@ -1,7 +1,12 @@
 import fs from "fs";
 import chalk from "chalk";
 import { execSync } from "child_process";
-import { printLocation, printSuccess, printFail } from "./logger.js";
+import {
+  printLocation,
+  printSuccess,
+  printFail,
+  printWarning,
+} from "./logger.js";
 
 const androidStudioAppLocation = "/Applications/Android Studio.app";
 const javahomeEnvVariable = "export JAVA_HOME=`/usr/libexec/java_home`";
@@ -160,12 +165,10 @@ class AndroidToolsChecker {
           )}`
         );
       } else {
-        console.log(
-          chalk.yellow(
-            `⚠️ Shell profile does not contain the Android Platform Tools variable: ${printLocation(
-              androidPlatformToolsVariable
-            )} - Your Android SDK environment may not be configured properly`
-          )
+        printWarning(
+          `Shell profile does not contain the Android Platform Tools variable: ${printLocation(
+            androidPlatformToolsVariable
+          )} - Your Android SDK environment may not be configured properly`
         );
       }
 
