@@ -21,12 +21,10 @@ const shell = process.env.SHELL;
 class AndroidToolsChecker {
   static checkAndroidStudioInstallion() {
     if (fs.existsSync(androidStudioAppLocation)) {
-      console.log(
-        chalk.green(
-          `✅ Android Studio installed at: ${printLocation(
-            androidStudioAppLocation
-          )}`
-        )
+      printSuccess(
+        `Android Studio installed at: ${printLocation(
+          androidStudioAppLocation
+        )}`
       );
     } else {
       console.log(chalk.red("❌ Android Studio not installed"));
@@ -36,7 +34,7 @@ class AndroidToolsChecker {
   static checkJavaInstallation() {
     try {
       let response = execSync("java --version");
-      console.log(chalk.green("✅ Java version:", response));
+      printSuccess(`Java version: ${response}`);
     } catch (error) {
       console.error(chalk.red("❌ Could not get java version: ", error));
     }
@@ -52,12 +50,10 @@ class AndroidToolsChecker {
         })
         .map((directory) => directory.name);
 
-      console.log(
-        chalk.green(
-          `✅ Cmake versions available at: ${printLocation(
-            cmakeDirectory
-          )}\n   Available CMake versions: ${cmakeVersions.toString()}`
-        )
+      printSuccess(
+        `Cmake versions available at: ${printLocation(
+          cmakeDirectory
+        )}\n   Available CMake versions: ${cmakeVersions.toString()}`
       );
     } else {
       console.log(chalk.red("❌ Cmake not installed"));
@@ -74,12 +70,10 @@ class AndroidToolsChecker {
         })
         .map((directory) => directory.name);
 
-      console.log(
-        chalk.green(
-          `✅ NDK versions available at: ${printLocation(
-            ndkDirectory
-          )}\n   Available NDK versions: ${ndkVersions.toString()}`
-        )
+      printSuccess(
+        `NDK versions available at: ${printLocation(
+          ndkDirectory
+        )}\n   Available NDK versions: ${ndkVersions.toString()}`
       );
     } else {
       console.log(chalk.red("❌ NDK not installed"));
@@ -94,12 +88,8 @@ class AndroidToolsChecker {
       );
 
       if (zshrcContents.includes(javahomeEnvVariable)) {
-        console.log(
-          chalk.green(
-            "✅ Shell profile contains Javahome:",
-            printLocation(javahomeEnvVariable)
-          )
-        );
+        printSuccess(`Shell profile contains Javahome:
+            ${printLocation(javahomeEnvVariable)}`);
       } else {
         console.log(
           chalk.yellow(
@@ -111,11 +101,10 @@ class AndroidToolsChecker {
       }
 
       if (zshrcContents.includes(androidHomeEnvVariable)) {
-        console.log(
-          chalk.green(
-            "✅ Shell profile contains Android Home:",
-            printLocation(androidHomeEnvVariable)
-          )
+        printSuccess(
+          `Shell profile contains Android Home: ${printLocation(
+            androidHomeEnvVariable
+          )}`
         );
       } else {
         console.log(
@@ -128,12 +117,8 @@ class AndroidToolsChecker {
       }
 
       if (zshrcContents.includes(androidEmulatorVariable)) {
-        console.log(
-          chalk.green(
-            "✅ Shell profile contains Android Emulator variable:",
-            printLocation(androidEmulatorVariable)
-          )
-        );
+        printSuccess(`Shell profile contains Android Emulator variable: 
+            ${printLocation(androidEmulatorVariable)}`);
       } else {
         console.log(
           chalk.yellow(
@@ -145,12 +130,8 @@ class AndroidToolsChecker {
       }
 
       if (zshrcContents.includes(androidSdkManagerVariable)) {
-        console.log(
-          chalk.green(
-            "✅ Shell profile contains Android SDK Manager variable:",
-            printLocation(androidSdkManagerVariable)
-          )
-        );
+        printSuccess(`Shell profile contains Android SDK Manager variable: 
+            ${printLocation(androidSdkManagerVariable)}`);
       } else {
         console.log(
           chalk.yellow(
@@ -162,11 +143,10 @@ class AndroidToolsChecker {
       }
 
       if (zshrcContents.includes(androidPlatformToolsVariable)) {
-        console.log(
-          chalk.green(
-            "✅ Shell profile contains Android Platform Tools Variable:",
-            printLocation(androidPlatformToolsVariable)
-          )
+        printSuccess(
+          `Shell profile contains Android Platform Tools Variable: ${printLocation(
+            androidPlatformToolsVariable
+          )}`
         );
       } else {
         console.log(
@@ -179,11 +159,10 @@ class AndroidToolsChecker {
       }
 
       if (zshrcContents.includes(androidCommandLineToolsVariable)) {
-        console.log(
-          chalk.green(
-            "✅ Shell profile contains Android Command Line Tools Variable:",
-            printLocation(androidCommandLineToolsVariable)
-          )
+        printSuccess(
+          `Shell profile contains Android Command Line Tools Variable: ${printLocation(
+            androidCommandLineToolsVariable
+          )}`
         );
       } else {
         console.log(
@@ -208,12 +187,10 @@ class AndroidToolsChecker {
         })
         .map((directory) => directory.name);
 
-      console.log(
-        chalk.green(
-          `✅ Command Line tools available at: ${printLocation(
-            commandLineToolsDirectory
-          )}\n   Available Command line tools: ${cmdlineToolsVersions.toString()}`
-        )
+      printSuccess(
+        `Command Line tools available at: ${printLocation(
+          commandLineToolsDirectory
+        )}\n   Available Command line tools: ${cmdlineToolsVersions.toString()}`
       );
     } else {
       console.log(chalk.red("❌ Command Line tools not installed"));
