@@ -5,17 +5,25 @@ export const printLocation = (path) => {
 };
 
 export const printSuccess = (message) => {
-  console.log(`${printDetoxDoctor()} ✅${chalk.green(message)}`);
+  console.log(
+    `${chalk.bgGray("info")} ${printDetoxDoctor()} ✔ ${chalk.green(message)}`
+  );
 };
 
 export const printFail = (message) => {
-  console.log(message);
+  console.log(
+    `${chalk.bgRed("warning")} ${printDetoxDoctor()} ✖ ${chalk.red(message)}`
+  );
 };
 
 export const printWarning = (message) => {
-  console.log(message);
+  console.log(
+    `${chalk.bgYellow("optional")} ${printDetoxDoctor()} ⚠️ ${chalk.yellow(
+      message
+    )}`
+  );
 };
 
 const printDetoxDoctor = () => {
-  return chalk.blueBright("detox-doctor:");
+  return chalk.blue("DetoxDoctor:");
 };

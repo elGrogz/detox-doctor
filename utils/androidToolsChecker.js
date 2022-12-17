@@ -1,7 +1,7 @@
 import fs from "fs";
 import chalk from "chalk";
 import { execSync } from "child_process";
-import { printLocation, printSuccess } from "./logger.js";
+import { printLocation, printSuccess, printFail } from "./logger.js";
 
 const androidStudioAppLocation = "/Applications/Android Studio.app";
 const javahomeEnvVariable = "export JAVA_HOME=`/usr/libexec/java_home`";
@@ -27,7 +27,7 @@ class AndroidToolsChecker {
         )}`
       );
     } else {
-      console.log(chalk.red("❌ Android Studio not installed"));
+      printFail("Android Studio not installed");
     }
   }
 
@@ -35,10 +35,10 @@ class AndroidToolsChecker {
     try {
       let response = execSync("java --version");
       printSuccess(
-        `Java version: ${response.toString().replace("\n", "\n\t\t")}`
+        `Java version: ${response.toString().replace("\n", "\n\t\t\t")}`
       );
     } catch (error) {
-      console.error(chalk.red("❌ Could not get java version: ", error));
+      printFail(`Could not get java version: ${error}`);
     }
   }
 
@@ -55,10 +55,10 @@ class AndroidToolsChecker {
       printSuccess(
         `Cmake versions available at: ${printLocation(
           cmakeDirectory
-        )}\n\t\tAvailable CMake versions: ${cmakeVersions.toString()}`
+        )}\n\t\t\tAvailable CMake versions: ${cmakeVersions.toString()}`
       );
     } else {
-      console.log(chalk.red("❌ Cmake not installed"));
+      printFail(`Cmake not installed`);
     }
   }
 
@@ -75,10 +75,10 @@ class AndroidToolsChecker {
       printSuccess(
         `NDK versions available at: ${printLocation(
           ndkDirectory
-        )}\n\t\tAvailable NDK versions: ${ndkVersions.toString()}`
+        )}\n\t\t\tAvailable NDK versions: ${ndkVersions.toString()}`
       );
     } else {
-      console.log(chalk.red("❌ NDK not installed"));
+      printFail(`NDK not installed`);
     }
   }
 
@@ -176,11 +176,10 @@ class AndroidToolsChecker {
           )}`
         );
       } else {
-        console.log(
-          chalk.red(
-            "❌ Shell profile does not contain Android Command Line Tools Variable:",
-            printLocation(androidCommandLineToolsVariable)
-          )
+        printFail(
+          `Shell profile does not contain Android Command Line Tools Variable: ${printLocation(
+            androidCommandLineToolsVariable
+          )}`
         );
       }
     } else {
@@ -201,10 +200,10 @@ class AndroidToolsChecker {
       printSuccess(
         `Command Line tools available at: ${printLocation(
           commandLineToolsDirectory
-        )}\n\t\tAvailable Command line tools: ${cmdlineToolsVersions.toString()}`
+        )}\n\t\t\tAvailable Command line tools: ${cmdlineToolsVersions.toString()}`
       );
     } else {
-      console.log(chalk.red("❌ Command Line tools not installed"));
+      printFail("❌ Command Line tools not installed");
     }
   }
 
@@ -221,10 +220,10 @@ class AndroidToolsChecker {
       printSuccess(
         `Platforms available at: ${printLocation(
           platformsDirectory
-        )}\n\t\tAvailable Platforms: ${platforms.toString()}`
+        )}\n\t\t\tAvailable Platforms: ${platforms.toString()}`
       );
     } else {
-      console.log(chalk.red("❌ Platforms available"));
+      printFail("❌ Platforms available");
     }
   }
 
