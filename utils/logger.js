@@ -5,7 +5,7 @@ export const printLocation = (path) => {
 };
 
 export const printSuccess = (message) => {
-  console.log(`${chalk.blueBright("detox-doctor: ✅")}${chalk.green(message)}`);
+  console.log(`${printDetoxDoctor()} ✅${chalk.green(message)}`);
 };
 
 export const printFail = (message) => {
@@ -14,4 +14,8 @@ export const printFail = (message) => {
 
 export const printWarning = (message) => {
   console.log(message);
+};
+
+const printDetoxDoctor = () => {
+  return chalk.blueBright("detox-doctor:");
 };
