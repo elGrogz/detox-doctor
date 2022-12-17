@@ -1,7 +1,7 @@
 import fs from "fs";
 import chalk from "chalk";
 import { execSync } from "child_process";
-import { printLocation } from "./logger.js";
+import { printLocation, printSuccess } from "./logger.js";
 
 const androidStudioAppLocation = "/Applications/Android Studio.app";
 const javahomeEnvVariable = "export JAVA_HOME=`/usr/libexec/java_home`";
@@ -230,12 +230,10 @@ class AndroidToolsChecker {
         })
         .map((directory) => directory.name);
 
-      console.log(
-        chalk.green(
-          `✅ Platforms available at: ${printLocation(
-            platformsDirectory
-          )}\n   Available Platforms: ${platforms.toString()}`
-        )
+      printSuccess(
+        `Platforms available at: ${printLocation(
+          platformsDirectory
+        )}\n   Available Platforms: ${platforms.toString()}`
       );
     } else {
       console.log(chalk.red("❌ Platforms available"));
@@ -245,11 +243,8 @@ class AndroidToolsChecker {
   static checkSdkVersion() {
     try {
       const sdkResult = execSync("sdkmanager --version");
-      console.log(
-        chalk.green(
-          "✅ SDK Manager version:",
-          sdkResult.toString().replace(/[\r\n]/gm, "") // \r is a windows line break, \n is a UNIX one
-        )
+      printSuccess(
+        `SDK Manager version: ${sdkResult.toString().replace(/[\r\n]/gm, "")}` // \r is a windows line break, \n is a UNIX one
       );
     } catch (error) {
       console.error(chalk.red("❌ Could not get SDK Manager version: ", error));
@@ -262,7 +257,7 @@ class AndroidToolsChecker {
       const emulatorString = emulatorResult.toString();
       const regex = /Android emulator version(.*)/;
       const regexResult = regex.exec(emulatorString);
-      console.log(chalk.green("✅", regexResult[0]));
+      printSuccess(regexResult[0]);
     } catch (error) {
       console.error(chalk.red("❌ Could not get Emulator version: ", error));
     }
@@ -277,7 +272,7 @@ class AndroidToolsChecker {
       const strippedResult = regexResult.map((result) =>
         result.replace(/Name: /, " ")
       );
-      console.log(chalk.green("✅ AVDs available:", strippedResult));
+      printSuccess(`AVDs available: ${strippedResult}`);
     } catch (error) {
       console.error(chalk.red("❌ Could not get AVDs: ", error));
     }
