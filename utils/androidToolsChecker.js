@@ -150,12 +150,10 @@ class AndroidToolsChecker {
           )}`
         );
       } else {
-        console.log(
-          chalk.yellow(
-            `⚠️ Shell profile does not contain JAVA_HOME variable: ${printLocation(
-              javahomeEnvVariable
-            )} - Your Android SDK environment may not be configured properly`
-          )
+        printWarning(
+          `⚠️ Shell profile does not contain JAVA_HOME variable: ${printLocation(
+            javahomeEnvVariable
+          )} - Your Android SDK environment may not be configured properly`
         );
       }
 
@@ -166,12 +164,10 @@ class AndroidToolsChecker {
           )}`
         );
       } else {
-        console.log(
-          chalk.yellow(
-            `⚠️ Shell profile does not contain the ANDROID_HOME variable: ${printLocation(
-              androidHomeEnvVariable
-            )} - Your Android SDK environment may not be configured properly`
-          )
+        printWarning(
+          `⚠️ Shell profile does not contain the ANDROID_HOME variable: ${printLocation(
+            androidHomeEnvVariable
+          )} - Your Android SDK environment may not be configured properly`
         );
       }
 
@@ -182,12 +178,10 @@ class AndroidToolsChecker {
           )}`
         );
       } else {
-        console.log(
-          chalk.yellow(
-            `⚠️ Shell profile does not contain the Android Emulator variable: ${printLocation(
-              androidEmulatorVariable
-            )} - Your Android SDK environment may not be configured properly`
-          )
+        printWarning(
+          `⚠️ Shell profile does not contain the Android Emulator variable: ${printLocation(
+            androidEmulatorVariable
+          )} - Your Android SDK environment may not be configured properly`
         );
       }
 
@@ -198,12 +192,10 @@ class AndroidToolsChecker {
           )}`
         );
       } else {
-        console.log(
-          chalk.yellow(
-            `⚠️ Shell profile does not contain the Android SDK Manager variable: ${printLocation(
-              androidSdkManagerVariable
-            )} - Your Android SDK environment may not be configured properly`
-          )
+        printWarning(
+          `⚠️ Shell profile does not contain the Android SDK Manager variable: ${printLocation(
+            androidSdkManagerVariable
+          )} - Your Android SDK environment may not be configured properly`
         );
       }
 
