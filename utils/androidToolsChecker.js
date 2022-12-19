@@ -206,7 +206,7 @@ class AndroidToolsChecker {
         )}\n\t\t\tAvailable Command line tools: ${cmdlineToolsVersions.toString()}`
       );
     } else {
-      printFail("❌ Command Line tools not installed");
+      printFail("Command Line tools not installed");
     }
   }
 
@@ -226,7 +226,7 @@ class AndroidToolsChecker {
         )}\n\t\t\tAvailable Platforms: ${platforms.toString()}`
       );
     } else {
-      printFail("❌ Platforms available");
+      printFail("Platforms available");
     }
   }
 
@@ -237,7 +237,7 @@ class AndroidToolsChecker {
         `SDK Manager version: ${sdkResult.toString().replace(/[\r\n]/gm, "")}` // \r is a windows line break, \n is a UNIX one
       );
     } catch (error) {
-      console.error(chalk.red("❌ Could not get SDK Manager version: ", error));
+      console.error(chalk.red("Could not get SDK Manager version: ", error));
     }
   }
 
@@ -249,7 +249,7 @@ class AndroidToolsChecker {
       const regexResult = regex.exec(emulatorString);
       printSuccess(regexResult[0]);
     } catch (error) {
-      console.error(chalk.red("❌ Could not get Emulator version: ", error));
+      console.error(chalk.red("Could not get Emulator version: ", error));
     }
   }
 
@@ -264,7 +264,7 @@ class AndroidToolsChecker {
       );
       printSuccess(`AVDs available: ${strippedResult}`);
     } catch (error) {
-      console.error(chalk.red("❌ Could not get AVDs: ", error));
+      console.error(chalk.red("Could not get AVDs: ", error));
     }
   }
 }
