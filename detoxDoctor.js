@@ -14,7 +14,7 @@ const detoxDoctor = (os) => {
         )
       );
       const macosTools = new MacOsTools();
-      macosTools.runCheck(); // function to start checking macos for environmental stuff
+      macosTools.runMacOsCheck(); // function to start checking macos for environmental stuff
       break;
     case "win32":
       console.log(
@@ -25,7 +25,7 @@ const detoxDoctor = (os) => {
         )
       );
       const windowsTools = new WindowsTools();
-      windowsTools.runCheck(); // function to start checking windows for environmental stuff
+      windowsTools.runWindowsCheck(); // function to start checking windows for environmental stuff
       break;
     case "linux":
       console.log(
@@ -36,7 +36,7 @@ const detoxDoctor = (os) => {
         )
       );
       const linuxTools = new LinuxTools();
-      linuxTools.runCheck(); // function to start checking linux for environmental stuff
+      linuxTools.runLinuxCheck(); // function to start checking linux for environmental stuff
       break;
     default:
       console.log(chalk.red.bold("Unrecognised OS"));

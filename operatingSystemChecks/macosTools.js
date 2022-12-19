@@ -6,12 +6,12 @@ import { printCheckMessage } from "../utils/logger.js";
 import OperatingSystemTools from "./operatingSystemTools.js";
 
 class MacOsTools extends OperatingSystemTools {
-  runCheck() {
+  runMacOsCheck() {
     // MAIN SYSTEM CHECKS
     printCheckMessage("\nChecking Node installation");
 
     // Verify Node is installed
-    NodeDetector.getNodeVersion();
+    this.runCheck(NodeDetector.getNodeVersion());
 
     // Verify Android setup
     printCheckMessage("\nChecking system setup for Android 🤖");

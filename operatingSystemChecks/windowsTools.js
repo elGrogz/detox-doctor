@@ -1,7 +1,7 @@
 import OperatingSystemTools from "./operatingSystemTools.js";
 
 class WindowsTools extends OperatingSystemTools {
-  runCheck() {
+  runWindowsCheck() {
     console.log("Windows check not available yet... check back soon");
   }
 }

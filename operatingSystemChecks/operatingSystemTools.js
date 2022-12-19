@@ -1,11 +1,11 @@
 class OperatingSystemTools {
   constructor() {
-    this.successCount = 0;
-    this.optionalFixCount = 0;
-    this.errorCount = 0;
-    this.successes = {};
-    this.optionalFixes = {};
-    this.failures = {};
+    this.completedChecks = [];
+  }
+
+  runCheck(check) {
+    const result = check;
+    this.completedChecks.push(result);
   }
 }
 
