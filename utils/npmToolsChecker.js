@@ -10,14 +10,29 @@ class NpmToolsChecker {
           process.env.NVM_BIN + "/detox"
         )} via npm`
       );
+
+      return {
+        name: "NPM Detox CLI Check",
+        success: true,
+        optional: true,
+        message: "",
+      };
     } else {
       printWarning(
         `Detox CLI not installed globally at ${printLocation(
           process.env.NVM_BIN
-        )}.\nThis tool is not required to run Detox if it's installed in your app, but it will allow you to run detox from anywhere.\nEnsure you have Node and NVM installed and run ${chalk.blueBright.underline(
-          "npm i -g detox-cli"
         )}`
       );
+
+      return {
+        name: "NPM Detox CLI Check",
+        success: false,
+        optional: true,
+        message: `This tool is not required to run Detox if it's installed in your app, but it will allow you to run detox from anywhere.
+                  \nEnsure you have Node and NVM installed and run
+                     ${chalk.blueBright.underline("npm i -g detox-cli")}
+                  `,
+      };
     }
   }
 }

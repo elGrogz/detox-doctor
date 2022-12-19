@@ -11,8 +11,22 @@ class IosToolsChecker {
           xcodePathResult.toString().replace(/[\r\n]/gm, "")
         )}`
       );
+
+      return {
+        name: "iOS Xcode Check",
+        success: true,
+        optional: false,
+        message: "",
+      };
     } catch (error) {
       printFail(`Could not find Xcode installation: ${error}`);
+
+      return {
+        name: "iOS Xcode Check",
+        success: false,
+        optional: false,
+        message: "",
+      };
     }
   }
 
@@ -22,8 +36,22 @@ class IosToolsChecker {
       printSuccess(
         `applesimutils installed at: ${printLocation(appleSimUtilsPath)}`
       );
+
+      return {
+        name: "iOS applesimutils Check",
+        success: true,
+        optional: false,
+        message: "",
+      };
     } catch (error) {
       printFail(`Could not find applesimutils installation: ${error}`);
+
+      return {
+        name: "iOS applesimutils Check",
+        success: false,
+        optional: false,
+        message: "",
+      };
     }
   }
 }
