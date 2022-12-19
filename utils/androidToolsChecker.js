@@ -31,8 +31,22 @@ class AndroidToolsChecker {
           androidStudioAppLocation
         )}`
       );
+
+      return {
+        name: "Android Studio Check",
+        success: true,
+        optional: false,
+        message: "",
+      };
     } else {
       printFail("Android Studio not installed");
+
+      return {
+        name: "Android Studio Check",
+        success: false,
+        optional: false,
+        message: "",
+      };
     }
   }
 
@@ -42,8 +56,22 @@ class AndroidToolsChecker {
       printSuccess(
         `Java version: ${response.toString().replace("\n", "\n\t\t\t")}`
       );
+
+      return {
+        name: "Java Installation Check",
+        success: true,
+        optional: false,
+        message: "",
+      };
     } catch (error) {
       printFail(`Could not get java version: ${error}`);
+
+      return {
+        name: "Java Installation Check",
+        success: false,
+        optional: false,
+        message: "",
+      };
     }
   }
 
@@ -62,8 +90,22 @@ class AndroidToolsChecker {
           cmakeDirectory
         )}\n\t\t\tAvailable CMake versions: ${cmakeVersions.toString()}`
       );
+
+      return {
+        name: "CMake Check",
+        success: true,
+        optional: false,
+        message: "",
+      };
     } else {
       printFail(`Cmake not installed`);
+
+      return {
+        name: "CMake Check",
+        success: false,
+        optional: false,
+        message: "",
+      };
     }
   }
 
@@ -84,6 +126,13 @@ class AndroidToolsChecker {
       );
     } else {
       printFail(`NDK not installed`);
+
+      return {
+        name: "NDK Check",
+        success: false,
+        optional: false,
+        message: "",
+      };
     }
   }
 
@@ -179,7 +228,7 @@ class AndroidToolsChecker {
           )}`
         );
       } else {
-        printFail(
+        printWarning(
           `Shell profile does not contain Android Command Line Tools Variable: ${printLocation(
             androidCommandLineToolsVariable
           )}`
@@ -207,6 +256,13 @@ class AndroidToolsChecker {
       );
     } else {
       printFail("Command Line tools not installed");
+
+      return {
+        name: "Android Command Line Tools Check",
+        success: false,
+        optional: true,
+        message: "",
+      };
     }
   }
 
@@ -227,6 +283,13 @@ class AndroidToolsChecker {
       );
     } else {
       printFail("Platforms not available");
+
+      return {
+        name: "Android Platforms Check",
+        success: false,
+        optional: false,
+        message: "",
+      };
     }
   }
 
@@ -237,7 +300,14 @@ class AndroidToolsChecker {
         `SDK Manager version: ${sdkResult.toString().replace(/[\r\n]/gm, "")}` // \r is a windows line break, \n is a UNIX one
       );
     } catch (error) {
-      console.error(chalk.red("Could not get SDK Manager version: ", error));
+      printFail(`Could not get SDK Manager version: ${error}`);
+
+      return {
+        name: "Android SDK Check",
+        success: false,
+        optional: false,
+        message: "",
+      };
     }
   }
 
@@ -249,7 +319,14 @@ class AndroidToolsChecker {
       const regexResult = regex.exec(emulatorString);
       printSuccess(regexResult[0]);
     } catch (error) {
-      console.error(chalk.red("Could not get Emulator version: ", error));
+      printFail(`Could not get Emulator version: ${error}`);
+
+      return {
+        name: "Android Emulator Check",
+        success: false,
+        optional: false,
+        message: "",
+      };
     }
   }
 
@@ -264,7 +341,14 @@ class AndroidToolsChecker {
       );
       printSuccess(`AVDs available: ${strippedResult}`);
     } catch (error) {
-      console.error(chalk.red("Could not get AVDs: ", error));
+      printFail(`Could not get AVDs: ${error}`);
+
+      return {
+        name: "Android AVD Check",
+        success: false,
+        optional: false,
+        message: "",
+      };
     }
   }
 }

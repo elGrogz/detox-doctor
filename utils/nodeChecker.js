@@ -13,11 +13,21 @@ class NodeDetector {
     for (let path of NODE_COMMON_PATHS) {
       if (existsSync(path)) {
         printSuccess(`Node binary available at: ${printLocation(path)}`);
-        return { name: "Node Version Check", success: true, optional: false };
+        return {
+          name: "Node Version Check",
+          success: true,
+          optional: false,
+          message: "",
+        };
       }
     }
     printFailre("Node binary could not be found in the expected locations");
-    return { name: "Node Version Check", success: false, optional: false };
+    return {
+      name: "Node Version Check",
+      success: false,
+      optional: false,
+      message: "",
+    };
   }
 }
 
