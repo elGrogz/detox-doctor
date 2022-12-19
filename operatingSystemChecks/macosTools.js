@@ -16,34 +16,34 @@ class MacOsTools extends OperatingSystemTools {
     // Verify Android setup
     printCheckMessage("\nChecking system setup for Android 🤖");
 
-    AndroidToolsChecker.checkAndroidStudioInstallion();
-    AndroidToolsChecker.checkJavaInstallation();
-    AndroidToolsChecker.checkPlatforms();
-    AndroidToolsChecker.checkCommandLineTools();
-    AndroidToolsChecker.checkCmakeInstallation();
-    AndroidToolsChecker.checkNdkInstallion();
+    this.runCheck(AndroidToolsChecker.checkAndroidStudioInstallion());
+    this.runCheck(AndroidToolsChecker.checkJavaInstallation());
+    this.runCheck(AndroidToolsChecker.checkPlatforms());
+    this.runCheck(AndroidToolsChecker.checkCommandLineTools());
+    this.runCheck(AndroidToolsChecker.checkCmakeInstallation());
+    this.runCheck(AndroidToolsChecker.checkNdkInstallion());
 
     // ENV VARS CHECK
     printCheckMessage("\nChecking system environmental variables:");
 
-    AndroidToolsChecker.checkEnvironmentalVariables();
+    this.runCheck(AndroidToolsChecker.checkEnvironmentalVariables());
 
     // ANDROID TOOLS CHECK
     printCheckMessage("\nChecking Android tools are installed correctly:");
 
-    AndroidToolsChecker.checkSdkVersion();
-    AndroidToolsChecker.checkEmulatorVersion();
-    AndroidToolsChecker.checkAvdVersion();
+    this.runCheck(AndroidToolsChecker.checkSdkVersion());
+    this.runCheck(AndroidToolsChecker.checkEmulatorVersion());
+    this.runCheck(AndroidToolsChecker.checkAvdVersion());
 
     // IOS TOOLS CHECK
     printCheckMessage("\nChecking system setup for iOS ");
 
-    IosToolsChecker.checkXcodePath();
-    IosToolsChecker.checkAppleSimUtils();
+    this.runCheck(IosToolsChecker.checkXcodePath());
+    this.runCheck(IosToolsChecker.checkAppleSimUtils());
 
     // NPM TOOLS CHECK
     printCheckMessage("\nChecking system setup for NPM Tools");
-    NpmToolsChecker.checkForDetoxCli();
+    this.runCheck(NpmToolsChecker.checkForDetoxCli());
   }
 }
 

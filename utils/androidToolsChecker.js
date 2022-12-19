@@ -226,7 +226,7 @@ class AndroidToolsChecker {
         )}\n\t\t\tAvailable Platforms: ${platforms.toString()}`
       );
     } else {
-      printFail("Platforms available");
+      printFail("Platforms not available");
     }
   }
 
