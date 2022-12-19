@@ -16,9 +16,7 @@ class NodeDetector {
         return;
       }
     }
-    console.log(
-      chalk.red("❌ Node binary could not be found in the expected locations")
-    );
+    printFailre("Node binary could not be found in the expected locations");
   }
 }
 
