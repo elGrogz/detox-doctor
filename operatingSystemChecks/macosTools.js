@@ -3,8 +3,9 @@ import AndroidToolsChecker from "../utils/androidToolsChecker.js";
 import IosToolsChecker from "../utils/iosToolsChecker.js";
 import NpmToolsChecker from "../utils/npmToolsChecker.js";
 import { printCheckMessage } from "../utils/logger.js";
+import OperatingSystemTools from "./operatingSystemTools.js";
 
-class MacOs {
+class MacOsTools extends OperatingSystemTools {
   runCheck() {
     // MAIN SYSTEM CHECKS
     printCheckMessage("\nChecking Node installation");
@@ -34,16 +35,16 @@ class MacOs {
     AndroidToolsChecker.checkEmulatorVersion();
     AndroidToolsChecker.checkAvdVersion();
 
-    // Verify iOS system setup
+    // IOS TOOLS CHECK
     printCheckMessage("\nChecking system setup for iOS ");
 
     IosToolsChecker.checkXcodePath();
     IosToolsChecker.checkAppleSimUtils();
 
-    // Verify NPM tools setup
+    // NPM TOOLS CHECK
     printCheckMessage("\nChecking system setup for NPM Tools");
     NpmToolsChecker.checkForDetoxCli();
   }
 }
 
-export default MacOs;
+export default MacOsTools;

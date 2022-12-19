@@ -1,8 +1,7 @@
-import macOsCheck from "./operatingSystemChecks/macos.js";
-import windowsOsCheck from "./operatingSystemChecks/windows.js";
-import linuxOsCheck from "./operatingSystemChecks/linux.js";
+import WindowsTools from "./operatingSystemChecks/windowsTools.js";
+import LinuxTools from "./operatingSystemChecks/linuxTools.js";
 import chalk from "chalk";
-import MacOs from "./operatingSystemChecks/macos.js";
+import MacOsTools from "./operatingSystemChecks/macosTools.js";
 
 const detoxDoctor = (os) => {
   switch (os) {
@@ -14,8 +13,8 @@ const detoxDoctor = (os) => {
           )} configuration for running Detox tests...\n`
         )
       );
-      const macOs = new MacOs();
-      macOs.runCheck(); // function to start checking macos for environmental stuff
+      const macosTools = new MacOsTools();
+      macosTools.runCheck(); // function to start checking macos for environmental stuff
       break;
     case "win32":
       console.log(
@@ -25,7 +24,8 @@ const detoxDoctor = (os) => {
           )} configuration for running Detox tests...\n`
         )
       );
-      windowsOsCheck(); // function to start checking windows for environmental stuff
+      const windowsTools = new WindowsTools();
+      windowsTools.runCheck(); // function to start checking windows for environmental stuff
       break;
     case "linux":
       console.log(
@@ -35,7 +35,8 @@ const detoxDoctor = (os) => {
           )} configuration for running Detox tests...\n`
         )
       );
-      linuxOsCheck(); // function to start checking linux for environmental stuff
+      const linuxTools = new LinuxTools();
+      linuxTools.runCheck(); // function to start checking linux for environmental stuff
       break;
     default:
       console.log(chalk.red.bold("Unrecognised OS"));
