@@ -4,44 +4,46 @@ import IosToolsChecker from "../utils/iosToolsChecker.js";
 import NpmToolsChecker from "../utils/npmToolsChecker.js";
 import { printCheckMessage } from "../utils/logger.js";
 
-const macOsCheck = () => {
-  // MAIN SYSTEM CHECKS
-  printCheckMessage("\nChecking Node installation");
+class MacOs {
+  runCheck() {
+    // MAIN SYSTEM CHECKS
+    printCheckMessage("\nChecking Node installation");
 
-  // Verify Node is installed
-  NodeDetector.getNodeVersion();
+    // Verify Node is installed
+    NodeDetector.getNodeVersion();
 
-  // Verify Android setup
-  printCheckMessage("\nChecking system setup for Android 🤖");
+    // Verify Android setup
+    printCheckMessage("\nChecking system setup for Android 🤖");
 
-  AndroidToolsChecker.checkAndroidStudioInstallion();
-  AndroidToolsChecker.checkJavaInstallation();
-  AndroidToolsChecker.checkPlatforms();
-  AndroidToolsChecker.checkCommandLineTools();
-  AndroidToolsChecker.checkCmakeInstallation();
-  AndroidToolsChecker.checkNdkInstallion();
+    AndroidToolsChecker.checkAndroidStudioInstallion();
+    AndroidToolsChecker.checkJavaInstallation();
+    AndroidToolsChecker.checkPlatforms();
+    AndroidToolsChecker.checkCommandLineTools();
+    AndroidToolsChecker.checkCmakeInstallation();
+    AndroidToolsChecker.checkNdkInstallion();
 
-  // ENV VARS CHECK
-  printCheckMessage("\nChecking system environmental variables:");
+    // ENV VARS CHECK
+    printCheckMessage("\nChecking system environmental variables:");
 
-  AndroidToolsChecker.checkEnvironmentalVariables();
+    AndroidToolsChecker.checkEnvironmentalVariables();
 
-  // ANDROID TOOLS CHECK
-  printCheckMessage("\nChecking Android tools are installed correctly:");
+    // ANDROID TOOLS CHECK
+    printCheckMessage("\nChecking Android tools are installed correctly:");
 
-  AndroidToolsChecker.checkSdkVersion();
-  AndroidToolsChecker.checkEmulatorVersion();
-  AndroidToolsChecker.checkAvdVersion();
+    AndroidToolsChecker.checkSdkVersion();
+    AndroidToolsChecker.checkEmulatorVersion();
+    AndroidToolsChecker.checkAvdVersion();
 
-  // Verify iOS system setup
-  printCheckMessage("\nChecking system setup for iOS ");
+    // Verify iOS system setup
+    printCheckMessage("\nChecking system setup for iOS ");
 
-  IosToolsChecker.checkXcodePath();
-  IosToolsChecker.checkAppleSimUtils();
+    IosToolsChecker.checkXcodePath();
+    IosToolsChecker.checkAppleSimUtils();
 
-  // Verify NPM tools setup
-  printCheckMessage("\nChecking system setup for NPM Tools");
-  NpmToolsChecker.checkForDetoxCli();
-};
+    // Verify NPM tools setup
+    printCheckMessage("\nChecking system setup for NPM Tools");
+    NpmToolsChecker.checkForDetoxCli();
+  }
+}
 
-export default macOsCheck;
+export default MacOs;

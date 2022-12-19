@@ -2,6 +2,7 @@ import macOsCheck from "./operatingSystemChecks/macos.js";
 import windowsOsCheck from "./operatingSystemChecks/windows.js";
 import linuxOsCheck from "./operatingSystemChecks/linux.js";
 import chalk from "chalk";
+import MacOs from "./operatingSystemChecks/macos.js";
 
 const detoxDoctor = (os) => {
   switch (os) {
@@ -13,7 +14,8 @@ const detoxDoctor = (os) => {
           )} configuration for running Detox tests...\n`
         )
       );
-      macOsCheck(); // function to start checking macos for environmental stuff
+      const macOs = new MacOs();
+      macOs.runCheck(); // function to start checking macos for environmental stuff
       break;
     case "win32":
       console.log(
