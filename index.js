@@ -26,7 +26,9 @@
 // OTHER STUFF:
 // Have a way of saving errors and output a report at the end
 // check architecture for M1 vs intel
-// iOS install steps
+// iOS install steps ✅
+// flipper check
+// watchman check
 
 import { program } from "commander";
 import detoxDoctor from "./detoxDoctor.js";

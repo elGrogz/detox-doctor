@@ -1,5 +1,9 @@
 import chalk from "chalk";
 
+export const printCheckMessage = (message) => {
+  console.log(chalk.magentaBright.bold.underline(message));
+};
+
 export const printLocation = (path) => {
   return chalk.white.underline(path);
 };

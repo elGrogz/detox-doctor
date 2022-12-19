@@ -1,4 +1,4 @@
-import { printSuccess, printLocation } from "./logger.js";
+import { printSuccess, printLocation, printFail } from "./logger.js";
 import { execSync } from "child_process";
 import chalk from "chalk";
 
@@ -12,7 +12,7 @@ class IosToolsChecker {
         )}`
       );
     } catch (error) {
-      console.error(chalk.red("❌ Could not find Xcode installation:", error));
+      printFail(`Could not find Xcode installation: ${error}`);
     }
   }
 
@@ -23,9 +23,7 @@ class IosToolsChecker {
         `applesimutils installed at: ${printLocation(appleSimUtilsPath)}`
       );
     } catch (error) {
-      console.error(
-        chalk.red("❌ Could not find applesimutils installation:", error)
-      );
+      printFail(`Could not find applesimutils installation: ${error}`);
     }
   }
 }
