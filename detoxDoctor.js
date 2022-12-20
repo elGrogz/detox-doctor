@@ -2,6 +2,7 @@ import WindowsTools from "./operatingSystemChecks/windowsTools.js";
 import LinuxTools from "./operatingSystemChecks/linuxTools.js";
 import chalk from "chalk";
 import MacOsTools from "./operatingSystemChecks/macosTools.js";
+import { printChecksComplete } from "./utils/logger.js";
 
 class DetoxDoctor {
   constructor(context) {
@@ -19,7 +20,9 @@ class DetoxDoctor {
           )
         );
         const macosTools = new MacOsTools();
-        macosTools.runMacOsCheck(); // function to start checking macos for environmental stuff
+        const results = macosTools.runMacOsCheck();
+        printChecksComplete();
+        this.reportOptionalActionsToTake(results);
         break;
       case "win32":
         console.log(
@@ -30,7 +33,7 @@ class DetoxDoctor {
           )
         );
         const windowsTools = new WindowsTools();
-        windowsTools.runWindowsCheck(); // function to start checking windows for environmental stuff
+        windowsTools.runWindowsCheck();
         break;
       case "linux":
         console.log(
@@ -41,12 +44,16 @@ class DetoxDoctor {
           )
         );
         const linuxTools = new LinuxTools();
-        linuxTools.runLinuxCheck(); // function to start checking linux for environmental stuff
+        linuxTools.runLinuxCheck();
         break;
       default:
         console.log(chalk.red.bold("Unrecognised OS"));
         break;
     }
+  }
+
+  reportOptionalActionsToTake(results) {
+    console.log("reporting optional actions to take");
   }
 }
 

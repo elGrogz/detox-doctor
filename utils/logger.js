@@ -28,6 +28,10 @@ export const printWarning = (message) => {
   );
 };
 
+export const printChecksComplete = (message) => {
+  console.log(chalk.bgBlue("\nChecks complete!"));
+};
+
 const printDetoxDoctor = () => {
   return chalk.blue("DetoxDoctor:");
 };

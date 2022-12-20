@@ -44,6 +44,8 @@ class MacOsTools extends OperatingSystemTools {
     // NPM TOOLS CHECK
     printCheckMessage("\nChecking system setup for NPM Tools");
     this.runCheck(NpmToolsChecker.checkForDetoxCli());
+
+    return this.completedChecks;
   }
 }
 

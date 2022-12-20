@@ -63,7 +63,6 @@ program
         )
       );
       startDetoxDoctorWithKeypress(os).then(() => {
-        console.log(chalk.bgBlue("\nChecks complete!"));
         process.exit();
       });
     }
