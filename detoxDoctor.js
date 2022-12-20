@@ -54,7 +54,82 @@ class DetoxDoctor {
 
   reportOptionalActionsToTake(results) {
     console.log("reporting optional actions to take");
+
+    let filteredOptionalResults = results.filter((result) => result.optional);
+    console.log({ filteredResults });
   }
 }
 
 export default DetoxDoctor;
+
+// results: [
+//   {
+//     name: 'Node Version Check',
+//     success: true,
+//     optional: false,
+//     message: ''
+//   },
+//   {
+//     name: 'Android Studio Check',
+//     success: true,
+//     optional: false,
+//     message: ''
+//   },
+//   {
+//     name: 'Java Installation Check',
+//     success: true,
+//     optional: false,
+//     message: ''
+//   },
+//   {
+//     name: 'Android Platforms Check',
+//     success: false,
+//     optional: false,
+//     message: ''
+//   },
+//   {
+//     name: 'Android Command Line Tools Check',
+//     success: false,
+//     optional: true,
+//     message: ''
+//   },
+//   {
+//     name: 'CMake Check',
+//     success: false,
+//     optional: false,
+//     message: ''
+//   },
+//   { name: 'NDK Check', success: false, optional: false, message: '' },
+//   undefined,
+//   {
+//     name: 'Android SDK Check',
+//     success: false,
+//     optional: false,
+//     message: ''
+//   },
+//   undefined,
+//   {
+//     name: 'Android AVD Check',
+//     success: false,
+//     optional: false,
+//     message: ''
+//   },
+//   {
+//     name: 'iOS Xcode Check',
+//     success: true,
+//     optional: false,
+//     message: ''
+//   },
+//   {
+//     name: 'iOS applesimutils Check',
+//     success: true,
+//     optional: false,
+//     message: ''
+//   },
+//   {
+//     name: 'NPM Detox CLI Check',
+//     success: true,
+//     optional: true,
+//     message: ''
+//   }
+// ]
