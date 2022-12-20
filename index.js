@@ -32,16 +32,18 @@
 // ruby check
 
 import { program } from "commander";
-import detoxDoctor from "./detoxDoctor.js";
+import DetoxDoctor from "./detoxDoctor.js";
 import chalk from "chalk";
 
 const startDetoxDoctorWithKeypress = (os) => {
   process.stdin.setRawMode(true);
 
+  const detoxDoctor = new DetoxDoctor({ os });
+
   return new Promise((resolve) =>
     process.stdin.once("data", () => {
       process.stdin.setRawMode(false);
-      detoxDoctor(os);
+      detoxDoctor.start();
       resolve();
     })
   );
