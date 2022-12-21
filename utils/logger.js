@@ -29,7 +29,7 @@ export const printWarning = (message) => {
 };
 
 export const printChecksComplete = (message) => {
-  console.log(chalk.bgBlue("\nChecks complete!"));
+  console.log(chalk.bgBlue("\nChecks complete!\n"));
 };
 
 const printDetoxDoctor = () => {

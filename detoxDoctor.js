@@ -2,7 +2,7 @@ import WindowsTools from "./operatingSystemChecks/windowsTools.js";
 import LinuxTools from "./operatingSystemChecks/linuxTools.js";
 import chalk from "chalk";
 import MacOsTools from "./operatingSystemChecks/macosTools.js";
-import { printChecksComplete } from "./utils/logger.js";
+import { printChecksComplete, printWarning } from "./utils/logger.js";
 
 class DetoxDoctor {
   constructor(context) {
@@ -53,12 +53,15 @@ class DetoxDoctor {
   }
 
   reportOptionalActionsToTake(results) {
-    console.log("reporting optional actions to take");
+    console.log(chalk.bgYellowBright("Optional Steps to take:"));
 
     let filteredOptionalResults = results.filter(
       (result) => result.optional === true && result.success === false
     );
-    console.log({ filteredOptionalResults });
+
+    filteredOptionalResults.forEach((result) => {
+      console.log(chalk.yellow(result.message));
+    });
   }
 }
 
