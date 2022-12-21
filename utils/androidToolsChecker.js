@@ -123,6 +123,13 @@ class AndroidToolsChecker {
           ndkDirectory
         )}\n\t\t\tAvailable NDK versions: ${ndkVersions.toString()}`
       );
+
+      return {
+        name: "NDK Check",
+        success: true,
+        optional: false,
+        message: "",
+      };
     } else {
       printFail(`NDK not installed`);
 
@@ -137,6 +144,7 @@ class AndroidToolsChecker {
 
   static checkEnvironmentalVariables() {
     if (shell === "/bin/zsh" && fs.existsSync(`${process.env.HOME}/.zshrc`)) {
+      // have a check here to filter out the env var checks
       const zshrcContents = fs.readFileSync(
         `${process.env.HOME}/.zshrc`,
         "utf-8"
@@ -148,12 +156,26 @@ class AndroidToolsChecker {
             javahomeEnvVariable
           )}`
         );
+
+        return {
+          name: "JAVAHOME environmental variable check",
+          success: true,
+          optional: false,
+          message: "",
+        };
       } else {
         printWarning(
           `⚠️ Shell profile does not contain JAVA_HOME variable: ${printLocation(
             javahomeEnvVariable
           )} - Your Android SDK environment may not be configured properly`
         );
+
+        return {
+          name: "JAVAHOME environmental variable check",
+          success: false,
+          optional: false,
+          message: "",
+        };
       }
 
       if (zshrcContents.includes(androidHomeEnvVariable)) {
