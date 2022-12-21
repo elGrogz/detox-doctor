@@ -55,8 +55,10 @@ class DetoxDoctor {
   reportOptionalActionsToTake(results) {
     console.log("reporting optional actions to take");
 
-    let filteredOptionalResults = results.filter((result) => result.optional);
-    console.log({ filteredResults });
+    let filteredOptionalResults = results.filter(
+      (result) => result.optional === true && result.success === false
+    );
+    console.log({ filteredOptionalResults });
   }
 }
 

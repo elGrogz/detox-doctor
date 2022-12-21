@@ -4,6 +4,7 @@ import IosToolsChecker from "../utils/iosToolsChecker.js";
 import NpmToolsChecker from "../utils/npmToolsChecker.js";
 import { printCheckMessage } from "../utils/logger.js";
 import OperatingSystemTools from "./operatingSystemTools.js";
+import fs from "fs";
 
 class MacOsTools extends OperatingSystemTools {
   runMacOsCheck() {
@@ -26,7 +27,30 @@ class MacOsTools extends OperatingSystemTools {
     // ENV VARS CHECK
     printCheckMessage("\nChecking system environmental variables:");
 
-    this.runCheck(AndroidToolsChecker.checkEnvironmentalVariables());
+    if (
+      process.env.SHELL === "/bin/zsh" &&
+      fs.existsSync(`${process.env.HOME}/.zshrc`)
+    ) {
+      const zshrcContents = fs.readFileSync(
+        `${process.env.HOME}/.zshrc`,
+        "utf-8"
+      );
+
+      this.runCheck(AndroidToolsChecker.checkJavaHomeEnvVar(zshrcContents));
+      this.runCheck(AndroidToolsChecker.checkAndroidHomeEnvVar(zshrcContents));
+      this.runCheck(
+        AndroidToolsChecker.checkAndroidEmulatorEnvVar(zshrcContents)
+      );
+      this.runCheck(
+        AndroidToolsChecker.checkAndroidSdkManagerEnvVar(zshrcContents)
+      );
+      this.runCheck(
+        AndroidToolsChecker.checkAndroidPlatformToolsEnvVar(zshrcContents)
+      );
+      this.runCheck(
+        AndroidToolsChecker.checkAndroidCommandLineToolsEnvVar(zshrcContents)
+      );
+    }
 
     // ANDROID TOOLS CHECK
     printCheckMessage("\nChecking Android tools are installed correctly:");

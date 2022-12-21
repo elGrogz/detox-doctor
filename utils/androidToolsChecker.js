@@ -20,8 +20,6 @@ const ndkDirectory = `${process.env.ANDROID_HOME}/ndk`;
 const commandLineToolsDirectory = `${process.env.ANDROID_HOME}/cmdline-tools/latest/bin`;
 const platformsDirectory = `${process.env.ANDROID_HOME}/platforms`;
 
-const shell = process.env.SHELL;
-
 class AndroidToolsChecker {
   static checkAndroidStudioInstallion() {
     if (fs.existsSync(androidStudioAppLocation)) {
@@ -142,113 +140,172 @@ class AndroidToolsChecker {
     }
   }
 
-  static checkEnvironmentalVariables() {
-    if (shell === "/bin/zsh" && fs.existsSync(`${process.env.HOME}/.zshrc`)) {
-      // have a check here to filter out the env var checks
-      const zshrcContents = fs.readFileSync(
-        `${process.env.HOME}/.zshrc`,
-        "utf-8"
+  static checkJavaHomeEnvVar(zshrcContents) {
+    if (zshrcContents.includes(javahomeEnvVariable)) {
+      printSuccess(
+        `Shell profile contains Javahome: ${printLocation(javahomeEnvVariable)}`
       );
 
-      if (zshrcContents.includes(javahomeEnvVariable)) {
-        printSuccess(
-          `Shell profile contains Javahome: ${printLocation(
-            javahomeEnvVariable
-          )}`
-        );
-
-        return {
-          name: "JAVAHOME environmental variable check",
-          success: true,
-          optional: false,
-          message: "",
-        };
-      } else {
-        printWarning(
-          `⚠️ Shell profile does not contain JAVA_HOME variable: ${printLocation(
-            javahomeEnvVariable
-          )} - Your Android SDK environment may not be configured properly`
-        );
-
-        return {
-          name: "JAVAHOME environmental variable check",
-          success: false,
-          optional: false,
-          message: "",
-        };
-      }
-
-      if (zshrcContents.includes(androidHomeEnvVariable)) {
-        printSuccess(
-          `Shell profile contains Android Home: ${printLocation(
-            androidHomeEnvVariable
-          )}`
-        );
-      } else {
-        printWarning(
-          `⚠️ Shell profile does not contain the ANDROID_HOME variable: ${printLocation(
-            androidHomeEnvVariable
-          )} - Your Android SDK environment may not be configured properly`
-        );
-      }
-
-      if (zshrcContents.includes(androidEmulatorVariable)) {
-        printSuccess(
-          `Shell profile contains Android Emulator variable: ${printLocation(
-            androidEmulatorVariable
-          )}`
-        );
-      } else {
-        printWarning(
-          `⚠️ Shell profile does not contain the Android Emulator variable: ${printLocation(
-            androidEmulatorVariable
-          )} - Your Android SDK environment may not be configured properly`
-        );
-      }
-
-      if (zshrcContents.includes(androidSdkManagerVariable)) {
-        printSuccess(
-          `Shell profile contains Android SDK Manager variable: ${printLocation(
-            androidSdkManagerVariable
-          )}`
-        );
-      } else {
-        printWarning(
-          `⚠️ Shell profile does not contain the Android SDK Manager variable: ${printLocation(
-            androidSdkManagerVariable
-          )} - Your Android SDK environment may not be configured properly`
-        );
-      }
-
-      if (zshrcContents.includes(androidPlatformToolsVariable)) {
-        printSuccess(
-          `Shell profile contains Android Platform Tools Variable: ${printLocation(
-            androidPlatformToolsVariable
-          )}`
-        );
-      } else {
-        printWarning(
-          `Shell profile does not contain the Android Platform Tools variable: ${printLocation(
-            androidPlatformToolsVariable
-          )} - Your Android SDK environment may not be configured properly`
-        );
-      }
-
-      if (zshrcContents.includes(androidCommandLineToolsVariable)) {
-        printSuccess(
-          `Shell profile contains Android Command Line Tools Variable: ${printLocation(
-            androidCommandLineToolsVariable
-          )}`
-        );
-      } else {
-        printWarning(
-          `Shell profile does not contain Android Command Line Tools Variable: ${printLocation(
-            androidCommandLineToolsVariable
-          )}`
-        );
-      }
+      return {
+        name: "JAVAHOME environmental variable check",
+        success: true,
+        optional: false,
+        message: "",
+      };
     } else {
-      console.log("Unexpected shell");
+      printWarning(
+        `⚠️ Shell profile does not contain JAVA_HOME variable: ${printLocation(
+          javahomeEnvVariable
+        )} - Your Android SDK environment may not be configured properly`
+      );
+      return {
+        name: "JAVA_HOME environmental variable check",
+        success: false,
+        optional: false,
+        message: "",
+      };
+    }
+  }
+
+  static checkAndroidHomeEnvVar(zshrcContents) {
+    // check SDK root too
+    if (zshrcContents.includes(androidHomeEnvVariable)) {
+      printSuccess(
+        `Shell profile contains Android Home: ${printLocation(
+          androidHomeEnvVariable
+        )}`
+      );
+      return {
+        name: "ANDROID_HOME environmental variable check",
+        success: true,
+        optional: false,
+        message: "",
+      };
+    } else {
+      printWarning(
+        `⚠️ Shell profile does not contain the ANDROID_HOME variable: ${printLocation(
+          androidHomeEnvVariable
+        )} - Your Android SDK environment may not be configured properly`
+      );
+
+      return {
+        name: "ANDROID_HOME environmental variable check",
+        success: false,
+        optional: false,
+        message: "",
+      };
+    }
+  }
+
+  static checkAndroidEmulatorEnvVar(zshrcContents) {
+    if (zshrcContents.includes(androidEmulatorVariable)) {
+      printSuccess(
+        `Shell profile contains Android Emulator variable: ${printLocation(
+          androidEmulatorVariable
+        )}`
+      );
+      return {
+        name: "EMULATOR environmental variable check",
+        success: true,
+        optional: false,
+        message: "",
+      };
+    } else {
+      printWarning(
+        `⚠️ Shell profile does not contain the Android Emulator variable: ${printLocation(
+          androidEmulatorVariable
+        )} - Your Android SDK environment may not be configured properly`
+      );
+      return {
+        name: "EMULATOR environmental variable check",
+        success: false,
+        optional: false,
+        message: "",
+      };
+    }
+  }
+
+  static checkAndroidSdkManagerEnvVar(zshrcContents) {
+    if (zshrcContents.includes(androidSdkManagerVariable)) {
+      printSuccess(
+        `Shell profile contains Android SDK Manager variable: ${printLocation(
+          androidSdkManagerVariable
+        )}`
+      );
+      return {
+        name: "ANDROID_SDK_MANAGER environmental variable check",
+        success: true,
+        optional: false,
+        message: "",
+      };
+    } else {
+      printWarning(
+        `⚠️ Shell profile does not contain the Android SDK Manager variable: ${printLocation(
+          androidSdkManagerVariable
+        )} - Your Android SDK environment may not be configured properly`
+      );
+      return {
+        name: "ANDROID_SDK_MANAGER environmental variable check",
+        success: false,
+        optional: false,
+        message: "",
+      };
+    }
+  }
+
+  static checkAndroidPlatformToolsEnvVar(zshrcContents) {
+    if (zshrcContents.includes(androidPlatformToolsVariable)) {
+      printSuccess(
+        `Shell profile contains Android Platform Tools Variable: ${printLocation(
+          androidPlatformToolsVariable
+        )}`
+      );
+      return {
+        name: "ANDROID_PLATFORM environmental variable check",
+        success: true,
+        optional: false,
+        message: "",
+      };
+    } else {
+      printWarning(
+        `Shell profile does not contain the Android Platform Tools variable: ${printLocation(
+          androidPlatformToolsVariable
+        )} - Your Android SDK environment may not be configured properly`
+      );
+      return {
+        name: "ANDROID_PLATFORM environmental variable check",
+        success: false,
+        optional: false,
+        message: "",
+      };
+    }
+  }
+
+  static checkAndroidCommandLineToolsEnvVar(zshrcContents) {
+    if (zshrcContents.includes(androidCommandLineToolsVariable)) {
+      printSuccess(
+        `Shell profile contains Android Command Line Tools Variable: ${printLocation(
+          androidCommandLineToolsVariable
+        )}`
+      );
+      return {
+        name: "ANDROID_COMMAND_LINE_TOOLS environmental variable check",
+        success: true,
+        optional: true,
+        message: "",
+      };
+    } else {
+      printWarning(
+        `Shell profile does not contain Android Command Line Tools Variable: ${printLocation(
+          androidCommandLineToolsVariable
+        )}`
+      );
+      return {
+        name: "ANDROID_COMMAND_LINE_TOOLS environmental variable check",
+        success: false,
+        optional: true,
+        message: "",
+      };
     }
   }
 
@@ -331,6 +388,12 @@ class AndroidToolsChecker {
       const regex = /Android emulator version(.*)/;
       const regexResult = regex.exec(emulatorString);
       printSuccess(regexResult[0]);
+      return {
+        name: "Android Emulator Check",
+        success: true,
+        optional: false,
+        message: "",
+      };
     } catch (error) {
       printFail(`Could not get Emulator version: ${error}`);
 
