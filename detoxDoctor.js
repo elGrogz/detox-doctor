@@ -63,6 +63,18 @@ class DetoxDoctor {
       console.log(chalk.yellow(result.message));
     });
   }
+
+  reportActionsToTake(results) {
+    console.log(chalk.bgRed("Mandatory Steps to take:"));
+
+    let filteredResults = results.filter(
+      (result) => result.optional === false && result.success === false
+    );
+
+    filteredResults.forEach((result) => {
+      console.log(chalk.yellow(result.message));
+    });
+  }
 }
 
 export default DetoxDoctor;
