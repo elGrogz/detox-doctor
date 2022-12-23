@@ -72,7 +72,7 @@ class DetoxDoctor {
     );
 
     filteredResults.forEach((result) => {
-      console.log(chalk.yellow(result.message));
+      console.log(`- ${chalk.yellow(result.message)}\n`);
     });
   }
 }

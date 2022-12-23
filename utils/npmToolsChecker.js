@@ -28,10 +28,9 @@ class NpmToolsChecker {
         name: "NPM Detox CLI Check",
         success: false,
         optional: true,
-        message: `This tool is not required to run Detox if it's installed in your app, but it will allow you to run detox from anywhere.
-                  \nEnsure you have Node and NVM installed and run
-                     ${chalk.blueBright.underline("npm i -g detox-cli")}
-                  `,
+        message: `detox-cli is not required to run Detox if it's already installed as a dependency in your app, but it will allow you to run detox from anywhere.\nEnsure you have Node and NVM installed and run ${chalk.blueBright.underline(
+          "npm i -g detox-cli"
+        )}`,
       };
     }
   }

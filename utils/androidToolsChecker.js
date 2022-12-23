@@ -324,6 +324,13 @@ class AndroidToolsChecker {
           commandLineToolsDirectory
         )}\n\t\t\tAvailable Command line tools: ${cmdlineToolsVersions.toString()}`
       );
+
+      return {
+        name: "Android Command Line Tools Check",
+        success: true,
+        optional: true,
+        message: "",
+      };
     } else {
       printFail("Command Line tools not installed");
 
@@ -351,6 +358,12 @@ class AndroidToolsChecker {
           platformsDirectory
         )}\n\t\t\tAvailable Platforms: ${platforms.toString()}`
       );
+      return {
+        name: "Android Platforms Check",
+        success: true,
+        optional: false,
+        message: "",
+      };
     } else {
       printFail("Platforms not available");
 
@@ -369,6 +382,13 @@ class AndroidToolsChecker {
       printSuccess(
         `SDK Manager version: ${sdkResult.toString().replace(/[\r\n]/gm, "")}` // \r is a windows line break, \n is a UNIX one
       );
+
+      return {
+        name: "Android SDK Check",
+        success: true,
+        optional: false,
+        message: "",
+      };
     } catch (error) {
       printFail(`Could not get SDK Manager version: ${error}`);
 
@@ -416,6 +436,13 @@ class AndroidToolsChecker {
         result.replace(/Name: /, " ")
       );
       printSuccess(`AVDs available: ${strippedResult}`);
+
+      return {
+        name: "Android AVD Check",
+        success: true,
+        optional: false,
+        message: "",
+      };
     } catch (error) {
       printFail(`Could not get AVDs: ${error}`);
 
