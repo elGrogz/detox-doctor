@@ -10,6 +10,7 @@ import {
 const androidStudioAppLocation = "/Applications/Android Studio.app";
 const javahomeEnvVariable = "export JAVA_HOME=`/usr/libexec/java_home`";
 const androidHomeEnvVariable = "ANDROID_HOME=$HOME/Library/Android/sdk";
+const androidSdkRootEnvVariable = "ANDROID_SDK_ROOT=$HOME/Library/Android/sdk";
 const androidEmulatorVariable = "$ANDROID_HOME/emulator";
 const androidSdkManagerVariable = "$ANDROID_HOME/tools/bin/sdkmanager";
 const androidPlatformToolsVariable = "$ANDROID_HOME/platform-tools";
@@ -166,7 +167,9 @@ class AndroidToolsChecker {
         name: "JAVA_HOME environmental variable check",
         success: false,
         optional: false,
-        message: "",
+        message: `The ${printLocation(
+          JAVA_HOME
+        )} environmental variable is required to run Detox tests on Android.\nSet it in your shell profile file`,
       };
     }
   }
@@ -185,6 +188,29 @@ class AndroidToolsChecker {
         optional: false,
         message: "",
       };
+    } else if (zshrcContents.includes(androidHomeEnvVariable)) {
+      printWarning(
+        `Shell profile contains Android SDK Root: ${printLocation(
+          androidSdkRootEnvVariable
+        )}. This is deprecated in favour of ${printLocation(
+          "ANDROID_HOME"
+        )}. Consider replacing the ${printLocation(
+          "ANDROID_SDK_ROOT"
+        )} environmental variable`
+      );
+
+      return {
+        name: "ANDROID_HOME environmental variable check",
+        success: false,
+        optional: true,
+        message: `Shell profile contains Android SDK Root: ${printLocation(
+          androidSdkRootEnvVariable
+        )}. This is deprecated in favour of ${printLocation(
+          "ANDROID_HOME"
+        )}. Consider replacing the ${printLocation(
+          "ANDROID_SDK_ROOT"
+        )} environmental variable`,
+      };
     } else {
       printWarning(
         `⚠️ Shell profile does not contain the ANDROID_HOME variable: ${printLocation(
@@ -196,7 +222,9 @@ class AndroidToolsChecker {
         name: "ANDROID_HOME environmental variable check",
         success: false,
         optional: false,
-        message: "",
+        message: `The ${printLocation(
+          "ANDROID_HOME"
+        )} environmental variable is required to run Detox tests on Android.\nSet it in your shell profile file`,
       };
     }
   }

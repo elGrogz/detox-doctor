@@ -1,6 +1,7 @@
 class OperatingSystemTools {
   constructor() {
     this.completedChecks = [];
+    this.shellProfileFile = "";
   }
 
   runCheck(check) {
