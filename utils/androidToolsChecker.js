@@ -42,7 +42,9 @@ class AndroidToolsChecker {
         name: "Android Studio Check",
         success: false,
         optional: false,
-        message: "",
+        message: `Android Studio is required to run Detox tests on Android. Download at the Android website or run ${printLocation(
+          "brew install --cask android-studio"
+        )}`,
       };
     }
   }
@@ -67,7 +69,9 @@ class AndroidToolsChecker {
         name: "Java Installation Check",
         success: false,
         optional: false,
-        message: "",
+        message: `Java v11 and the Java JDK are required to run Detox tests on Android. Run ${printLocation(
+          `brew tap homebrew/cask-versions\nbrew install --cask zulu11`
+        )}`,
       };
     }
   }
@@ -91,7 +95,7 @@ class AndroidToolsChecker {
       return {
         name: "CMake Check",
         success: true,
-        optional: false,
+        optional: true,
         message: "",
       };
     } else {
@@ -100,8 +104,8 @@ class AndroidToolsChecker {
       return {
         name: "CMake Check",
         success: false,
-        optional: false,
-        message: "",
+        optional: true,
+        message: `CMake may required to run Detox tests on Android, depending on your app. Install via Android Studio > SDK Manager > Tools`,
       };
     }
   }
@@ -135,7 +139,7 @@ class AndroidToolsChecker {
         name: "NDK Check",
         success: false,
         optional: false,
-        message: "",
+        message: `The Android NDK is required to run Detox tests on Android, depending on your app. Install via Android Studio > SDK Manager > Tools`,
       };
     }
   }
