@@ -269,7 +269,7 @@ class AndroidToolsChecker {
         )}`
       );
       return {
-        name: "ANDROID_SDK_MANAGER $PATH check",
+        name: "ANDROID SDK MANAGER $PATH check",
         success: true,
         optional: true,
         message: "",
@@ -281,7 +281,7 @@ class AndroidToolsChecker {
         )} - Your Android SDK environment may not be configured properly`
       );
       return {
-        name: "ANDROID_SDK_MANAGER $PATH check",
+        name: "ANDROID SDK MANAGER $PATH check",
         success: false,
         optional: true,
         message: `${printLocation(
@@ -297,33 +297,33 @@ class AndroidToolsChecker {
     }
   }
 
-  static checkAndroidPlatformToolsEnvVar(zshrcContents) {
-    if (zshrcContents.includes(androidPlatformToolsVariable)) {
-      printSuccess(
-        `Shell profile contains Android Platform Tools Variable: ${printLocation(
-          androidPlatformToolsVariable
-        )}`
-      );
-      return {
-        name: "ANDROID_PLATFORM environmental variable check",
-        success: true,
-        optional: true,
-        message: "",
-      };
-    } else {
-      printWarning(
-        `Shell profile does not contain the Android Platform Tools variable: ${printLocation(
-          androidPlatformToolsVariable
-        )} - Your Android SDK environment may not be configured properly`
-      );
-      return {
-        name: "ANDROID_PLATFORM environmental variable check",
-        success: false,
-        optional: false,
-        message: "",
-      };
-    }
-  }
+  // static checkAndroidPlatformToolsEnvVar(zshrcContents) {
+  //   if (zshrcContents.includes(androidPlatformToolsVariable)) {
+  //     printSuccess(
+  //       `Shell profile contains Android Platform Tools Variable: ${printLocation(
+  //         androidPlatformToolsVariable
+  //       )}`
+  //     );
+  //     return {
+  //       name: "ANDROID_PLATFORM environmental variable check",
+  //       success: true,
+  //       optional: true,
+  //       message: "",
+  //     };
+  //   } else {
+  //     printWarning(
+  //       `Shell profile does not contain the Android Platform Tools variable: ${printLocation(
+  //         androidPlatformToolsVariable
+  //       )} - Your Android SDK environment may not be configured properly`
+  //     );
+  //     return {
+  //       name: "ANDROID_PLATFORM environmental variable check",
+  //       success: false,
+  //       optional: false,
+  //       message: "",
+  //     };
+  //   }
+  // }
 
   static checkAndroidCommandLineToolsEnvVar(zshrcContents) {
     if (zshrcContents.includes(androidCommandLineToolsVariable)) {
@@ -390,7 +390,9 @@ class AndroidToolsChecker {
         name: "Android Command Line Tools Check",
         success: false,
         optional: true,
-        message: "",
+        message: `Android Command line tools directory does not exist at ${printLocation(
+          "cmdline-tools"
+        )}. Install via Android Studio > SDK Manager > Tools`,
       };
     }
   }
@@ -423,7 +425,9 @@ class AndroidToolsChecker {
         name: "Android Platforms Check",
         success: false,
         optional: false,
-        message: "",
+        message: `No Android API platforms are currently available. Install via Android Studio > SDK Manager > Tools, or via the ${printLocation(
+          "sdkmanager"
+        )} command line tool`,
       };
     }
   }
@@ -448,7 +452,7 @@ class AndroidToolsChecker {
         name: "Android SDK Check",
         success: false,
         optional: false,
-        message: "",
+        message: `SDK Manager not available. Install via Android Studio > SDK Manager > Tools`,
       };
     }
   }
@@ -473,7 +477,7 @@ class AndroidToolsChecker {
         name: "Android Emulator Check",
         success: false,
         optional: false,
-        message: "",
+        message: `Emulator not available. Install via Android Studio > SDK Manager > Tools`,
       };
     }
   }
@@ -487,7 +491,7 @@ class AndroidToolsChecker {
       const strippedResult = regexResult.map((result) =>
         result.replace(/Name: /, " ")
       );
-      printSuccess(`AVDs available: ${strippedResult}`);
+      printSuccess(`Android Virtual Devices available: ${strippedResult}`);
 
       return {
         name: "Android AVD Check",
@@ -502,7 +506,7 @@ class AndroidToolsChecker {
         name: "Android AVD Check",
         success: false,
         optional: false,
-        message: "",
+        message: `Could not find any Android Virtual Devices. Install via Android Studio > Device Manager`,
       };
     }
   }

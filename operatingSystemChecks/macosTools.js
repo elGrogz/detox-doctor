@@ -44,9 +44,9 @@ class MacOsTools extends OperatingSystemTools {
       this.runCheck(
         AndroidToolsChecker.checkAndroidSdkManagerEnvVar(zshrcContents)
       );
-      this.runCheck(
-        AndroidToolsChecker.checkAndroidPlatformToolsEnvVar(zshrcContents)
-      );
+      // this.runCheck(
+      //   AndroidToolsChecker.checkAndroidPlatformToolsEnvVar(zshrcContents)
+      // );
       this.runCheck(
         AndroidToolsChecker.checkAndroidCommandLineToolsEnvVar(zshrcContents)
       );

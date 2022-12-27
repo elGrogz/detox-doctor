@@ -1,6 +1,5 @@
 import { existsSync } from "fs";
-import { printSuccess, printLocation } from "./logger.js";
-import chalk from "chalk";
+import { printSuccess, printLocation, printFail } from "./logger.js";
 
 const NODE_COMMON_PATHS = [
   process.env._,
@@ -21,12 +20,13 @@ class NodeDetector {
         };
       }
     }
-    printFailre("Node binary could not be found in the expected locations");
+    printFailure("Node binary could not be found in the expected locations");
     return {
       name: "Node Version Check",
       success: false,
       optional: false,
-      message: "",
+      message:
+        "Node could not be found. Ensure it is installed via the Node website, a tool such as Homebrew, or an version manager like NVM",
     };
   }
 }
