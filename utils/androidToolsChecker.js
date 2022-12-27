@@ -159,7 +159,7 @@ class AndroidToolsChecker {
       };
     } else {
       printWarning(
-        `⚠️ Shell profile does not contain JAVA_HOME variable: ${printLocation(
+        `Shell profile does not contain JAVA_HOME variable: ${printLocation(
           javahomeEnvVariable
         )} - Your Android SDK environment may not be configured properly`
       );
@@ -168,7 +168,7 @@ class AndroidToolsChecker {
         success: false,
         optional: false,
         message: `The ${printLocation(
-          JAVA_HOME
+          "JAVA_HOME"
         )} environmental variable is required to run Detox tests on Android.\nSet it in your shell profile file`,
       };
     }
