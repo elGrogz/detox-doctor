@@ -60,7 +60,7 @@ class DetoxDoctor {
     );
 
     filteredOptionalResults.forEach((result) => {
-      console.log(chalk.yellow(result.message));
+      console.log(`• ⚠️ ${chalk.yellow(result.message)} ⚠️`);
     });
   }
 
@@ -72,7 +72,7 @@ class DetoxDoctor {
     );
 
     filteredResults.forEach((result) => {
-      console.log(`- ${chalk.yellow(result.message)}\n`);
+      console.log(`• ✖ ${chalk.red(result.message)}\n ✖`);
     });
   }
 }

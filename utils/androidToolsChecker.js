@@ -175,7 +175,6 @@ class AndroidToolsChecker {
   }
 
   static checkAndroidHomeEnvVar(zshrcContents) {
-    // check SDK root too
     if (zshrcContents.includes(androidHomeEnvVariable)) {
       printSuccess(
         `Shell profile contains Android Home: ${printLocation(
@@ -188,34 +187,30 @@ class AndroidToolsChecker {
         optional: false,
         message: "",
       };
-    } else if (zshrcContents.includes(androidHomeEnvVariable)) {
+    } else if (zshrcContents.includes(androidSdkRootEnvVariable)) {
       printWarning(
-        `Shell profile contains Android SDK Root: ${printLocation(
+        `Shell profile contains ANDROID_SDK_ROOT environmental variable: ${printLocation(
           androidSdkRootEnvVariable
-        )}. This is deprecated in favour of ${printLocation(
-          "ANDROID_HOME"
-        )}. Consider replacing the ${printLocation(
-          "ANDROID_SDK_ROOT"
-        )} environmental variable`
+        )}`
       );
 
       return {
-        name: "ANDROID_HOME environmental variable check",
+        name: "Shell profile environmental variable check",
         success: false,
         optional: true,
-        message: `Shell profile contains Android SDK Root: ${printLocation(
+        message: `Shell profile contains ANDROID_SDK_ROOT environmental variable: ${printLocation(
           androidSdkRootEnvVariable
         )}. This is deprecated in favour of ${printLocation(
           "ANDROID_HOME"
         )}. Consider replacing the ${printLocation(
           "ANDROID_SDK_ROOT"
-        )} environmental variable`,
+        )} environmental variable with this.`,
       };
     } else {
-      printWarning(
-        `⚠️ Shell profile does not contain the ANDROID_HOME variable: ${printLocation(
+      printFail(
+        `Shell profile does not contain the ANDROID_HOME variable: ${printLocation(
           androidHomeEnvVariable
-        )} - Your Android SDK environment may not be configured properly`
+        )}`
       );
 
       return {
@@ -232,55 +227,72 @@ class AndroidToolsChecker {
   static checkAndroidEmulatorEnvVar(zshrcContents) {
     if (zshrcContents.includes(androidEmulatorVariable)) {
       printSuccess(
-        `Shell profile contains Android Emulator variable: ${printLocation(
+        `$PATH contains Android Emulator variable: ${printLocation(
           androidEmulatorVariable
         )}`
       );
       return {
-        name: "EMULATOR environmental variable check",
+        name: "EMULATOR $PATH check",
         success: true,
-        optional: false,
+        optional: true,
         message: "",
       };
     } else {
       printWarning(
-        `⚠️ Shell profile does not contain the Android Emulator variable: ${printLocation(
+        `⚠️ $PATH does not contain Android Emulator: ${printLocation(
           androidEmulatorVariable
-        )} - Your Android SDK environment may not be configured properly`
+        )}`
       );
       return {
-        name: "EMULATOR environmental variable check",
+        name: "EMULATOR $PATH check",
         success: false,
-        optional: false,
-        message: "",
+        optional: true,
+        message: `${printLocation(
+          "emulator"
+        )} is not set in your shell profile file and is not available in your $PATH. This means you won't be able to use the convenience ${printLocation(
+          "emulator"
+        )} method to setup and run Android emulators from the command line. Consider adding it with ${printLocation(
+          "export PATH=$PATH:$ANDROID_HOME/emulator"
+        )}`,
       };
     }
   }
 
   static checkAndroidSdkManagerEnvVar(zshrcContents) {
-    if (zshrcContents.includes(androidSdkManagerVariable)) {
+    if (
+      zshrcContents.includes(androidSdkManagerVariable) ||
+      zshrcContents.includes(androidCommandLineToolsVariable)
+    ) {
       printSuccess(
-        `Shell profile contains Android SDK Manager variable: ${printLocation(
+        `$PATH contains Android SDK Manager variable: ${printLocation(
           androidSdkManagerVariable
         )}`
       );
       return {
-        name: "ANDROID_SDK_MANAGER environmental variable check",
+        name: "ANDROID_SDK_MANAGER $PATH check",
         success: true,
-        optional: false,
+        optional: true,
         message: "",
       };
     } else {
       printWarning(
-        `⚠️ Shell profile does not contain the Android SDK Manager variable: ${printLocation(
+        `$PATH does not contain the Android SDK Manager variable: ${printLocation(
           androidSdkManagerVariable
         )} - Your Android SDK environment may not be configured properly`
       );
       return {
-        name: "ANDROID_SDK_MANAGER environmental variable check",
+        name: "ANDROID_SDK_MANAGER $PATH check",
         success: false,
-        optional: false,
-        message: "",
+        optional: true,
+        message: `${printLocation(
+          "sdkmanager"
+        )} is not set in your shell profile file and is not available in your $PATH. This means you won't be able to use the convenience ${printLocation(
+          "sdkmanager"
+        )} method to install and manage Android system images, platforms and APIs from the command line. Consider adding it with ${printLocation(
+          "export PATH=$PATH:$ANDROID_HOME/sdkmanager"
+        )} or if you have Android Command Line tools installed: ${printLocation(
+          "export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin"
+        )}`,
       };
     }
   }
@@ -295,7 +307,7 @@ class AndroidToolsChecker {
       return {
         name: "ANDROID_PLATFORM environmental variable check",
         success: true,
-        optional: false,
+        optional: true,
         message: "",
       };
     } else {
@@ -316,27 +328,35 @@ class AndroidToolsChecker {
   static checkAndroidCommandLineToolsEnvVar(zshrcContents) {
     if (zshrcContents.includes(androidCommandLineToolsVariable)) {
       printSuccess(
-        `Shell profile contains Android Command Line Tools Variable: ${printLocation(
+        `$PATH contains Android Command Line Tools Variable: ${printLocation(
           androidCommandLineToolsVariable
         )}`
       );
       return {
-        name: "ANDROID_COMMAND_LINE_TOOLS environmental variable check",
+        name: "ANDROID_COMMAND_LINE_TOOLS $PATH check",
         success: true,
         optional: true,
         message: "",
       };
     } else {
       printWarning(
-        `Shell profile does not contain Android Command Line Tools Variable: ${printLocation(
+        `$PATH does not contain Android Command Line Tools Variable: ${printLocation(
           androidCommandLineToolsVariable
         )}`
       );
       return {
-        name: "ANDROID_COMMAND_LINE_TOOLS environmental variable check",
+        name: "ANDROID_COMMAND_LINE_TOOLS $PATH check",
         success: false,
         optional: true,
-        message: "",
+        message: `${printLocation(
+          "cmdline-tools"
+        )} are not set in your shell profile file and is not available in your $PATH. This means you won't be able to use the convenience command line tools like ${printLocation(
+          "sdkmanager"
+        )} or ${printLocation(
+          "avdmanager"
+        )}. Consider adding it with ${printLocation(
+          "export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin"
+        )}`,
       };
     }
   }

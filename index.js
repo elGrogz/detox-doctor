@@ -59,13 +59,11 @@ program
     if (os) {
       console.log(
         chalk.italic.bold.bgMagentaBright(
-          "\nWelcome to Detox Doctor - the tool that checks your local environment for running Detox tests."
+          "\nWelcome to Detox Doctor - a tool that checks your local environment for running Detox tests."
         )
       );
       console.log(
-        chalk.italic.bold.bgMagentaBright(
-          "Hold onto your butts and press any key to continue...\n"
-        )
+        chalk.italic.bold.bgMagentaBright("Press any key to continue...\n")
       );
       startDetoxDoctorWithKeypress(os).then(() => {
         process.exit();
