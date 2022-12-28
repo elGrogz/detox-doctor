@@ -25,8 +25,7 @@ class IosToolsChecker {
         name: "iOS Xcode Check",
         success: false,
         optional: false,
-        message:
-          "XCode could not be found. Ensure it is installed via the XCode website or the Apple app store",
+        message: "Xcode is required to run Detox iOS tests",
       };
     }
   }
@@ -51,9 +50,7 @@ class IosToolsChecker {
         name: "iOS applesimutils Check",
         success: false,
         optional: false,
-        message: `applesimutils could not be found. Ensure it is installed via ${printLocation(
-          "brew tap wix/brew; brew install applesimutils"
-        )}`,
+        message: "",
       };
     }
   }
