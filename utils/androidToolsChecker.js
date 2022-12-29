@@ -350,7 +350,7 @@ class AndroidToolsChecker {
         optional: true,
         message: `${printLocation(
           "cmdline-tools"
-        )} are not set in your shell profile file and is not available in your $PATH. This means you won't be able to use the convenience command line tools like ${printLocation(
+        )} are not set in your shell profile file and is not available in your $PATH. This means you may not be able to use the convenience command line tools like ${printLocation(
           "sdkmanager"
         )} or ${printLocation(
           "avdmanager"

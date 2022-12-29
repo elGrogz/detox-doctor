@@ -1,6 +1,5 @@
 import { printSuccess, printLocation, printFail } from "./logger.js";
 import { execSync } from "child_process";
-import chalk from "chalk";
 
 class IosToolsChecker {
   static checkXcodePath() {
@@ -25,7 +24,8 @@ class IosToolsChecker {
         name: "iOS Xcode Check",
         success: false,
         optional: false,
-        message: "Xcode is required to run Detox iOS tests",
+        message:
+          "Xcode is required to run Detox iOS tests. Install it via the Xcode website or the Apple app store",
       };
     }
   }
@@ -50,7 +50,9 @@ class IosToolsChecker {
         name: "iOS applesimutils Check",
         success: false,
         optional: false,
-        message: "",
+        message: `applesimutils is required by Detox to run iOS tests. Run ${printLocation(
+          "brew tap wix/brew; brew install applesimutils"
+        )} to install`,
       };
     }
   }
