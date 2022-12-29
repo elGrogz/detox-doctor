@@ -372,7 +372,6 @@ class AndroidToolsChecker {
         name: "Android Command Line Tools Check",
         success: true,
         optional: true,
-        message: "",
       };
     } else {
       printFail("Command Line tools not installed");
@@ -407,7 +406,6 @@ class AndroidToolsChecker {
         name: "Android Platforms Check",
         success: true,
         optional: false,
-        message: "",
       };
     } else {
       printFail("Platforms not available");
@@ -434,7 +432,6 @@ class AndroidToolsChecker {
         name: "Android SDK Check",
         success: true,
         optional: false,
-        message: "",
       };
     } catch (error) {
       printFail(`Could not get SDK Manager version: ${error}`);
@@ -459,7 +456,6 @@ class AndroidToolsChecker {
         name: "Android Emulator Check",
         success: true,
         optional: false,
-        message: "",
       };
     } catch (error) {
       printFail(`Could not get Emulator version: ${error}`);
@@ -488,7 +484,6 @@ class AndroidToolsChecker {
         name: "Android AVD Check",
         success: true,
         optional: false,
-        message: "",
       };
     } catch (error) {
       printFail(`Could not get AVDs: ${error}`);
