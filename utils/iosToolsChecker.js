@@ -41,7 +41,6 @@ class IosToolsChecker {
         name: "iOS applesimutils Check",
         success: true,
         optional: false,
-        message: "",
       };
     } catch (error) {
       printFail(`Could not find applesimutils installation: ${error}`);

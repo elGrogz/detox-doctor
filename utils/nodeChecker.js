@@ -16,11 +16,10 @@ class NodeDetector {
           name: "Node Version Check",
           success: true,
           optional: false,
-          message: "",
         };
       }
     }
-    printFailure("Node binary could not be found in the expected locations");
+    printFail("Node binary could not be found in the expected locations");
     return {
       name: "Node Version Check",
       success: false,

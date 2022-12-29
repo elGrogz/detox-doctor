@@ -15,7 +15,6 @@ class NpmToolsChecker {
         name: "NPM Detox CLI Check",
         success: true,
         optional: true,
-        message: "",
       };
     } else {
       printWarning(

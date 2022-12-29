@@ -13,7 +13,7 @@ const androidHomeEnvVariable = "ANDROID_HOME=$HOME/Library/Android/sdk";
 const androidSdkRootEnvVariable = "ANDROID_SDK_ROOT=$HOME/Library/Android/sdk";
 const androidEmulatorVariable = "$ANDROID_HOME/emulator";
 const androidSdkManagerVariable = "$ANDROID_HOME/tools/bin/sdkmanager";
-const androidPlatformToolsVariable = "$ANDROID_HOME/platform-tools";
+// const androidPlatformToolsVariable = "$ANDROID_HOME/platform-tools";
 const androidCommandLineToolsVariable =
   "$ANDROID_HOME/cmdline-tools/latest/bin";
 const cmakeDirectory = `${process.env.ANDROID_HOME}/cmake`;
@@ -34,7 +34,6 @@ class AndroidToolsChecker {
         name: "Android Studio Check",
         success: true,
         optional: false,
-        message: "",
       };
     } else {
       printFail("Android Studio not installed");
@@ -61,7 +60,6 @@ class AndroidToolsChecker {
         name: "Java Installation Check",
         success: true,
         optional: false,
-        message: "",
       };
     } catch (error) {
       printFail(`Could not get java version: ${error}`);
@@ -97,7 +95,6 @@ class AndroidToolsChecker {
         name: "CMake Check",
         success: true,
         optional: true,
-        message: "",
       };
     } else {
       printFail(`Cmake not installed`);
@@ -131,7 +128,6 @@ class AndroidToolsChecker {
         name: "NDK Check",
         success: true,
         optional: false,
-        message: "",
       };
     } else {
       printFail(`NDK not installed`);
@@ -155,7 +151,6 @@ class AndroidToolsChecker {
         name: "JAVAHOME environmental variable check",
         success: true,
         optional: false,
-        message: "",
       };
     } else {
       printWarning(
@@ -185,7 +180,6 @@ class AndroidToolsChecker {
         name: "ANDROID_HOME environmental variable check",
         success: true,
         optional: false,
-        message: "",
       };
     } else if (zshrcContents.includes(androidSdkRootEnvVariable)) {
       printWarning(
@@ -235,7 +229,6 @@ class AndroidToolsChecker {
         name: "EMULATOR $PATH check",
         success: true,
         optional: true,
-        message: "",
       };
     } else {
       printWarning(
@@ -272,7 +265,6 @@ class AndroidToolsChecker {
         name: "ANDROID SDK MANAGER $PATH check",
         success: true,
         optional: true,
-        message: "",
       };
     } else {
       printWarning(
@@ -336,7 +328,6 @@ class AndroidToolsChecker {
         name: "ANDROID_COMMAND_LINE_TOOLS $PATH check",
         success: true,
         optional: true,
-        message: "",
       };
     } else {
       printWarning(
