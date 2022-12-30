@@ -5,6 +5,7 @@ import NpmToolsChecker from "../utils/npmToolsChecker.js";
 import { printCheckMessage } from "../utils/logger.js";
 import OperatingSystemTools from "./operatingSystemTools.js";
 import fs from "fs";
+import DebugToolsChecker from "../utils/debugToolsChecker.js";
 
 class MacOsTools extends OperatingSystemTools {
   runMacOsCheck() {
@@ -68,6 +69,10 @@ class MacOsTools extends OperatingSystemTools {
     // NPM TOOLS CHECK
     printCheckMessage("\nChecking system setup for NPM Tools");
     this.runCheck(NpmToolsChecker.checkForDetoxCli());
+
+    // FLIPPER CHECK
+    printCheckMessage("\nChecking Flipper installation");
+    this.runCheck(DebugToolsChecker.checkFlipperInstallation());
 
     return this.completedChecks;
   }
