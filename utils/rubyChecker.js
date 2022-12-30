@@ -6,6 +6,7 @@ class DebugToolsChecker {
     try {
       const result = execSync("ruby -v");
       const rubyVersion = result.toString();
+      // regex: /(?<=ruby )(.*?)(?=.)/gi
     } catch (error) {}
 
     printWarning("Ruby installation not found");
