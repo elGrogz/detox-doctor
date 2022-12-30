@@ -1,6 +1,6 @@
 {
   "name": "detox-doctor",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "Identifies missing packages and tools required to run Detox tests for React Native apps",
   "main": "index.js",
   "author": "gregorgilchrist@gmail.com",
