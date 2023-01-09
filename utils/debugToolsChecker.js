@@ -1,12 +1,7 @@
-import {
-  printSuccess,
-  printLocation,
-  printFail,
-  printWarning,
-} from "./logger.js";
+import { printSuccess, printLocation, printWarning } from "./logger.js";
 import { existsSync } from "fs";
 
-const COMMON_FLIPPER_LOCATIONS = ["/Applications/Fipper.app"];
+const COMMON_FLIPPER_LOCATIONS = ["/Applications/Flipper.app"];
 
 class DebugToolsChecker {
   static checkFlipperInstallation() {

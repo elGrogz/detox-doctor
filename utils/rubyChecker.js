@@ -1,22 +1,34 @@
-import { printSuccess, printLocation, printWarning } from "./logger.js";
+import {
+  printSuccess,
+  printLocation,
+  printWarning,
+  printFail,
+} from "./logger.js";
 import { execSync } from "child_process";
 
-class DebugToolsChecker {
-  static checkFlipperInstallation() {
+class RubyChecker {
+  static checkRubyInstallation() {
     try {
       const result = execSync("ruby -v");
       const rubyVersion = result.toString();
       // regex: /(?<=ruby )(.*?)(?=.)/gi
+      printSuccess(rubyVersion);
+      return {
+        name: "Ruby Installation check",
+        success: true,
+        optional: false,
+        message: ``,
+      };
     } catch (error) {}
 
-    printWarning("Ruby installation not found");
+    printFail("Ruby installation not found");
     return {
       name: "Ruby Installation check",
       success: false,
       optional: false,
-      message: ``,
+      message: `Ruby not installed in expected location`,
     };
   }
 }
 
-export default DebugToolsChecker;
+export default RubyChecker;

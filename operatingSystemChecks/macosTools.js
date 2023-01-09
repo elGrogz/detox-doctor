@@ -6,6 +6,7 @@ import { printCheckMessage } from "../utils/logger.js";
 import OperatingSystemTools from "./operatingSystemTools.js";
 import fs from "fs";
 import DebugToolsChecker from "../utils/debugToolsChecker.js";
+import RubyChecker from "../utils/rubyChecker.js";
 
 class MacOsTools extends OperatingSystemTools {
   runMacOsCheck() {
@@ -65,6 +66,7 @@ class MacOsTools extends OperatingSystemTools {
 
     this.runCheck(IosToolsChecker.checkXcodePath());
     this.runCheck(IosToolsChecker.checkAppleSimUtils());
+    this.runCheck(RubyChecker.checkRubyInstallation());
 
     // NPM TOOLS CHECK
     printCheckMessage("\nChecking system setup for NPM Tools");
