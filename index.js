@@ -24,10 +24,11 @@
 // emulator -avd test_emulator
 
 // OTHER STUFF:
-// Have a way of saving errors and output a report at the end
-// check architecture for M1 vs intel
+// Have a way of saving errors and output a report at the end ✅
+// check architecture for M1 vs intel and report it at start
+// also report other system information at the start?
 // iOS install steps ✅
-// flipper check
+// flipper check ✅
 // watchman check
 // ruby check
 

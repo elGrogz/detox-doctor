@@ -1,18 +1,16 @@
-import {
-  printSuccess,
-  printLocation,
-  printWarning,
-  printFail,
-} from "./logger.js";
+import { printSuccess, printFail, printLocation } from "./logger.js";
 import { execSync } from "child_process";
 
 class RubyChecker {
   static checkRubyInstallation() {
     try {
       const result = execSync("ruby -v");
+      const rubyInstallLocation = execSync("which ruby");
       const rubyVersion = result.toString();
       // regex: /(?<=ruby )(.*?)(?=.)/gi
-      printSuccess(rubyVersion);
+      printSuccess(
+        `Ruby Installation found at ${printLocation(rubyInstallLocation)}: ${printLocation(rubyVersion)}`
+      );
       return {
         name: "Ruby Installation check",
         success: true,
