@@ -2,7 +2,7 @@ import NodeDetector from "../utils/nodeChecker.js";
 import AndroidToolsChecker from "../utils/androidToolsChecker.js";
 import IosToolsChecker from "../utils/iosToolsChecker.js";
 import NpmToolsChecker from "../utils/npmToolsChecker.js";
-import { printCheckMessage } from "../utils/logger.js";
+import { printCheckMessage, printFail } from "../utils/logger.js";
 import OperatingSystemTools from "./operatingSystemTools.js";
 import fs from "fs";
 import DebugToolsChecker from "../utils/debugToolsChecker.js";
@@ -29,28 +29,46 @@ class MacOsTools extends OperatingSystemTools {
     // ENV VARS CHECK
     printCheckMessage("\nChecking system environmental variables:");
 
+    let shellFileContents;
+
     if (
       process.env.SHELL === "/bin/zsh" &&
       fs.existsSync(`${process.env.HOME}/.zshrc`)
     ) {
-      const zshrcContents = fs.readFileSync(
+      shellFileContents = fs.readFileSync(
         `${process.env.HOME}/.zshrc`,
         "utf-8"
       );
+    } else if (
+      process.env.SHELL === "/bin/bash" &&
+      fs.existsSync(`${process.env.HOME}/.bashrc`)
+    ) {
+      shellFileContents = fs.readFileSync(
+        `${process.env.HOME}/.bashrc`,
+        "utf-8"
+      );
+    } else {
+      printFail("Could not find valid zshrc or bashrc Shell file");
+    }
 
-      this.runCheck(AndroidToolsChecker.checkJavaHomeEnvVar(zshrcContents));
-      this.runCheck(AndroidToolsChecker.checkAndroidHomeEnvVar(zshrcContents));
+    if (shellFileContents) {
+      this.runCheck(AndroidToolsChecker.checkJavaHomeEnvVar(shellFileContents));
       this.runCheck(
-        AndroidToolsChecker.checkAndroidEmulatorEnvVar(zshrcContents)
+        AndroidToolsChecker.checkAndroidHomeEnvVar(shellFileContents)
       );
       this.runCheck(
-        AndroidToolsChecker.checkAndroidSdkManagerEnvVar(zshrcContents)
+        AndroidToolsChecker.checkAndroidEmulatorEnvVar(shellFileContents)
+      );
+      this.runCheck(
+        AndroidToolsChecker.checkAndroidSdkManagerEnvVar(shellFileContents)
       );
       // this.runCheck(
-      //   AndroidToolsChecker.checkAndroidPlatformToolsEnvVar(zshrcContents)
+      //   AndroidToolsChecker.checkAndroidPlatformToolsEnvVar(shellFileContents)
       // );
       this.runCheck(
-        AndroidToolsChecker.checkAndroidCommandLineToolsEnvVar(zshrcContents)
+        AndroidToolsChecker.checkAndroidCommandLineToolsEnvVar(
+          shellFileContents
+        )
       );
     }
 

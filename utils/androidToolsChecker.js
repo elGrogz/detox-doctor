@@ -8,9 +8,9 @@ import {
 } from "./logger.js";
 
 const androidStudioAppLocation = "/Applications/Android Studio.app";
-const javahomeEnvVariable = "export JAVA_HOME=`/usr/libexec/java_home`";
-const androidHomeEnvVariable = "ANDROID_HOME=$HOME/Library/Android/sdk";
-const androidSdkRootEnvVariable = "ANDROID_SDK_ROOT=$HOME/Library/Android/sdk";
+const javahomeEnvVariable = "JAVA_HOME";
+const androidHomeEnvVariable = "ANDROID_HOME";
+const androidSdkRootEnvVariable = "ANDROID_SDK_ROOT";
 const androidEmulatorVariable = "$ANDROID_HOME/emulator";
 const androidSdkManagerVariable = "$ANDROID_HOME/tools/bin/sdkmanager";
 // const androidPlatformToolsVariable = "$ANDROID_HOME/platform-tools";
@@ -20,6 +20,15 @@ const cmakeDirectory = `${process.env.ANDROID_HOME}/cmake`;
 const ndkDirectory = `${process.env.ANDROID_HOME}/ndk`;
 const commandLineToolsDirectory = `${process.env.ANDROID_HOME}/cmdline-tools/latest/bin`;
 const platformsDirectory = `${process.env.ANDROID_HOME}/platforms`;
+
+// const javahomeEnvVariable = "JAVA_HOME=`/usr/libexec/java_home`";
+// const androidHomeEnvVariable = "ANDROID_HOME=$HOME/Library/Android/sdk";
+// const androidSdkRootEnvVariable = "ANDROID_SDK_ROOT=$HOME/Library/Android/sdk";
+// const androidEmulatorVariable = "$ANDROID_HOME/emulator";
+// const androidSdkManagerVariable = "$ANDROID_HOME/tools/bin/sdkmanager";
+// // const androidPlatformToolsVariable = "$ANDROID_HOME/platform-tools";
+// const androidCommandLineToolsVariable =
+//   "$ANDROID_HOME/cmdline-tools/latest/bin";
 
 class AndroidToolsChecker {
   static checkAndroidStudioInstallion() {
@@ -172,7 +181,7 @@ class AndroidToolsChecker {
   static checkAndroidHomeEnvVar(zshrcContents) {
     if (zshrcContents.includes(androidHomeEnvVariable)) {
       printSuccess(
-        `Shell profile contains Android Home: ${printLocation(
+        `Shell profile contains Android Home variable: ${printLocation(
           androidHomeEnvVariable
         )}`
       );
@@ -183,18 +192,18 @@ class AndroidToolsChecker {
       };
     } else if (zshrcContents.includes(androidSdkRootEnvVariable)) {
       printWarning(
-        `Shell profile contains ANDROID_SDK_ROOT environmental variable: ${printLocation(
+        `Shell profile contains ${printLocation(
           androidSdkRootEnvVariable
-        )}`
+        )} environmental variable`
       );
 
       return {
         name: "Shell profile environmental variable check",
         success: false,
         optional: true,
-        message: `Shell profile contains ANDROID_SDK_ROOT environmental variable: ${printLocation(
+        message: `Shell profile contains ${printLocation(
           androidSdkRootEnvVariable
-        )}. This is deprecated in favour of ${printLocation(
+        )} environmental variable. This is deprecated in favour of ${printLocation(
           "ANDROID_HOME"
         )}. Consider replacing the ${printLocation(
           "ANDROID_SDK_ROOT"
@@ -202,9 +211,9 @@ class AndroidToolsChecker {
       };
     } else {
       printFail(
-        `Shell profile does not contain the ANDROID_HOME variable: ${printLocation(
+        `Shell profile does not contain the ${printLocation(
           androidHomeEnvVariable
-        )}`
+        )} variable`
       );
 
       return {
@@ -212,7 +221,7 @@ class AndroidToolsChecker {
         success: false,
         optional: false,
         message: `The ${printLocation(
-          "ANDROID_HOME"
+          androidHomeEnvVariable
         )} environmental variable is required to run Detox tests on Android.\nSet it in your shell profile file`,
       };
     }
@@ -221,7 +230,7 @@ class AndroidToolsChecker {
   static checkAndroidEmulatorEnvVar(zshrcContents) {
     if (zshrcContents.includes(androidEmulatorVariable)) {
       printSuccess(
-        `$PATH contains Android Emulator variable: ${printLocation(
+        `Shell profile contains Android Emulator variable: ${printLocation(
           androidEmulatorVariable
         )}`
       );
@@ -241,7 +250,7 @@ class AndroidToolsChecker {
         success: false,
         optional: true,
         message: `${printLocation(
-          "emulator"
+          androidEmulatorVariable
         )} is not set in your shell profile file and is not available in your $PATH. This means you won't be able to use the convenience ${printLocation(
           "emulator"
         )} method to setup and run Android emulators from the command line. Consider adding it with ${printLocation(
@@ -257,7 +266,7 @@ class AndroidToolsChecker {
       zshrcContents.includes(androidCommandLineToolsVariable)
     ) {
       printSuccess(
-        `$PATH contains Android SDK Manager variable: ${printLocation(
+        `Shell profile contains Android SDK Manager variable: ${printLocation(
           androidSdkManagerVariable
         )}`
       );
@@ -277,7 +286,7 @@ class AndroidToolsChecker {
         success: false,
         optional: true,
         message: `${printLocation(
-          "sdkmanager"
+          androidSdkManagerVariable
         )} is not set in your shell profile file and is not available in your $PATH. This means you won't be able to use the convenience ${printLocation(
           "sdkmanager"
         )} method to install and manage Android system images, platforms and APIs from the command line. Consider adding it with ${printLocation(
@@ -320,7 +329,7 @@ class AndroidToolsChecker {
   static checkAndroidCommandLineToolsEnvVar(zshrcContents) {
     if (zshrcContents.includes(androidCommandLineToolsVariable)) {
       printSuccess(
-        `$PATH contains Android Command Line Tools Variable: ${printLocation(
+        `Shell profile contains Android Command Line Tools Variable: ${printLocation(
           androidCommandLineToolsVariable
         )}`
       );
@@ -340,7 +349,7 @@ class AndroidToolsChecker {
         success: false,
         optional: true,
         message: `${printLocation(
-          "cmdline-tools"
+          androidCommandLineToolsVariable
         )} are not set in your shell profile file and is not available in your $PATH. This means you may not be able to use the convenience command line tools like ${printLocation(
           "sdkmanager"
         )} or ${printLocation(
