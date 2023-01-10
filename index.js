@@ -54,21 +54,23 @@ program
   .name("detox-doctor")
   .description(
     "CLI tool to help you setup your local environment for running Detox tests"
-  )
-  .action(() => {
-    const os = process.platform; //https://nodejs.org/api/process.html#processplatform
-    if (os) {
-      console.log(
-        chalk.italic.bold.bgMagentaBright(
-          "\nWelcome to Detox Doctor - a tool that checks your local environment for running Detox tests."
-        )
-      );
-      console.log(
-        chalk.italic.bold.bgMagentaBright("Press any key to continue...\n")
-      );
-      startDetoxDoctorWithKeypress(os).then(() => {
-        process.exit();
-      });
-    }
-  })
-  .parse();
+  );
+
+program.command("check").action(() => {
+  const os = process.platform; //https://nodejs.org/api/process.html#processplatform
+  if (os) {
+    console.log(
+      chalk.italic.bold.bgMagentaBright(
+        "\nWelcome to Detox Doctor - a tool that checks your local environment for running Detox tests."
+      )
+    );
+    console.log(
+      chalk.italic.bold.bgMagentaBright("Press any key to continue...\n")
+    );
+    startDetoxDoctorWithKeypress(os).then(() => {
+      process.exit();
+    });
+  }
+});
+
+program.parse();
