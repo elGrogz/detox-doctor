@@ -36,8 +36,8 @@ import { program } from "commander";
 import DetoxDoctor from "./detoxDoctor.js";
 import chalk from "chalk";
 
-const startDetoxDoctorWithKeypress = (os) => {
-  process.stdin.setRawMode(true);
+const startDetoxDoctorCheck = (os) => {
+  // process.stdin.setRawMode(true);
 
   const detoxDoctor = new DetoxDoctor({ os });
 
@@ -54,23 +54,36 @@ program
   .name("detox-doctor")
   .description(
     "CLI tool to help you setup your local environment for running Detox tests"
-  );
+  )
+  .version("1.0.17");
 
-program.command("check").action(() => {
-  const os = process.platform; //https://nodejs.org/api/process.html#processplatform
-  if (os) {
-    console.log(
-      chalk.italic.bold.bgMagentaBright(
-        "\nWelcome to Detox Doctor - a tool that checks your local environment for running Detox tests."
-      )
-    );
-    console.log(
-      chalk.italic.bold.bgMagentaBright("Press any key to continue...\n")
-    );
-    startDetoxDoctorWithKeypress(os).then(() => {
-      process.exit();
-    });
-  }
-});
+program
+  .command("check")
+  .description(
+    "Run a check to make sure your local environment has the correct installations and tools to run React Native and Detox tests."
+  )
+  .action(() => {
+    const os = process.platform; //https://nodejs.org/api/process.html#processplatform
+    if (os) {
+      console.log(
+        chalk.italic.bold.bgMagentaBright(
+          "\nWelcome to Detox Doctor - a tool that checks your local environment for running Detox tests."
+        )
+      );
+      // console.log(
+      //   chalk.italic.bold.bgMagentaBright("Press any key to continue...\n")
+      // );
+      startDetoxDoctorCheck(os);
+      // .then(() => {
+      //   process.exit();
+      // });
+    }
+  });
+
+program
+  .command("install-emulator")
+  .description(
+    "Install a basic android emulator for React Native development and detox tests - WORK IN PROGRESS"
+  );
 
 program.parse();
