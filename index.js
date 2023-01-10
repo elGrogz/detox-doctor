@@ -55,7 +55,7 @@ program
   .description(
     "CLI tool to help you setup your local environment for running Detox tests"
   )
-  .version("1.0.17");
+  .version("1.0.18");
 
 program
   .command("check")
