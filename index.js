@@ -62,6 +62,9 @@ program
   .description(
     "Run a check to make sure your local environment has the correct installations and tools to run React Native and Detox tests."
   )
+  .option("-o, --exclude-optional", "Exclude optional checks - WIP")
+  .option("-a, --android-only", "Run the check for Android only - WIP")
+  .option("-i, --ios-only", "Run the check for iOS only - WIP")
   .action(() => {
     const os = process.platform; //https://nodejs.org/api/process.html#processplatform
     if (os) {
