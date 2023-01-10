@@ -41,13 +41,13 @@ const startDetoxDoctorWithKeypress = (os) => {
 
   const detoxDoctor = new DetoxDoctor({ os });
 
-  return new Promise((resolve) =>
-    process.stdin.once("data", () => {
-      process.stdin.setRawMode(false);
-      detoxDoctor.start();
-      resolve();
-    })
-  );
+  // return new Promise((resolve) =>
+  //   process.stdin.once("data", () => {
+  //     process.stdin.setRawMode(false);
+  detoxDoctor.start();
+  //     resolve();
+  //   })
+  // );
 };
 
 program
