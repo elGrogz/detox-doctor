@@ -30,7 +30,7 @@
 // iOS install steps ✅
 // flipper check ✅
 // watchman check
-// ruby check
+// ruby check ✅
 
 import { program } from "commander";
 import DetoxDoctor from "./detoxDoctor.js";

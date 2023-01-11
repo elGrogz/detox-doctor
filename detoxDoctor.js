@@ -2,7 +2,11 @@ import WindowsTools from "./operatingSystemChecks/windowsTools.js";
 import LinuxTools from "./operatingSystemChecks/linuxTools.js";
 import chalk from "chalk";
 import MacOsTools from "./operatingSystemChecks/macosTools.js";
-import { printChecksComplete, printWarning } from "./utils/logger.js";
+import {
+  printChecksComplete,
+  printSuccess,
+  printWarning,
+} from "./utils/logger.js";
 
 class DetoxDoctor {
   constructor(context) {
@@ -23,6 +27,7 @@ class DetoxDoctor {
         const results = macosTools.runMacOsCheck();
         printChecksComplete();
         this.reportOptionalActionsToTake(results);
+        this.reportActionsToTake(results);
         break;
       case "win32":
         console.log(
@@ -59,94 +64,34 @@ class DetoxDoctor {
       (result) => result.optional === true && result.success === false
     );
 
-    filteredOptionalResults.forEach((result) => {
-      console.log(`• ⚠️ ${chalk.yellow(result.message)} ⚠️`);
-    });
+    if (filteredOptionalResults.length > 0) {
+      filteredOptionalResults.forEach((result) => {
+        console.log(`⚠️ ${chalk.yellow(result.message)}`);
+      });
+    } else {
+      console.log(chalk.green.underline("No optional steps to take!"));
+    }
   }
 
   reportActionsToTake(results) {
-    console.log(chalk.bgRed("Mandatory Steps to take:"));
+    console.log(chalk.bgRed("\nMandatory Steps to take:"));
 
     let filteredResults = results.filter(
       (result) => result.optional === false && result.success === false
     );
 
-    filteredResults.forEach((result) => {
-      console.log(`• ✖ ${chalk.red(result.message)}\n ✖`);
-    });
+    if (filteredResults.length > 0) {
+      filteredResults.forEach((result) => {
+        console.log(`✖ ${chalk.red(result.message)}`);
+      });
+    } else {
+      console.log(
+        chalk.green.underline(
+          "No mandatory steps to take! You are setup to use Detox"
+        )
+      );
+    }
   }
 }
 
 export default DetoxDoctor;
-
-// results: [
-//   {
-//     name: 'Node Version Check',
-//     success: true,
-//     optional: false,
-//     message: ''
-//   },
-//   {
-//     name: 'Android Studio Check',
-//     success: true,
-//     optional: false,
-//     message: ''
-//   },
-//   {
-//     name: 'Java Installation Check',
-//     success: true,
-//     optional: false,
-//     message: ''
-//   },
-//   {
-//     name: 'Android Platforms Check',
-//     success: false,
-//     optional: false,
-//     message: ''
-//   },
-//   {
-//     name: 'Android Command Line Tools Check',
-//     success: false,
-//     optional: true,
-//     message: ''
-//   },
-//   {
-//     name: 'CMake Check',
-//     success: false,
-//     optional: false,
-//     message: ''
-//   },
-//   { name: 'NDK Check', success: false, optional: false, message: '' },
-//   undefined,
-//   {
-//     name: 'Android SDK Check',
-//     success: false,
-//     optional: false,
-//     message: ''
-//   },
-//   undefined,
-//   {
-//     name: 'Android AVD Check',
-//     success: false,
-//     optional: false,
-//     message: ''
-//   },
-//   {
-//     name: 'iOS Xcode Check',
-//     success: true,
-//     optional: false,
-//     message: ''
-//   },
-//   {
-//     name: 'iOS applesimutils Check',
-//     success: true,
-//     optional: false,
-//     message: ''
-//   },
-//   {
-//     name: 'NPM Detox CLI Check',
-//     success: true,
-//     optional: true,
-//     message: ''
-//   }
-// ]
