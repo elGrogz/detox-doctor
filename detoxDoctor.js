@@ -2,11 +2,7 @@ import WindowsTools from "./operatingSystemChecks/windowsTools.js";
 import LinuxTools from "./operatingSystemChecks/linuxTools.js";
 import chalk from "chalk";
 import MacOsTools from "./operatingSystemChecks/macosTools.js";
-import {
-  printChecksComplete,
-  printSuccess,
-  printWarning,
-} from "./utils/logger.js";
+import { printChecksComplete } from "./utils/logger.js";
 
 class DetoxDoctor {
   constructor(context) {
@@ -16,14 +12,8 @@ class DetoxDoctor {
   start() {
     switch (this.context.os) {
       case "darwin":
-        console.log(
-          chalk.white(
-            `\nChecking ${chalk.bold.bgBlue(
-              " MacOS "
-            )} configuration for running Detox tests...\n`
-          )
-        );
         const macosTools = new MacOsTools();
+        macosTools.reportSystemInfo();
         const results = macosTools.runMacOsCheck();
         printChecksComplete();
         this.reportOptionalActionsToTake(results);
