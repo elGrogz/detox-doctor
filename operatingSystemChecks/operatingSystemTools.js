@@ -1,11 +1,14 @@
 import { execSync } from "child_process";
+import chalk from "chalk";
+import { printCheckMessage } from "../utils/logger.js";
+
 class OperatingSystemTools {
   constructor() {
     this.completedChecks = [];
     this.platform = this.getPlatform();
     this.operatingSystem = this.getOs();
     this.shell = this.getShell();
-    this.shellProfileFile = this.getShellProfileFile();
+    this.architecture = this.getArchitecture();
   }
 
   runCheck(check) {
@@ -37,7 +40,25 @@ class OperatingSystemTools {
     return response;
   }
 
-  getShellProfileFile() {}
+  getArchitecture() {
+    return process.arch;
+  }
+
+  reportSystemInfo() {
+    printCheckMessage("\nSystem Info");
+    console.log(
+      chalk.white(
+        `Operating System: ${chalk.bold.bgBlue(this.operatingSystem)}`
+      )
+    );
+    console.log(
+      chalk.white(`Operating Platform: ${chalk.bold.bgBlue(this.platform)}`)
+    );
+    console.log(
+      chalk.white(`Architecture: ${chalk.bold.bgBlue(this.architecture)}`)
+    );
+    console.log(chalk.white(`Shell: ${chalk.bold.bgBlue(this.shell)}`));
+  }
 }
 
 export default OperatingSystemTools;

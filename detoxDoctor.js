@@ -5,12 +5,8 @@ import MacOsTools from "./operatingSystemChecks/macosTools.js";
 import { printChecksComplete } from "./utils/logger.js";
 
 class DetoxDoctor {
-  constructor(context) {
-    this.context = context;
-  }
-
   start() {
-    switch (this.context.os) {
+    switch (process.platform) {
       case "darwin":
         const macosTools = new MacOsTools();
         macosTools.reportSystemInfo();
@@ -77,7 +73,7 @@ class DetoxDoctor {
     } else {
       console.log(
         chalk.green.underline(
-          "No mandatory steps to take! You are setup to use Detox"
+          "No mandatory steps to take! You are ready to use Detox"
         )
       );
     }

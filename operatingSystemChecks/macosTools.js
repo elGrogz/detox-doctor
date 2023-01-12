@@ -7,22 +7,8 @@ import OperatingSystemTools from "./operatingSystemTools.js";
 import fs from "fs";
 import DebugToolsChecker from "../utils/debugToolsChecker.js";
 import RubyChecker from "../utils/rubyChecker.js";
-import chalk from "chalk";
 
 class MacOsTools extends OperatingSystemTools {
-  reportSystemInfo() {
-    console.log(chalk.white.underline("\nSystem Info"));
-    console.log(
-      chalk.white(
-        `Operating System: ${chalk.bold.bgBlue(this.operatingSystem)}`
-      )
-    );
-    console.log(
-      chalk.white(`Operating Platform: ${chalk.bold.bgBlue(this.platform)}`)
-    );
-    console.log(chalk.white(`Shell: ${chalk.bold.bgBlue(this.shell)}`));
-  }
-
   runMacOsCheck() {
     // MAIN SYSTEM CHECKS
     printCheckMessage("\nChecking Node installation");

@@ -39,7 +39,7 @@ import chalk from "chalk";
 const startDetoxDoctorCheck = (os) => {
   // process.stdin.setRawMode(true);
 
-  const detoxDoctor = new DetoxDoctor({ os });
+  const detoxDoctor = new DetoxDoctor();
 
   // return new Promise((resolve) =>
   //   process.stdin.once("data", () => {
