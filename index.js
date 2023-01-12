@@ -33,21 +33,13 @@
 // ruby check ✅
 
 import { program } from "commander";
-import DetoxDoctor from "./detoxDoctor.js";
+import DetoxDoctorCheck from "./detoxDoctorCheck.js";
 import chalk from "chalk";
 
 const startDetoxDoctorCheck = (os) => {
-  // process.stdin.setRawMode(true);
+  const detoxDoctor = new DetoxDoctorCheck();
 
-  const detoxDoctor = new DetoxDoctor();
-
-  // return new Promise((resolve) =>
-  //   process.stdin.once("data", () => {
-  //     process.stdin.setRawMode(false);
   detoxDoctor.start();
-  //     resolve();
-  //   })
-  // );
 };
 
 program
@@ -73,13 +65,7 @@ program
           "\nWelcome to Detox Doctor - a tool that checks your local environment for running Detox tests."
         )
       );
-      // console.log(
-      //   chalk.italic.bold.bgMagentaBright("Press any key to continue...\n")
-      // );
       startDetoxDoctorCheck(os);
-      // .then(() => {
-      //   process.exit();
-      // });
     }
   });
 

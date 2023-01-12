@@ -4,37 +4,30 @@ import chalk from "chalk";
 import MacOsTools from "./operatingSystemChecks/macosTools.js";
 import { printChecksComplete } from "./utils/logger.js";
 
-class DetoxDoctor {
+class DetoxDoctorCheck {
   start() {
     switch (process.platform) {
       case "darwin":
         const macosTools = new MacOsTools();
+
         macosTools.reportSystemInfo();
         const results = macosTools.runMacOsCheck();
+
         printChecksComplete();
+
         this.reportOptionalActionsToTake(results);
         this.reportActionsToTake(results);
         break;
       case "win32":
-        console.log(
-          chalk.white(
-            `\nChecking ${chalk.bold.bgBlue(
-              " Windows "
-            )} configuration for running Detox tests...\n`
-          )
-        );
         const windowsTools = new WindowsTools();
+
+        windowsTools.reportSystemInfo();
         windowsTools.runWindowsCheck();
         break;
       case "linux":
-        console.log(
-          chalk.white(
-            `\nChecking ${chalk.bold.bgBlue(
-              " Linux "
-            )} configuration for running Detox tests...\n`
-          )
-        );
         const linuxTools = new LinuxTools();
+
+        linuxTools.reportSystemInfo();
         linuxTools.runLinuxCheck();
         break;
       default:
@@ -80,4 +73,4 @@ class DetoxDoctor {
   }
 }
 
-export default DetoxDoctor;
+export default DetoxDoctorCheck;
