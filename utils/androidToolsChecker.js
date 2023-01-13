@@ -21,15 +21,6 @@ const ndkDirectory = `${process.env.ANDROID_HOME}/ndk`;
 const commandLineToolsDirectory = `${process.env.ANDROID_HOME}/cmdline-tools/latest/bin`;
 const platformsDirectory = `${process.env.ANDROID_HOME}/platforms`;
 
-// const javahomeEnvVariable = "JAVA_HOME=`/usr/libexec/java_home`";
-// const androidHomeEnvVariable = "ANDROID_HOME=$HOME/Library/Android/sdk";
-// const androidSdkRootEnvVariable = "ANDROID_SDK_ROOT=$HOME/Library/Android/sdk";
-// const androidEmulatorVariable = "$ANDROID_HOME/emulator";
-// const androidSdkManagerVariable = "$ANDROID_HOME/tools/bin/sdkmanager";
-// // const androidPlatformToolsVariable = "$ANDROID_HOME/platform-tools";
-// const androidCommandLineToolsVariable =
-//   "$ANDROID_HOME/cmdline-tools/latest/bin";
-
 class AndroidToolsChecker {
   static checkAndroidStudioInstallion() {
     if (fs.existsSync(androidStudioAppLocation)) {
@@ -106,7 +97,7 @@ class AndroidToolsChecker {
         optional: true,
       };
     } else {
-      printFail(`Cmake not installed`);
+      printWarning(`Cmake not installed`);
 
       return {
         name: "CMake Check",
@@ -139,7 +130,7 @@ class AndroidToolsChecker {
         optional: true,
       };
     } else {
-      printFail(`NDK not installed`);
+      printWarning(`NDK not installed`);
 
       return {
         name: "NDK Check",
@@ -241,7 +232,7 @@ class AndroidToolsChecker {
       };
     } else {
       printWarning(
-        `⚠️ $PATH does not contain Android Emulator: ${printLocation(
+        `$PATH does not contain Android Emulator: ${printLocation(
           androidEmulatorVariable
         )}`
       );

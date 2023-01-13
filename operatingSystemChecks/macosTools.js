@@ -14,7 +14,7 @@ class MacOsTools extends OperatingSystemTools {
     printCheckMessage("\nChecking Node installation");
 
     // Verify Node is installed
-    this.runCheck(NodeDetector.getNodeVersion());
+    this.runCheck(NodeDetector.getNodeInfo());
 
     // Verify Android setup
     printCheckMessage("\nChecking system setup for Android 🤖");

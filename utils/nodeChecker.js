@@ -1,3 +1,4 @@
+import { execSync } from "child_process";
 import { existsSync } from "fs";
 import { printSuccess, printLocation, printFail } from "./logger.js";
 
@@ -9,9 +10,16 @@ const NODE_COMMON_PATHS = [
 
 class NodeDetector {
   static getNodeVersion() {
+    const version = execSync("node -v");
+    return version;
+  }
+
+  static getNodeInfo() {
     for (let path of NODE_COMMON_PATHS) {
       if (existsSync(path)) {
-        printSuccess(`Node binary available at: ${printLocation(path)}`);
+        printSuccess(
+          `Node ${printLocation(this.getNodeVersion())} available at: ${printLocation(path)}`
+        );
         return {
           name: "Node Version Check",
           success: true,

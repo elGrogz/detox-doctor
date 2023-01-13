@@ -45,7 +45,7 @@ class DetoxDoctorCheck {
 
     if (filteredOptionalResults.length > 0) {
       filteredOptionalResults.forEach((result) => {
-        console.log(`⚠️ ${chalk.yellow(result.message)}`);
+        console.log(`⚠️ ${chalk.yellow(result.message)}\n`);
       });
     } else {
       console.log(chalk.green.underline("No optional steps to take!"));
@@ -61,7 +61,7 @@ class DetoxDoctorCheck {
 
     if (filteredResults.length > 0) {
       filteredResults.forEach((result) => {
-        console.log(`✖ ${chalk.red(result.message)}`);
+        console.log(`✖ ${chalk.red(result.message)}\n`);
       });
     } else {
       console.log(
