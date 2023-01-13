@@ -10,6 +10,7 @@
 // - Android Studio (with Homebrew) ✅
 // - Java 11 (with Homebrew - `brew install --cask zulu11`) ✅
 // - Install SDK, command line tools, NDK, CMake ✅
+// - adb version
 
 // ANDROID ENV VARS:
 // export JAVA_HOME=`/usr/libexec/java_home`  ✅
@@ -25,10 +26,11 @@
 
 // OTHER STUFF:
 // Have a way of saving errors and output a report at the end ✅
-// check architecture for M1 vs intel and report it at start
-// also report other system information at the start?
+// check architecture for M1 vs intel and report it at start ✅
+// also report other system information at the start? ✅
 // iOS install steps ✅
 // flipper check ✅
+// idb check for flipper
 // watchman check
 // ruby check ✅
 

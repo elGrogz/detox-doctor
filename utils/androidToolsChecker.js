@@ -494,7 +494,7 @@ class AndroidToolsChecker {
         name: "Android AVD Check",
         success: false,
         optional: false,
-        message: `Could not find any Android Virtual Devices. Install via Android Studio > Device Manager`,
+        message: `Could not find avdmanager or any android virtual devices. Install avdmanager via Android Studio > SDK Manager > Tools and virtual devices via Android Studio > Device Manager`,
       };
     }
   }
