@@ -61,9 +61,7 @@ class AndroidToolsChecker {
   static checkJavaInstallation() {
     try {
       let response = execSync("java --version");
-      printSuccess(
-        `Java version: ${response.toString().replace("\n", "\n\t\t\t")}`
-      );
+      printSuccess(`Java version: ${printLocation(response.toString())}`);
 
       return {
         name: "Java Installation Check",
@@ -97,7 +95,9 @@ class AndroidToolsChecker {
       printSuccess(
         `Cmake versions available at: ${printLocation(
           cmakeDirectory
-        )}\n\t\t\tAvailable CMake versions: ${cmakeVersions.toString()}`
+        )}\nAvailable CMake versions: ${printLocation(
+          cmakeVersions.toString()
+        )}\n`
       );
 
       return {
@@ -130,13 +130,13 @@ class AndroidToolsChecker {
       printSuccess(
         `NDK versions available at: ${printLocation(
           ndkDirectory
-        )}\n\t\t\tAvailable NDK versions: ${ndkVersions.toString()}`
+        )}\nAvailable NDK versions: ${printLocation(ndkVersions.toString())}`
       );
 
       return {
         name: "NDK Check",
         success: true,
-        optional: false,
+        optional: true,
       };
     } else {
       printFail(`NDK not installed`);
@@ -144,7 +144,7 @@ class AndroidToolsChecker {
       return {
         name: "NDK Check",
         success: false,
-        optional: false,
+        optional: true,
         message: `The Android NDK is required to run Detox tests on Android, depending on your app. Install via Android Studio > SDK Manager > Tools`,
       };
     }
@@ -374,7 +374,9 @@ class AndroidToolsChecker {
       printSuccess(
         `Command Line tools available at: ${printLocation(
           commandLineToolsDirectory
-        )}\n\t\t\tAvailable Command line tools: ${cmdlineToolsVersions.toString()}`
+        )}\nAvailable Command line tools: ${printLocation(
+          cmdlineToolsVersions.toString()
+        )}\n`
       );
 
       return {
@@ -407,9 +409,9 @@ class AndroidToolsChecker {
         .map((directory) => directory.name);
 
       printSuccess(
-        `Platforms available at: ${printLocation(
+        `Android API Platforms available at: ${printLocation(
           platformsDirectory
-        )}\n\t\t\tAvailable Platforms: ${platforms.toString()}`
+        )}\nAvailable Platforms: ${printLocation(platforms.toString())}\n`
       );
       return {
         name: "Android Platforms Check",
@@ -417,7 +419,7 @@ class AndroidToolsChecker {
         optional: false,
       };
     } else {
-      printFail("Platforms not available");
+      printFail("Android API Platforms not available");
 
       return {
         name: "Android Platforms Check",
