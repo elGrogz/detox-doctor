@@ -2,11 +2,11 @@ import NodeDetector from "../utils/nodeChecker.js";
 import AndroidToolsChecker from "../utils/androidToolsChecker.js";
 import IosToolsChecker from "../utils/iosToolsChecker.js";
 import NpmToolsChecker from "../utils/npmToolsChecker.js";
-import { printCheckMessage, printFail } from "../utils/logger.js";
+import { printCheckMessage } from "../utils/logger.js";
 import OperatingSystemTools from "./operatingSystemTools.js";
-import fs from "fs";
 import DebugToolsChecker from "../utils/debugToolsChecker.js";
 import RubyChecker from "../utils/rubyChecker.js";
+import ShellChecker from "../utils/shellChecker.js";
 
 class MacOsTools extends OperatingSystemTools {
   runMacOsCheck() {
@@ -26,30 +26,11 @@ class MacOsTools extends OperatingSystemTools {
     this.runCheck(AndroidToolsChecker.checkCmakeInstallation());
     this.runCheck(AndroidToolsChecker.checkNdkInstallion());
 
-    // ENV VARS CHECK
+    // Env vars check
     printCheckMessage("\nChecking system environmental variables:");
 
-    let shellFileContents;
-
-    if (
-      this.shell === "/bin/zsh" &&
-      fs.existsSync(`${process.env.HOME}/.zshrc`)
-    ) {
-      shellFileContents = fs.readFileSync(
-        `${process.env.HOME}/.zshrc`,
-        "utf-8"
-      );
-    } else if (
-      this.shell === "/bin/bash" &&
-      fs.existsSync(`${process.env.HOME}/.bashrc`)
-    ) {
-      shellFileContents = fs.readFileSync(
-        `${process.env.HOME}/.bashrc`,
-        "utf-8"
-      );
-    } else {
-      printFail("Could not find valid zshrc or bashrc Shell file");
-    }
+    console.log("KJSDHKSJDHDSH: " + this.shell);
+    const shellFileContents = ShellChecker.getShellContents(this.shell);
 
     if (shellFileContents) {
       this.runCheck(AndroidToolsChecker.checkJavaHomeEnvVar(shellFileContents));
