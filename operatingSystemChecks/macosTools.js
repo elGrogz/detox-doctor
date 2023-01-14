@@ -28,8 +28,6 @@ class MacOsTools extends OperatingSystemTools {
 
     // Env vars check
     printCheckMessage("\nChecking system environmental variables:");
-
-    console.log("KJSDHKSJDHDSH: " + this.shell);
     const shellFileContents = ShellChecker.getShellContents(this.shell);
 
     if (shellFileContents) {
