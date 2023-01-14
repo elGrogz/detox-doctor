@@ -32,7 +32,7 @@ class MacOsTools extends OperatingSystemTools {
     let shellFileContents;
 
     if (
-      process.env.SHELL === "/bin/zsh" &&
+      this.shell === "/bin/zsh" &&
       fs.existsSync(`${process.env.HOME}/.zshrc`)
     ) {
       shellFileContents = fs.readFileSync(
@@ -40,7 +40,7 @@ class MacOsTools extends OperatingSystemTools {
         "utf-8"
       );
     } else if (
-      process.env.SHELL === "/bin/bash" &&
+      this.shell === "/bin/bash" &&
       fs.existsSync(`${process.env.HOME}/.bashrc`)
     ) {
       shellFileContents = fs.readFileSync(
