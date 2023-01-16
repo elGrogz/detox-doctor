@@ -7,7 +7,10 @@ import {
   printWarning,
 } from "./logger.js";
 
-const androidStudioAppLocation = "/Applications/Android Studio.app";
+const commonMacosAndroidStudioAppLocation = "/Applications/Android Studio.app";
+// const commonWindowsAndroidStudioAppLocation =
+//   "/Applications/Android Studio.app";
+// const commonLinuxAndroidStudioAppLocation = "/Applications/Android Studio.app";
 const javahomeEnvVariable = "JAVA_HOME";
 const androidHomeEnvVariable = "ANDROID_HOME";
 const androidSdkRootEnvVariable = "ANDROID_SDK_ROOT";
@@ -23,10 +26,11 @@ const platformsDirectory = `${process.env.ANDROID_HOME}/platforms`;
 
 class AndroidToolsChecker {
   static checkAndroidStudioInstallion() {
-    if (fs.existsSync(androidStudioAppLocation)) {
+    // add logic for linux and windows
+    if (fs.existsSync(commonMacosAndroidStudioAppLocation)) {
       printSuccess(
         `Android Studio installed at: ${printLocation(
-          androidStudioAppLocation
+          commonMacosAndroidStudioAppLocation
         )}`
       );
 

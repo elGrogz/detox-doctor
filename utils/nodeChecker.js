@@ -11,15 +11,14 @@ const NODE_COMMON_PATHS = [
 class NodeDetector {
   static getNodeInfo() {
     try {
-      const version = execSync("node -v");
+      const version = execSync("node -v").toString();
+
+      const strippedVersion = version.replace("\n", "");
 
       for (let path of NODE_COMMON_PATHS) {
         if (existsSync(path)) {
-          printSuccess(
-            `Node ${printLocation(version)} available at: ${printLocation(
-              path
-            )}`
-          );
+          printSuccess(`Node version: ${printLocation(strippedVersion)}`);
+          printSuccess(`Node binary found at: ${printLocation(path)}`);
           return {
             name: "Node Version Check",
             success: true,
