@@ -1,4 +1,5 @@
 import OperatingSystemTools from "./operatingSystemTools.js";
+import { printCheckMessage } from "../utils/logger.js";
 
 class LinuxTools extends OperatingSystemTools {
   runLinuxCheck() {
