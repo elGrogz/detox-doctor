@@ -1,4 +1,7 @@
 import OperatingSystemTools from "./operatingSystemTools.js";
+import NodeDetector from "../utils/nodeChecker.js";
+import AndroidToolsChecker from "../utils/androidToolsChecker.js";
+import ShellChecker from "../utils/shellChecker.js";
 import { printCheckMessage } from "../utils/logger.js";
 
 class LinuxTools extends OperatingSystemTools {
