@@ -36,6 +36,8 @@ class LinuxTools extends OperatingSystemTools {
         )
       );
     }
+
+    return this.completedChecks;
   }
 }
 

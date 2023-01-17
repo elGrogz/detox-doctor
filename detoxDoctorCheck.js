@@ -11,12 +11,12 @@ class DetoxDoctorCheck {
         const macosTools = new MacOsTools();
 
         macosTools.reportSystemInfo();
-        const results = macosTools.runMacOsCheck();
+        const macOsResults = macosTools.runMacOsCheck();
 
         printChecksComplete();
 
-        this.reportOptionalActionsToTake(results);
-        this.reportActionsToTake(results);
+        this.reportOptionalActionsToTake(macOsResults);
+        this.reportActionsToTake(macOsResults);
         break;
       case "win32":
         const windowsTools = new WindowsTools();
@@ -28,10 +28,10 @@ class DetoxDoctorCheck {
         const linuxTools = new LinuxTools();
 
         linuxTools.reportSystemInfo();
-        linuxTools.runLinuxCheck();
+        const linuxResults = linuxTools.runLinuxCheck();
 
-        this.reportOptionalActionsToTake(results);
-        this.reportActionsToTake(results);
+        this.reportOptionalActionsToTake(linuxResults);
+        this.reportActionsToTake(linuxResults);
         break;
       default:
         console.log(chalk.red.bold("Unrecognised OS"));
