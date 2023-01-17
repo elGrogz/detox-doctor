@@ -29,6 +29,9 @@ class DetoxDoctorCheck {
 
         linuxTools.reportSystemInfo();
         linuxTools.runLinuxCheck();
+
+        this.reportOptionalActionsToTake(results);
+        this.reportActionsToTake(results);
         break;
       default:
         console.log(chalk.red.bold("Unrecognised OS"));
