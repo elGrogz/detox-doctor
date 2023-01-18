@@ -41,9 +41,9 @@ class MacOsTools extends OperatingSystemTools {
       this.runCheck(
         AndroidToolsChecker.checkAndroidSdkManagerEnvVar(shellFileContents)
       );
-      // this.runCheck(
-      //   AndroidToolsChecker.checkAndroidPlatformToolsEnvVar(shellFileContents)
-      // );
+      this.runCheck(
+        AndroidToolsChecker.checkAndroidPlatformToolsEnvVar(shellFileContents)
+      );
       this.runCheck(
         AndroidToolsChecker.checkAndroidCommandLineToolsEnvVar(
           shellFileContents
@@ -55,6 +55,7 @@ class MacOsTools extends OperatingSystemTools {
     printCheckMessage("\nChecking Android tools are installed correctly:");
 
     this.runCheck(AndroidToolsChecker.checkSdkVersion());
+    this.runCheck(AndroidToolsChecker.checkAdbVersion());
     this.runCheck(AndroidToolsChecker.checkEmulatorVersion());
     this.runCheck(AndroidToolsChecker.checkAvdVersion());
 

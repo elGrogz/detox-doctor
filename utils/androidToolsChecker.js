@@ -16,7 +16,7 @@ const androidHomeEnvVariable = "ANDROID_HOME";
 const androidSdkRootEnvVariable = "ANDROID_SDK_ROOT";
 const androidEmulatorVariable = "$ANDROID_HOME/emulator";
 const androidSdkManagerVariable = "$ANDROID_HOME/tools/bin/sdkmanager";
-// const androidPlatformToolsVariable = "$ANDROID_HOME/platform-tools";
+const androidPlatformToolsVariable = "$ANDROID_HOME/platform-tools";
 const androidCommandLineToolsVariable =
   "$ANDROID_HOME/cmdline-tools/latest/bin";
 const cmakeDirectory = `${process.env.ANDROID_HOME}/cmake`;
@@ -318,7 +318,7 @@ class AndroidToolsChecker {
         optional: true,
         message: `${printLocation(
           "ANDROID_PLATFORM"
-        )} environmental variable not set. You may not be able to run commands with Android Debug Bridge ${printLocation(
+        )} is not set in your shell profile file and is not available in your $PATH. You may not be able to run commands with Android Debug Bridge ${printLocation(
           "(adb)"
         )} or ${printLocation(
           "logcat"
@@ -453,6 +453,30 @@ class AndroidToolsChecker {
         success: false,
         optional: false,
         message: `SDK Manager not available. Install via Android Studio > SDK Manager > Tools`,
+      };
+    }
+  }
+
+  static checkAdbVersion() {
+    try {
+      const adbResult = execSync("adb version");
+      printSuccess(
+        `ADB version: ${adbResult.toString().replace(/[\r\n]/gm, ", ")}` // \r is a windows line break, \n is a UNIX one
+      );
+
+      return {
+        name: "Android ADB Check",
+        success: true,
+        optional: false,
+      };
+    } catch (error) {
+      printFail(`Could not get ADB version: ${error}`);
+
+      return {
+        name: "Android SDK Check",
+        success: false,
+        optional: false,
+        message: `ADB not available. Install via Android Studio > SDK Manager > Tools > Platform Tools`,
       };
     }
   }
