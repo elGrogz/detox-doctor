@@ -293,33 +293,39 @@ class AndroidToolsChecker {
     }
   }
 
-  // static checkAndroidPlatformToolsEnvVar(zshrcContents) {
-  //   if (zshrcContents.includes(androidPlatformToolsVariable)) {
-  //     printSuccess(
-  //       `Shell profile contains Android Platform Tools Variable: ${printLocation(
-  //         androidPlatformToolsVariable
-  //       )}`
-  //     );
-  //     return {
-  //       name: "ANDROID_PLATFORM environmental variable check",
-  //       success: true,
-  //       optional: true,
-  //       message: "",
-  //     };
-  //   } else {
-  //     printWarning(
-  //       `Shell profile does not contain the Android Platform Tools variable: ${printLocation(
-  //         androidPlatformToolsVariable
-  //       )} - Your Android SDK environment may not be configured properly`
-  //     );
-  //     return {
-  //       name: "ANDROID_PLATFORM environmental variable check",
-  //       success: false,
-  //       optional: false,
-  //       message: "",
-  //     };
-  //   }
-  // }
+  static checkAndroidPlatformToolsEnvVar(zshrcContents) {
+    if (zshrcContents.includes(androidPlatformToolsVariable)) {
+      printSuccess(
+        `Shell profile contains Android Platform Tools Variable: ${printLocation(
+          androidPlatformToolsVariable
+        )}`
+      );
+      return {
+        name: "ANDROID_PLATFORM environmental variable check",
+        success: true,
+        optional: true,
+        message: "",
+      };
+    } else {
+      printWarning(
+        `Shell profile does not contain the Android Platform Tools variable: ${printLocation(
+          androidPlatformToolsVariable
+        )} - Your Android SDK environment may not be configured properly`
+      );
+      return {
+        name: "ANDROID_PLATFORM environmental variable check",
+        success: false,
+        optional: true,
+        message: `${printLocation(
+          "ANDROID_PLATFORM"
+        )} environmental variable not set. You may not be able to run commands with Android Debug Bridge ${printLocation(
+          "(adb)"
+        )} or ${printLocation(
+          "logcat"
+        )} for help with debugging and emulator management.`,
+      };
+    }
+  }
 
   static checkAndroidCommandLineToolsEnvVar(zshrcContents) {
     if (zshrcContents.includes(androidCommandLineToolsVariable)) {
@@ -345,7 +351,7 @@ class AndroidToolsChecker {
         optional: true,
         message: `${printLocation(
           androidCommandLineToolsVariable
-        )} are not set in your shell profile file and is not available in your $PATH. This means you may not be able to use the convenience command line tools like ${printLocation(
+        )} is not set in your shell profile file and is not available in your $PATH. This means you may not be able to use the convenience command line tools like ${printLocation(
           "sdkmanager"
         )} or ${printLocation(
           "avdmanager"
