@@ -56,7 +56,14 @@ class AndroidToolsChecker {
   static checkJavaInstallation() {
     try {
       let response = execSync("java --version");
-      printSuccess(`Java version: ${printLocation(response.toString())}`);
+      printSuccess(
+        `Java version: ${printLocation(
+          response
+            .toString()
+            .replace(/[\r\n]/gm, ", ")
+            .slice(-0, -2)
+        )}`
+      );
 
       return {
         name: "Java Installation Check",
@@ -461,7 +468,12 @@ class AndroidToolsChecker {
     try {
       const adbResult = execSync("adb version");
       printSuccess(
-        `ADB version: ${adbResult.toString().replace(/[\r\n]/gm, ", ")}` // \r is a windows line break, \n is a UNIX one
+        `ADB version: ${printLocation(
+          adbResult
+            .toString()
+            .replace(/[\r\n]/gm, ", ")
+            .slice(-0, -2)
+        )}` // \r is a windows line break, \n is a UNIX one
       );
 
       return {
@@ -485,7 +497,7 @@ class AndroidToolsChecker {
     try {
       const emulatorResult = execSync("emulator -version");
       const emulatorString = emulatorResult.toString();
-      const regex = /Android emulator version(.*)/;
+      const regex = /Android emulator version(.*)/; // separate actual version number from this string (which includes Android emulator version)
       const regexResult = regex.exec(emulatorString);
       printSuccess(regexResult[0]);
       return {
