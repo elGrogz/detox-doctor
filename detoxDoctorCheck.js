@@ -5,10 +5,14 @@ import MacOsTools from "./operatingSystemChecks/macosTools.js";
 import { printChecksComplete } from "./utils/logger.js";
 
 class DetoxDoctorCheck {
+  constructor(options) {
+    this.options = options;
+  }
+
   start() {
     switch (process.platform) {
       case "darwin":
-        const macosTools = new MacOsTools();
+        const macosTools = new MacOsTools(this.options);
 
         macosTools.reportSystemInfo();
         const macOsResults = macosTools.runMacOsCheck();

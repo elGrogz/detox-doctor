@@ -38,9 +38,8 @@ import { program } from "commander";
 import DetoxDoctorCheck from "./detoxDoctorCheck.js";
 import chalk from "chalk";
 
-const startDetoxDoctorCheck = (os) => {
-  const detoxDoctor = new DetoxDoctorCheck();
-
+const startDetoxDoctorCheck = (options) => {
+  const detoxDoctor = new DetoxDoctorCheck(options);
   detoxDoctor.start();
 };
 
@@ -59,16 +58,13 @@ program
   .option("-o, --exclude-optional", "Exclude optional checks - WIP")
   .option("-a, --android-only", "Run the check for Android only - WIP")
   .option("-i, --ios-only", "Run the check for iOS only - WIP")
-  .action(() => {
-    const os = process.platform; //https://nodejs.org/api/process.html#processplatform
-    if (os) {
-      console.log(
-        chalk.italic.bold.bgMagentaBright(
-          "\nWelcome to Detox Doctor - a tool that checks your local environment for running Detox tests."
-        )
-      );
-      startDetoxDoctorCheck(os);
-    }
+  .action((options) => {
+    console.log(
+      chalk.italic.bold.bgMagentaBright(
+        "\nWelcome to Detox Doctor - a tool that checks your local environment for running Detox tests."
+      )
+    );
+    startDetoxDoctorCheck(options);
   });
 
 program

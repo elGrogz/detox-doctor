@@ -9,6 +9,10 @@ import RubyChecker from "../utils/rubyChecker.js";
 import ShellChecker from "../utils/shellChecker.js";
 
 class MacOsTools extends OperatingSystemTools {
+  constructor(options) {
+    this.options = options;
+  }
+
   runMacOsCheck() {
     // MAIN SYSTEM CHECKS
     printCheckMessage("\nChecking Node installation");
