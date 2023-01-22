@@ -10,6 +10,7 @@ class DetoxDoctorCheck {
   }
 
   start() {
+    this.reportOptionsUsed();
     switch (process.platform) {
       case "darwin":
         const macosTools = new MacOsTools(this.options);
@@ -41,6 +42,10 @@ class DetoxDoctorCheck {
         console.log(chalk.red.bold("Unrecognised OS"));
         break;
     }
+  }
+
+  reportOptionsUsed() {
+    // todo
   }
 
   reportOptionalActionsToTake(results) {
