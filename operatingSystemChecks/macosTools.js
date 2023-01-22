@@ -9,10 +9,6 @@ import RubyChecker from "../utils/rubyChecker.js";
 import ShellChecker from "../utils/shellChecker.js";
 
 class MacOsTools extends OperatingSystemTools {
-  constructor(options) {
-    this.options = options;
-  }
-
   runMacOsCheck() {
     // MAIN SYSTEM CHECKS
     printCheckMessage("\nChecking Node installation");
@@ -20,55 +16,61 @@ class MacOsTools extends OperatingSystemTools {
     // Verify Node is installed
     this.runCheck(NodeDetector.getNodeInfo());
 
-    // Verify Android setup
-    printCheckMessage("\nChecking system setup for Android 🤖");
+    // Verify Android setup - run only if Android Only is true or no other 'only' flags are passed
+    if (!this.options.iosOnly) {
+      printCheckMessage("\nChecking system setup for Android 🤖");
 
-    this.runCheck(AndroidToolsChecker.checkAndroidStudioInstallion());
-    this.runCheck(AndroidToolsChecker.checkJavaInstallation());
-    this.runCheck(AndroidToolsChecker.checkPlatforms());
-    this.runCheck(AndroidToolsChecker.checkCommandLineTools());
-    this.runCheck(AndroidToolsChecker.checkCmakeInstallation());
-    this.runCheck(AndroidToolsChecker.checkNdkInstallion());
+      this.runCheck(AndroidToolsChecker.checkAndroidStudioInstallion());
+      this.runCheck(AndroidToolsChecker.checkJavaInstallation());
+      this.runCheck(AndroidToolsChecker.checkPlatforms());
+      this.runCheck(AndroidToolsChecker.checkCommandLineTools());
+      this.runCheck(AndroidToolsChecker.checkCmakeInstallation());
+      this.runCheck(AndroidToolsChecker.checkNdkInstallion());
 
-    // Env vars check
-    printCheckMessage("\nChecking system environmental variables:");
-    const shellFileContents = ShellChecker.getShellContents(this.shell);
+      // Env vars check
+      printCheckMessage("\nChecking system environmental variables:");
+      const shellFileContents = ShellChecker.getShellContents(this.shell);
 
-    if (shellFileContents) {
-      this.runCheck(AndroidToolsChecker.checkJavaHomeEnvVar(shellFileContents));
-      this.runCheck(
-        AndroidToolsChecker.checkAndroidHomeEnvVar(shellFileContents)
-      );
-      this.runCheck(
-        AndroidToolsChecker.checkAndroidEmulatorEnvVar(shellFileContents)
-      );
-      this.runCheck(
-        AndroidToolsChecker.checkAndroidSdkManagerEnvVar(shellFileContents)
-      );
-      this.runCheck(
-        AndroidToolsChecker.checkAndroidPlatformToolsEnvVar(shellFileContents)
-      );
-      this.runCheck(
-        AndroidToolsChecker.checkAndroidCommandLineToolsEnvVar(
-          shellFileContents
-        )
-      );
+      if (shellFileContents) {
+        this.runCheck(
+          AndroidToolsChecker.checkJavaHomeEnvVar(shellFileContents)
+        );
+        this.runCheck(
+          AndroidToolsChecker.checkAndroidHomeEnvVar(shellFileContents)
+        );
+        this.runCheck(
+          AndroidToolsChecker.checkAndroidEmulatorEnvVar(shellFileContents)
+        );
+        this.runCheck(
+          AndroidToolsChecker.checkAndroidSdkManagerEnvVar(shellFileContents)
+        );
+        this.runCheck(
+          AndroidToolsChecker.checkAndroidPlatformToolsEnvVar(shellFileContents)
+        );
+        this.runCheck(
+          AndroidToolsChecker.checkAndroidCommandLineToolsEnvVar(
+            shellFileContents
+          )
+        );
+      }
+
+      // ANDROID TOOLS CHECK
+      printCheckMessage("\nChecking Android tools are installed correctly:");
+
+      this.runCheck(AndroidToolsChecker.checkSdkVersion());
+      this.runCheck(AndroidToolsChecker.checkAdbVersion());
+      this.runCheck(AndroidToolsChecker.checkEmulatorVersion());
+      this.runCheck(AndroidToolsChecker.checkAvdVersion());
     }
 
-    // ANDROID TOOLS CHECK
-    printCheckMessage("\nChecking Android tools are installed correctly:");
-
-    this.runCheck(AndroidToolsChecker.checkSdkVersion());
-    this.runCheck(AndroidToolsChecker.checkAdbVersion());
-    this.runCheck(AndroidToolsChecker.checkEmulatorVersion());
-    this.runCheck(AndroidToolsChecker.checkAvdVersion());
-
     // IOS TOOLS CHECK
-    printCheckMessage("\nChecking system setup for iOS ");
+    if (!this.options.androidOnly) {
+      printCheckMessage("\nChecking system setup for iOS ");
 
-    this.runCheck(IosToolsChecker.checkXcodePath());
-    this.runCheck(IosToolsChecker.checkAppleSimUtils());
-    this.runCheck(RubyChecker.checkRubyInstallation());
+      this.runCheck(IosToolsChecker.checkXcodePath());
+      this.runCheck(IosToolsChecker.checkAppleSimUtils());
+      this.runCheck(RubyChecker.checkRubyInstallation());
+    }
 
     // NPM TOOLS CHECK
     printCheckMessage("\nChecking system setup for NPM Tools");

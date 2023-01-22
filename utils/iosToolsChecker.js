@@ -32,7 +32,9 @@ class IosToolsChecker {
 
   static checkAppleSimUtils() {
     try {
-      const appleSimUtilsPath = execSync("which applesimutils"); // change to -v
+      const appleSimUtilsPath = execSync("which applesimutils")
+        .toString()
+        .replace(/[\r\n]/gm, ""); // change to -v
       printSuccess(
         `applesimutils installed at: ${printLocation(appleSimUtilsPath)}`
       );

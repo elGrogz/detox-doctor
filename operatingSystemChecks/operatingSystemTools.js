@@ -3,7 +3,8 @@ import chalk from "chalk";
 import { printCheckMessage } from "../utils/logger.js";
 
 class OperatingSystemTools {
-  constructor() {
+  constructor(options) {
+    this.options = options;
     this.completedChecks = [];
     this.platform = this.getPlatform();
     this.operatingSystem = this.getOs();

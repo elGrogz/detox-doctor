@@ -4,13 +4,16 @@ import { execSync } from "child_process";
 class RubyChecker {
   static checkRubyInstallation() {
     try {
-      const result = execSync("ruby -v");
-      const rubyInstallLocation = execSync("which ruby");
-      const rubyVersion = result.toString();
-      // regex: /(?<=ruby )(.*?)(?=.)/gi
+      const rubyVersion = execSync("ruby -v").toString();
+      const rubyInstallLocation = execSync("which ruby")
+        .toString()
+        .replace(/[\r\n]/gm, "");
+
       printSuccess(
-        `Ruby Installation found at ${printLocation(rubyInstallLocation)}: ${printLocation(rubyVersion)}`
+        `Ruby Installation found at ${printLocation(rubyInstallLocation)}`
       );
+
+      printSuccess(`Ruby Version: ${printLocation(rubyVersion)}`);
       return {
         name: "Ruby Installation check",
         success: true,
