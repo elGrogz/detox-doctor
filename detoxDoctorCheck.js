@@ -2,7 +2,7 @@ import WindowsTools from "./operatingSystemChecks/windowsTools.js";
 import LinuxTools from "./operatingSystemChecks/linuxTools.js";
 import chalk from "chalk";
 import MacOsTools from "./operatingSystemChecks/macosTools.js";
-import { printChecksComplete } from "./utils/logger.js";
+import { printFail, printWarning } from "./utils/logger.js";
 
 class DetoxDoctorCheck {
   constructor(options) {
@@ -58,7 +58,7 @@ class DetoxDoctorCheck {
 
     if (filteredOptionalResults.length > 0) {
       filteredOptionalResults.forEach((result) => {
-        console.log(`⚠️ ${chalk.yellow(result.message)}\n`);
+        printWarning(chalk.yellow(result.message));
       });
     } else {
       console.log(chalk.green.underline("No optional steps to take!"));
@@ -74,7 +74,7 @@ class DetoxDoctorCheck {
 
     if (filteredResults.length > 0) {
       filteredResults.forEach((result) => {
-        console.log(`✖ ${chalk.red(result.message)}\n`);
+        printFail(chalk.red(result.message));
       });
     } else {
       console.log(
