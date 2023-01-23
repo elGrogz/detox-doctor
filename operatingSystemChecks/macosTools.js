@@ -2,7 +2,7 @@ import NodeDetector from "../utils/nodeChecker.js";
 import AndroidToolsChecker from "../utils/androidToolsChecker.js";
 import IosToolsChecker from "../utils/iosToolsChecker.js";
 import NpmToolsChecker from "../utils/npmToolsChecker.js";
-import { printCheckMessage } from "../utils/logger.js";
+import { printCheckMessage, printChecksComplete } from "../utils/logger.js";
 import OperatingSystemTools from "./operatingSystemTools.js";
 import DebugToolsChecker from "../utils/debugToolsChecker.js";
 import RubyChecker from "../utils/rubyChecker.js";
@@ -79,6 +79,8 @@ class MacOsTools extends OperatingSystemTools {
     // FLIPPER CHECK
     printCheckMessage("\nChecking Flipper installation");
     this.runCheck(DebugToolsChecker.checkFlipperInstallation());
+
+    printChecksComplete();
 
     return this.completedChecks;
   }

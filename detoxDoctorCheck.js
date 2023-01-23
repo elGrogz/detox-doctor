@@ -18,13 +18,14 @@ class DetoxDoctorCheck {
         macosTools.reportSystemInfo();
         const macOsResults = macosTools.runMacOsCheck();
 
-        printChecksComplete();
+        if (!this.options.excludeOptional) {
+          this.reportOptionalActionsToTake(macOsResults);
+        }
 
-        this.reportOptionalActionsToTake(macOsResults);
         this.reportActionsToTake(macOsResults);
         break;
       case "win32":
-        const windowsTools = new WindowsTools();
+        const windowsTools = new WindowsTools(this.options);
 
         windowsTools.reportSystemInfo();
         windowsTools.runWindowsCheck();
@@ -33,7 +34,7 @@ class DetoxDoctorCheck {
         const linuxTools = new LinuxTools();
 
         linuxTools.reportSystemInfo();
-        const linuxResults = linuxTools.runLinuxCheck();
+        const linuxResults = linuxTools.runLinuxCheck(this.options);
 
         this.reportOptionalActionsToTake(linuxResults);
         this.reportActionsToTake(linuxResults);
