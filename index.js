@@ -48,16 +48,16 @@ program
   .description(
     "CLI tool to help you setup your local environment for running Detox tests"
   )
-  .version("1.0.27");
+  .version("1.0.28");
 
 program
   .command("check")
   .description(
     "Run a check to make sure your local environment has the correct installations and tools to run React Native and Detox tests."
   )
-  .option("-o, --exclude-optional", "Exclude optional checks - WIP")
-  .option("-a, --android-only", "Run the check for Android only - WIP")
-  .option("-i, --ios-only", "Run the check for iOS only - WIP")
+  .option("-o, --exclude-optional", "Exclude optional checks")
+  .option("-a, --android-only", "Run the check for Android only")
+  .option("-i, --ios-only", "Run the check for iOS only")
   .action((options) => {
     console.log(
       chalk.italic.bold.bgMagentaBright(
