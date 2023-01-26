@@ -11,7 +11,7 @@ class DetoxDoctorCheck {
 
   start() {
     this.reportOptionsUsed();
-    switch ("win32") {
+    switch (process.platform) {
       case "darwin":
         const macosTools = new MacOsTools(this.options);
 
