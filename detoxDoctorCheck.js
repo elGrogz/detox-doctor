@@ -30,7 +30,9 @@ class DetoxDoctorCheck {
         windowsTools.reportSystemInfo();
         const windowResults = windowsTools.runWindowsCheck(this.options);
 
-        this.reportOptionalActionsToTake(windowResults);
+        if (!this.options.excludeOptional) {
+          this.reportOptionalActionsToTake(windowResults);
+        }
         this.reportActionsToTake(windowResults);
         break;
       case "linux":
@@ -39,7 +41,9 @@ class DetoxDoctorCheck {
         linuxTools.reportSystemInfo();
         const linuxResults = linuxTools.runLinuxCheck(this.options);
 
-        this.reportOptionalActionsToTake(linuxResults);
+        if (!this.options.excludeOptional) {
+          this.reportOptionalActionsToTake(linuxResults);
+        }
         this.reportActionsToTake(linuxResults);
         break;
       default:
