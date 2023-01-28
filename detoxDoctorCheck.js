@@ -53,7 +53,8 @@ class DetoxDoctorCheck {
   }
 
   reportOptionsUsed() {
-    // todo
+    printCheckMessage("\nChecks to be performed:");
+    // console.log(chalk.white(`Shell: ${chalk.bold.bgBlue(this.shell)}`));
   }
 
   reportOptionalActionsToTake(results) {
