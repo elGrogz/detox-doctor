@@ -2,7 +2,7 @@ import WindowsTools from "./operatingSystemChecks/windowsTools.js";
 import LinuxTools from "./operatingSystemChecks/linuxTools.js";
 import chalk from "chalk";
 import MacOsTools from "./operatingSystemChecks/macosTools.js";
-import { printFail, printWarning } from "./utils/logger.js";
+import { printFail, printWarning, printCheckMessage } from "./utils/logger.js";
 
 class DetoxDoctorCheck {
   constructor(options) {
@@ -11,6 +11,7 @@ class DetoxDoctorCheck {
 
   start() {
     this.reportOptionsUsed();
+
     switch (process.platform) {
       case "darwin":
         const macosTools = new MacOsTools(this.options);
@@ -54,7 +55,20 @@ class DetoxDoctorCheck {
 
   reportOptionsUsed() {
     printCheckMessage("\nChecks to be performed:");
-    // console.log(chalk.white(`Shell: ${chalk.bold.bgBlue(this.shell)}`));
+
+    if (!this.options.iosOnly) {
+      console.log(chalk.white("Android"));
+    }
+
+    if (!this.options.androidOnly) {
+      console.log(chalk.white("iOS"));
+    }
+
+    console.log(chalk.white("Mandatory Detox Checks"));
+
+    if (!this.options.excludeOptional) {
+      console.log(chalk.white("Optional Detox Checks"));
+    }
   }
 
   reportOptionalActionsToTake(results) {

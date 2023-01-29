@@ -57,7 +57,7 @@ program
   )
   .option("-o, --exclude-optional", "Exclude optional checks")
   .option("-a, --android-only", "Run the check for Android only")
-  .option("-i, --ios-only", "Run the check for iOS only")
+  .option("-i, --ios-only", "Run the check for iOS only") // prevent a and i being passed at the same time
   .action((options) => {
     console.log(
       chalk.italic.bold.bgMagentaBright(
