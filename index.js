@@ -37,6 +37,7 @@
 import { program } from "commander";
 import DetoxDoctorCheck from "./detoxDoctorCheck.js";
 import chalk from "chalk";
+import { printWarning } from "./utils/logger.js";
 
 const startDetoxDoctorCheck = (options) => {
   const detoxDoctor = new DetoxDoctorCheck(options);
@@ -59,6 +60,13 @@ program
   .option("-a, --android-only", "Run the check for Android only")
   .option("-i, --ios-only", "Run the check for iOS only") // prevent a and i being passed at the same time
   .action((options) => {
+    if (options.androidOnly && options.iosOnly) {
+      console.log(
+        "Cannot use the Android-only and iOS-only flags at the same time. Please choose one or the other.\nExiting..."
+      );
+      return;
+    }
+
     console.log(
       chalk.italic.bold.bgMagentaBright(
         "\nWelcome to Detox Doctor - a tool that checks your local environment for running Detox tests."
