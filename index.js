@@ -37,7 +37,6 @@
 import { program } from "commander";
 import DetoxDoctorCheck from "./detoxDoctorCheck.js";
 import chalk from "chalk";
-import { printWarning } from "./utils/logger.js";
 
 const startDetoxDoctorCheck = (options) => {
   const detoxDoctor = new DetoxDoctorCheck(options);
@@ -49,7 +48,7 @@ program
   .description(
     "CLI tool to help you setup your local environment for running Detox tests"
   )
-  .version("1.0.30");
+  .version("1.0.31");
 
 program
   .command("check")
@@ -58,7 +57,7 @@ program
   )
   .option("-o, --exclude-optional", "Exclude optional checks")
   .option("-a, --android-only", "Run the check for Android only")
-  .option("-i, --ios-only", "Run the check for iOS only") // prevent a and i being passed at the same time
+  .option("-i, --ios-only", "Run the check for iOS only")
   .action((options) => {
     if (options.androidOnly && options.iosOnly) {
       console.log(
