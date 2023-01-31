@@ -69,7 +69,7 @@ program
 
     console.log(
       chalk.italic.bold.bgMagentaBright(
-        "\nWelcome to Detox Doctor - a tool that checks your local environment for running Detox tests."
+        "\nWelcome to Detox Doctor - a tool that checks your local environment for running Detox tests"
       )
     );
     startDetoxDoctorCheck(options);

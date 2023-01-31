@@ -54,7 +54,7 @@ class DetoxDoctorCheck {
   }
 
   reportOptionsUsed() {
-    printCheckMessage("\nChecks to be performed:");
+    printCheckMessage("\nChecks to be performed");
 
     if (!this.options.iosOnly) {
       console.log(chalk.white("Android"));
