@@ -1,0 +1,4 @@
+{
+  "transform": {},
+  "testRegex": "((\\.|/*.)(spec))\\.js?$"
+}

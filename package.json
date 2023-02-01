@@ -6,9 +6,15 @@
   "author": "gregorgilchrist@gmail.com",
   "license": "MIT",
   "type": "module",
+  "scripts": {
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+  },
   "dependencies": {
     "chalk": "^5.1.2",
     "commander": "^9.4.1"
   },
-  "bin": "./index.js"
+  "bin": "./index.js",
+  "devDependencies": {
+    "jest": "^29.4.1"
+  }
 }
