@@ -36,6 +36,7 @@
 
 import { program } from "commander";
 import DetoxDoctorCheck from "./detoxDoctorCheck.js";
+import { printDetoxAsciiDude } from "./utils/logger.js";
 import chalk from "chalk";
 
 const startDetoxDoctorCheck = (options) => {
@@ -71,6 +72,9 @@ program
         "\nWelcome to Detox Doctor - a tool that checks your local environment for running Detox tests"
       )
     );
+
+    console.log(printDetoxAsciiDude());
+
     startDetoxDoctorCheck(options);
   });
 
