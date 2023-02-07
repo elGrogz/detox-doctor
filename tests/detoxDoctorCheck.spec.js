@@ -18,4 +18,6 @@ describe("Detox Doctor Check", () => {
     expect(detoxDoctorCheck.options.iosOnly).toBe(true);
     expect(detoxDoctorCheck.options.excludeOptional).toBe(true);
   });
+
+  test("start runs the correct os test", () => {});
 });
