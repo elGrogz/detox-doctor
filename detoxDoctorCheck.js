@@ -31,7 +31,7 @@ class DetoxDoctorCheck {
         windowsTools.reportSystemInfo();
         const windowResults = windowsTools.runWindowsCheck(this.options);
 
-        if (!this.options.excludeOptional) {
+        if (!this.options?.excludeOptional) {
           this.reportOptionalActionsToTake(windowResults);
         }
         this.reportActionsToTake(windowResults);
@@ -60,7 +60,7 @@ class DetoxDoctorCheck {
       console.log(chalk.white("Android"));
     }
 
-    if (!this.options.androidOnly) {
+    if (!this.options.androidOnly && process.platform === "darwin") {
       console.log(chalk.white("iOS"));
     }
 
