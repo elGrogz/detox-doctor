@@ -11,7 +11,7 @@ import ShellChecker from "../utils/shellChecker.js";
 class MacOsTools extends OperatingSystemTools {
   runMacOsCheck() {
     // MAIN SYSTEM CHECKS
-    printCheckMessage("\nChecking Node installation");
+    printCheckMessage("\nChecking Node installation 🟢");
 
     // Verify Node is installed
     this.runCheck(NodeDetector.getNodeInfo());
@@ -28,7 +28,7 @@ class MacOsTools extends OperatingSystemTools {
       this.runCheck(AndroidToolsChecker.checkNdkInstallion());
 
       // Env vars check
-      printCheckMessage("\nChecking system environmental variables");
+      printCheckMessage("\nChecking system environmental variables 💻");
       const shellFileContents = ShellChecker.getShellContents(this.shell);
 
       if (shellFileContents) {
@@ -55,7 +55,7 @@ class MacOsTools extends OperatingSystemTools {
       }
 
       // ANDROID TOOLS CHECK
-      printCheckMessage("\nChecking Android tools are installed correctly");
+      printCheckMessage("\nChecking Android tools are installed correctly 🤖");
 
       this.runCheck(AndroidToolsChecker.checkSdkVersion());
       this.runCheck(AndroidToolsChecker.checkAdbVersion());

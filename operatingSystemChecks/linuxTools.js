@@ -7,13 +7,13 @@ import { printCheckMessage } from "../utils/logger.js";
 class LinuxTools extends OperatingSystemTools {
   runLinuxCheck() {
     // MAIN SYSTEM CHECKS
-    printCheckMessage("\nChecking Node installation");
+    printCheckMessage("\nChecking Node installation 🟢");
 
     // Verify Node is installed
     this.runCheck(NodeDetector.getNodeInfo());
 
     // Env vars check
-    printCheckMessage("\nChecking system environmental variables:");
+    printCheckMessage("\nChecking system environmental variables 💻");
     const shellFileContents = ShellChecker.getShellContents(this.shell);
 
     if (shellFileContents) {

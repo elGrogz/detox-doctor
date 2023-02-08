@@ -46,7 +46,7 @@ class OperatingSystemTools {
   }
 
   reportSystemInfo() {
-    printCheckMessage("\nSystem Info");
+    printCheckMessage("\nSystem Info 💻");
     console.log(
       chalk.white(
         `Operating System: ${chalk.bold.bgBlue(this.operatingSystem)}`
