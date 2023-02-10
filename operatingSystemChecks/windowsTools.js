@@ -12,6 +12,16 @@ class WindowsTools extends OperatingSystemTools {
     // Verify Node is installed
     this.runCheck(NodeDetector.getNodeInfo());
 
+    // Verify Android tools are installed
+    printCheckMessage("\nChecking system setup for Android 🤖");
+
+    this.runCheck(AndroidToolsChecker.checkAndroidStudioInstallion());
+    // this.runCheck(AndroidToolsChecker.checkJavaInstallation());
+    // this.runCheck(AndroidToolsChecker.checkPlatforms());
+    // this.runCheck(AndroidToolsChecker.checkCommandLineTools());
+    // this.runCheck(AndroidToolsChecker.checkCmakeInstallation());
+    // this.runCheck(AndroidToolsChecker.checkNdkInstallion());
+
     // Env vars check
     printCheckMessage("\nChecking system environmental variables 💻");
     const shellFileContents = ShellChecker.getShellContents(this.shell);

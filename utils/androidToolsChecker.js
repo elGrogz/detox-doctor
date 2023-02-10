@@ -1,4 +1,5 @@
 import fs from "fs";
+import path from "path";
 import { execSync } from "child_process";
 import {
   printLocation,
@@ -7,9 +8,18 @@ import {
   printWarning,
 } from "./logger.js";
 
-const commonMacosAndroidStudioAppLocation = "/Applications/Android Studio.app";
-// const commonWindowsAndroidStudioAppLocation =
-//   "/Applications/Android Studio.app";
+const commonMacosAndroidStudioAppLocation = path.join(
+  "Applications",
+  "Android Studio.app"
+);
+const commonWindowsAndroidStudioAppLocation = path.join(
+  "C:",
+  "Program Files",
+  "Android",
+  "Android Studio",
+  "bin",
+  "studio64.exe"
+);
 // const commonLinuxAndroidStudioAppLocation = "/Applications/Android Studio.app";
 const javahomeEnvVariable = "JAVA_HOME";
 const androidHomeEnvVariable = "ANDROID_HOME";
@@ -26,11 +36,23 @@ const platformsDirectory = `${process.env.ANDROID_HOME}/platforms`;
 
 class AndroidToolsChecker {
   static checkAndroidStudioInstallion() {
-    // add logic for linux and windows
+    // add logic for linux
     if (fs.existsSync(commonMacosAndroidStudioAppLocation)) {
       printSuccess(
         `Android Studio installed at: ${printLocation(
           commonMacosAndroidStudioAppLocation
+        )}`
+      );
+
+      return {
+        name: "Android Studio Check",
+        success: true,
+        optional: false,
+      };
+    } else if (fs.existsSync(commonWindowsAndroidStudioAppLocation)) {
+      printSuccess(
+        `Android Studio installed at: ${printLocation(
+          commonWindowsAndroidStudioAppLocation
         )}`
       );
 
@@ -48,7 +70,7 @@ class AndroidToolsChecker {
         optional: false,
         message: `Android Studio is required to run Detox tests on Android. Download at the Android website or run ${printLocation(
           "brew install --cask android-studio"
-        )}`,
+        )} if you are on MacOS`,
       };
     }
   }
