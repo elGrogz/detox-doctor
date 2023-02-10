@@ -102,7 +102,7 @@ class DetoxDoctorCheck {
       } else {
         console.log(
           chalk.bgGreen(
-            "\nNo mandatory steps to take! You are ready to use Detox!"
+            "\nNo mandatory steps to take! You are ready to use Detox!\n"
           )
         );
       }
