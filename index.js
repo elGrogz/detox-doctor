@@ -49,7 +49,7 @@ program
   .description(
     "CLI tool to help you setup your local environment for running Detox tests"
   )
-  .version("1.0.33");
+  .version("1.0.34");
 
 program
   .command("check")
