@@ -3,14 +3,17 @@ import { printCheckMessage, printChecksComplete } from "../utils/logger.js";
 import NodeDetector from "../utils/nodeChecker.js";
 import AndroidToolsChecker from "../utils/androidToolsChecker.js";
 import ShellChecker from "../utils/shellChecker.js";
+import ChocolateyChecker from "../utils/chocolateyChecker.js";
 
 class WindowsTools extends OperatingSystemTools {
   runWindowsCheck() {
-    // MAIN SYSTEM CHECKS
-    printCheckMessage("\nChecking Node installation 🟢");
-
     // Verify Node is installed
+    printCheckMessage("\nChecking Node installation 🟢");
     this.runCheck(NodeDetector.getNodeInfo());
+
+    // Verify Chocolatey is installed
+    printCheckMessage("\nChecking Chcocolatey installation 🍫");
+    this.runCheck(ChocolateyChecker.checkChocolateyInstallation());
 
     // Verify Android tools are installed
     printCheckMessage("\nChecking system setup for Android 🤖");
