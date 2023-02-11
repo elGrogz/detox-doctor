@@ -95,12 +95,15 @@ class AndroidToolsChecker {
     } catch (error) {
       printFail(`Could not get java version: ${error}`);
 
+      // have different messages depending on OS
       return {
         name: "Java Installation Check",
         success: false,
         optional: false,
-        message: `Java v11 and the Java JDK are required to run Detox tests on Android. Run ${printLocation(
+        message: `Java v11 and the Java JDK are required to run Detox tests on Android. On macOs run ${printLocation(
           `brew tap homebrew/cask-versions\nbrew install --cask zulu11`
+        )}. \nOn Windows run: ${printLocation(
+          `choco install -y nodejs-lts microsoft-openjdk11`
         )}`,
       };
     }

@@ -19,7 +19,7 @@ class WindowsTools extends OperatingSystemTools {
     printCheckMessage("\nChecking system setup for Android 🤖");
 
     this.runCheck(AndroidToolsChecker.checkAndroidStudioInstallion());
-    // this.runCheck(AndroidToolsChecker.checkJavaInstallation());
+    this.runCheck(AndroidToolsChecker.checkJavaInstallation());
     // this.runCheck(AndroidToolsChecker.checkPlatforms());
     // this.runCheck(AndroidToolsChecker.checkCommandLineTools());
     // this.runCheck(AndroidToolsChecker.checkCmakeInstallation());
