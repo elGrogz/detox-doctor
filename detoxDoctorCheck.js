@@ -74,7 +74,7 @@ class DetoxDoctorCheck {
   reportOptionalActionsToTake(results) {
     if (results) {
       let filteredOptionalResults = results.filter(
-        (result) => result.optional === true && result.success === false
+        (result) => result?.optional === true && result?.success === false
       );
 
       if (filteredOptionalResults.length > 0) {
@@ -91,7 +91,7 @@ class DetoxDoctorCheck {
   reportActionsToTake(results) {
     if (results) {
       let filteredResults = results.filter(
-        (result) => result.optional === false && result.success === false
+        (result) => result?.optional === false && result?.success === false
       );
 
       if (filteredResults.length > 0) {
