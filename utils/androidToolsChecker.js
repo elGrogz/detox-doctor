@@ -254,6 +254,40 @@ class AndroidToolsChecker {
     }
   }
 
+  static checkAndroidHomeEnvVarOnWindows() {
+    try {
+      let response = execSync("(Get-ChildItem Env:ANDROID_HOME).Value")
+        .toString()
+        .replace("\r\n", "");
+      printSuccess(
+        `Windows Environment contains the ${printLocation(
+          androidHomeEnvVariable
+        )} variable at : ${printLocation(response)}`
+      );
+
+      return {
+        name: "ANDROID_HOME environmental variable check",
+        success: true,
+        optional: false,
+      };
+    } catch (error) {
+      printFail(
+        `Windows environment does not contain the ${printLocation(
+          androidHomeEnvVariable
+        )} variable`
+      );
+
+      return {
+        name: "ANDROID_HOME environmental variable check",
+        success: false,
+        optional: false,
+        message: `The ${printLocation(
+          androidHomeEnvVariable
+        )} environmental variable is required to run Detox tests on Android.\nSet it in your environmental variables`,
+      };
+    }
+  }
+
   static checkAndroidEmulatorEnvVar(zshrcContents) {
     if (zshrcContents.includes(androidEmulatorVariable)) {
       printSuccess(

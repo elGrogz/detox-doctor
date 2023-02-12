@@ -1,6 +1,6 @@
 import { execSync } from "child_process";
 import chalk from "chalk";
-import { printCheckMessage } from "../utils/logger.js";
+import { printCheckMessage, printFail } from "../utils/logger.js";
 
 class OperatingSystemTools {
   constructor(options) {
@@ -37,8 +37,21 @@ class OperatingSystemTools {
   }
 
   getShell() {
-    let response = execSync("echo $SHELL").toString().replace("\n", "");
-    return response;
+    if (this.getPlatform() === "darwin" || this.getPlatform() === "linux") {
+      let response = execSync("echo $SHELL").toString().replace("\n", "");
+      return response;
+    } else if (this.getPlatform() === "win32") {
+      try {
+        let response = execSync("echo %COMSPEC%")
+          .toString()
+          .replace("\r\n", "");
+        return response;
+      } catch (error) {
+        return "Unknown Windows Shell";
+      }
+    } else {
+      return "Unknow Shell";
+    }
   }
 
   getArchitecture() {
