@@ -9,7 +9,7 @@ import {
 } from "./logger.js";
 
 const commonMacosAndroidStudioAppLocation = path.join(
-  "Applications",
+  "/Applications",
   "Android Studio.app"
 );
 const commonWindowsAndroidStudioAppLocation = path.join(
