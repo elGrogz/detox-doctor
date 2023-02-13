@@ -35,9 +35,7 @@ class MacOsTools extends OperatingSystemTools {
         this.runCheck(
           AndroidToolsChecker.checkJavaHomeEnvVar(shellFileContents)
         );
-        this.runCheck(
-          AndroidToolsChecker.checkAndroidHomeEnvVar(shellFileContents)
-        );
+        this.runCheck(AndroidToolsChecker.checkAndroidHomeEnvVar());
         this.runCheck(
           AndroidToolsChecker.checkAndroidEmulatorEnvVar(shellFileContents)
         );
