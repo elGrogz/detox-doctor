@@ -177,6 +177,7 @@ class AndroidToolsChecker {
     }
   }
 
+  // TODO: replace zshrc contents stuff
   static checkJavaHomeEnvVar(zshrcContents) {
     if (zshrcContents.includes(javahomeEnvVariable)) {
       printSuccess(
@@ -205,64 +206,62 @@ class AndroidToolsChecker {
     }
   }
 
-  static checkAndroidHomeEnvVar(zshrcContents) {
-    if (zshrcContents.includes(androidHomeEnvVariable)) {
-      printSuccess(
-        `Shell profile contains Android Home variable: ${printLocation(
-          androidHomeEnvVariable
-        )}`
-      );
-      return {
-        name: "ANDROID_HOME environmental variable check",
-        success: true,
-        optional: false,
-      };
-    } else if (zshrcContents.includes(androidSdkRootEnvVariable)) {
-      printWarning(
-        `Shell profile contains ${printLocation(
-          androidSdkRootEnvVariable
-        )} environmental variable`
-      );
+  // static checkAndroidHomeEnvVar(zshrcContents) {
+  //   if (zshrcContents.includes(androidHomeEnvVariable)) {
+  //     printSuccess(
+  //       `Shell profile contains Android Home variable: ${printLocation(
+  //         androidHomeEnvVariable
+  //       )}`
+  //     );
+  //     return {
+  //       name: "ANDROID_HOME environmental variable check",
+  //       success: true,
+  //       optional: false,
+  //     };
+  //   } else if (zshrcContents.includes(androidSdkRootEnvVariable)) {
+  //     printWarning(
+  //       `Shell profile contains ${printLocation(
+  //         androidSdkRootEnvVariable
+  //       )} environmental variable`
+  //     );
 
-      return {
-        name: "Shell profile environmental variable check",
-        success: false,
-        optional: true,
-        message: `Shell profile contains ${printLocation(
-          androidSdkRootEnvVariable
-        )} environmental variable. This is deprecated in favour of ${printLocation(
-          "ANDROID_HOME"
-        )}. Consider replacing the ${printLocation(
-          "ANDROID_SDK_ROOT"
-        )} environmental variable with this.`,
-      };
-    } else {
-      printFail(
-        `Shell profile does not contain the ${printLocation(
-          androidHomeEnvVariable
-        )} variable`
-      );
+  //     return {
+  //       name: "Shell profile environmental variable check",
+  //       success: false,
+  //       optional: true,
+  //       message: `Shell profile contains ${printLocation(
+  //         androidSdkRootEnvVariable
+  //       )} environmental variable. This is deprecated in favour of ${printLocation(
+  //         "ANDROID_HOME"
+  //       )}. Consider replacing the ${printLocation(
+  //         "ANDROID_SDK_ROOT"
+  //       )} environmental variable with this.`,
+  //     };
+  //   } else {
+  //     printFail(
+  //       `Shell profile does not contain the ${printLocation(
+  //         androidHomeEnvVariable
+  //       )} variable`
+  //     );
 
-      return {
-        name: "ANDROID_HOME environmental variable check",
-        success: false,
-        optional: false,
-        message: `The ${printLocation(
-          androidHomeEnvVariable
-        )} environmental variable is required to run Detox tests on Android.\nSet it in your shell profile file`,
-      };
-    }
-  }
+  //     return {
+  //       name: "ANDROID_HOME environmental variable check",
+  //       success: false,
+  //       optional: false,
+  //       message: `The ${printLocation(
+  //         androidHomeEnvVariable
+  //       )} environmental variable is required to run Detox tests on Android.\nSet it in your shell profile file`,
+  //     };
+  //   }
+  // }
 
-  static checkAndroidHomeEnvVarOnWindows() {
+  static checkAndroidHomeEnvVar() {
     try {
-      let response = execSync("(Get-ChildItem Env:ANDROID_HOME).Value")
-        .toString()
-        .replace("\r\n", "");
+      const androidHomePath = process.env["ANDROID_HOME"];
       printSuccess(
-        `Windows Environment contains the ${printLocation(
+        `Local Environment contains the ${printLocation(
           androidHomeEnvVariable
-        )} variable at : ${printLocation(response)}`
+        )} variable at : ${printLocation(androidHomePath)}`
       );
 
       return {
@@ -283,11 +282,12 @@ class AndroidToolsChecker {
         optional: false,
         message: `The ${printLocation(
           androidHomeEnvVariable
-        )} environmental variable is required to run Detox tests on Android.\nSet it in your environmental variables`,
+        )} environmental variable is required to run Detox tests on Android.\nSet it in your environmental variables or shell profile file`,
       };
     }
   }
 
+  // TODO: replace zshrc contents stuff
   static checkAndroidEmulatorEnvVar(zshrcContents) {
     if (zshrcContents.includes(androidEmulatorVariable)) {
       printSuccess(
@@ -321,6 +321,7 @@ class AndroidToolsChecker {
     }
   }
 
+  // TODO: replace zshrc contents stuff
   static checkAndroidSdkManagerEnvVar(zshrcContents) {
     if (
       zshrcContents.includes(androidSdkManagerVariable) ||
@@ -359,6 +360,7 @@ class AndroidToolsChecker {
     }
   }
 
+  // TODO: replace zshrc contents stuff
   static checkAndroidPlatformToolsEnvVar(zshrcContents) {
     if (zshrcContents.includes(androidPlatformToolsVariable)) {
       printSuccess(
@@ -393,6 +395,7 @@ class AndroidToolsChecker {
     }
   }
 
+  // TODO: replace zshrc contents stuff
   static checkAndroidCommandLineToolsEnvVar(zshrcContents) {
     if (zshrcContents.includes(androidCommandLineToolsVariable)) {
       printSuccess(
