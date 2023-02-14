@@ -27,6 +27,9 @@ class DebugToolsChecker {
       )}`,
     };
   }
+
+  // check for idb and python
+  static checkIdbInstallation() {}
 }
 
 export default DebugToolsChecker;
