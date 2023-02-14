@@ -57,6 +57,9 @@ class IosToolsChecker {
       };
     }
   }
+
+  // TODO: add xcrun show path, version, build version, platform path and platform version check
+  static checkIosSdk() {}
 }
 
 export default IosToolsChecker;
