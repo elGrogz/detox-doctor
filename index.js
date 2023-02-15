@@ -30,11 +30,12 @@
 // also report other system information at the start? ✅
 // iOS install steps ✅
 // flipper check ✅
-// idb check for flipper
-// watchman check
+// idb check for flipper ✅
+// watchman check (ios ✅)
 // ruby check ✅
 // break check strings with emojis into their respective tools
 // check for minimum versions of things: node, ios and android platforms, etc
+// add global state of os or whatever so it's accessible by the whole program
 
 import { program } from "commander";
 import DetoxDoctorCheck from "./detoxDoctorCheck.js";
