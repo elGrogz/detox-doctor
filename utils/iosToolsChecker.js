@@ -67,7 +67,7 @@ class IosToolsChecker {
       return {
         name: "iOS xcrun Check",
         success: true,
-        optional: true,
+        optional: false,
       };
     } catch (error) {
       printFail(`Could not find xcrun installation: ${error.toString()}`);
@@ -75,10 +75,33 @@ class IosToolsChecker {
       return {
         name: "iOS applesimutils Check",
         success: false,
-        optional: true,
+        optional: false,
         message: `xcrun is a tool that helps manage Xcode versions and tools. You can download it with ${printLocation(
           "xcode-select --install"
         )}`,
+      };
+    }
+  }
+
+  static getIosSdkPath() {
+    try {
+      const sdkPath = execSync("xcrun --show-sdk-path").toString();
+
+      printSuccess(`iOS SDK installed at: ${printLocation(sdkPath)}`);
+
+      return {
+        name: "iOS SDK Path",
+        success: true,
+        optional: false,
+      };
+    } catch (error) {
+      printFail(`Could not find xcrun installation: ${error.toString()}`);
+
+      return {
+        name: "iOS applesimutils Check",
+        success: false,
+        optional: false,
+        message: `The iOS SDK path should be set.`,
       };
     }
   }
