@@ -7,14 +7,17 @@ import OperatingSystemTools from "./operatingSystemTools.js";
 import DebugToolsChecker from "../utils/debugToolsChecker.js";
 import RubyChecker from "../utils/rubyChecker.js";
 import ShellChecker from "../utils/shellChecker.js";
+import BrewChecker from "../utils/brewChecker.js";
 
 class MacOsTools extends OperatingSystemTools {
   runMacOsCheck() {
-    // MAIN SYSTEM CHECKS
-    printCheckMessage("\nChecking Node installation 🟢");
-
     // Verify Node is installed
+    printCheckMessage("\nChecking Node installation 🟢");
     this.runCheck(NodeDetector.getNodeInfo());
+
+    // Verify Brew is installed (optional)
+    printCheckMessage("\nChecking Homebrew installation 🍺");
+    this.runCheck(BrewChecker.checkBrewInstallation());
 
     // IOS TOOLS CHECK
     if (!this.options.androidOnly) {
