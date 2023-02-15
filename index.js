@@ -33,6 +33,7 @@
 // idb check for flipper
 // watchman check
 // ruby check ✅
+// break check strings with emojis into their respective tools
 
 import { program } from "commander";
 import DetoxDoctorCheck from "./detoxDoctorCheck.js";

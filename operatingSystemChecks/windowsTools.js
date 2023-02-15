@@ -26,7 +26,7 @@ class WindowsTools extends OperatingSystemTools {
     // this.runCheck(AndroidToolsChecker.checkNdkInstallion());
 
     // Env vars check
-    printCheckMessage("\nChecking system environmental variables 💻");
+    printCheckMessage("\nChecking system environmental variables 📟");
     this.runCheck(AndroidToolsChecker.checkAndroidHomeEnvVar());
     // this.runCheck(AndroidToolsChecker.checkAndroidEmulatorEnvVar());
     // this.runCheck(

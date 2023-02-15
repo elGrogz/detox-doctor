@@ -45,7 +45,7 @@ class MacOsTools extends OperatingSystemTools {
       this.runCheck(AndroidToolsChecker.checkNdkInstallion());
 
       // Env vars check
-      printCheckMessage("\nChecking system environmental variables 💻");
+      printCheckMessage("\nChecking system environmental variables 📟");
       const shellFileContents = ShellChecker.getShellContents(this.shell);
 
       if (shellFileContents) {
@@ -79,11 +79,11 @@ class MacOsTools extends OperatingSystemTools {
     }
 
     // NPM TOOLS CHECK
-    printCheckMessage("\nChecking system setup for NPM Tools");
+    printCheckMessage("\nChecking system setup for NPM Tools 🧰");
     this.runCheck(NpmToolsChecker.checkForDetoxCli());
 
     // FLIPPER CHECK
-    printCheckMessage("\nChecking Flipper installation");
+    printCheckMessage("\nChecking Flipper installation 🐬");
     this.runCheck(DebugToolsChecker.checkFlipperInstallation());
 
     printChecksComplete();

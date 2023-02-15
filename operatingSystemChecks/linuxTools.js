@@ -13,7 +13,7 @@ class LinuxTools extends OperatingSystemTools {
     this.runCheck(NodeDetector.getNodeInfo());
 
     // Env vars check
-    printCheckMessage("\nChecking system environmental variables 💻");
+    printCheckMessage("\nChecking system environmental variables 📟");
     const shellFileContents = ShellChecker.getShellContents(this.shell);
 
     if (shellFileContents) {
