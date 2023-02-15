@@ -20,6 +20,10 @@ class MacOsTools extends OperatingSystemTools {
     printCheckMessage("\nChecking Homebrew installation 🍺");
     this.runCheck(BrewChecker.checkBrewInstallation());
 
+    // Verify Watchman is installed (optional)
+    printCheckMessage("\nChecking Watchman installation 👁️");
+    this.runCheck(DebugToolsChecker.checkWatchmanInstallation());
+
     // IOS TOOLS CHECK
     if (!this.options.androidOnly) {
       printCheckMessage("\nChecking system setup for iOS ");

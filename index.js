@@ -34,6 +34,7 @@
 // watchman check
 // ruby check ✅
 // break check strings with emojis into their respective tools
+// check for minimum versions of things: node, ios and android platforms, etc
 
 import { program } from "commander";
 import DetoxDoctorCheck from "./detoxDoctorCheck.js";

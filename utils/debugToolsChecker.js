@@ -56,6 +56,33 @@ class DebugToolsChecker {
       };
     }
   }
+
+  static checkWatchmanInstallation() {
+    try {
+      const watchmanInstallationPath = execSync("which watchman")
+        .toString()
+        .replace("\n", "");
+      printSuccess(
+        `Watchman installed at: ${printLocation(watchmanInstallationPath)}`
+      );
+
+      return {
+        name: "Watchman installation check",
+        success: true,
+        optional: true,
+      };
+    } catch (error) {
+      printWarning("Watchman not installed");
+      return {
+        name: "Watchman installation check",
+        success: false,
+        optional: true,
+        message: `Watchman not installed. This tool watches for changes on your mchine and can help improve React Native performance. Install with ${printLocation(
+          "brew install watchman"
+        )} (requires Homebrew)`,
+      };
+    }
+  }
 }
 
 export default DebugToolsChecker;
