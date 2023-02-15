@@ -85,6 +85,7 @@ class MacOsTools extends OperatingSystemTools {
     // FLIPPER CHECK
     printCheckMessage("\nChecking Flipper installation 🐬");
     this.runCheck(DebugToolsChecker.checkFlipperInstallation());
+    this.runCheck(DebugToolsChecker.checkIdbInstallation());
 
     printChecksComplete();
 
