@@ -133,8 +133,57 @@ class IosToolsChecker {
     }
   }
 
+  static getIosSdkVersion() {
+    try {
+      const sdkPath = execSync("xcrun --show-sdk-version")
+        .toString()
+        .replace("\n", "");
+
+      printSuccess(`iOS SDK version: ${printLocation(sdkPath)}`);
+
+      return {
+        name: "iOS SDK Version",
+        success: true,
+        optional: false,
+      };
+    } catch (error) {
+      printFail(`Could not find iOS SDK Version: ${error.toString()}`);
+
+      return {
+        name: "iOS SDK Version",
+        success: false,
+        optional: false,
+        message: `The iOS SDK should be installed`,
+      };
+    }
+  }
+
+  static getIosSdkPlatformPath() {
+    try {
+      const sdkPath = execSync("xcrun --show-sdk-platform-path")
+        .toString()
+        .replace("\n", "");
+
+      printSuccess(`iOS SDK Platform path: ${printLocation(sdkPath)}`);
+
+      return {
+        name: "iOS SDK Platform Path",
+        success: true,
+        optional: false,
+      };
+    } catch (error) {
+      printFail(`Could not find iOS SDK Platform Path: ${error.toString()}`);
+
+      return {
+        name: "iOS SDK Version",
+        success: false,
+        optional: false,
+        message: `The iOS SDK Path should be set`,
+      };
+    }
+  }
+
   // TODO: add xcrun show path, version, build version, platform path and platform version check
-  static checkIosSdk() {}
 }
 
 export default IosToolsChecker;
