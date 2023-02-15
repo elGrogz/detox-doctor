@@ -16,6 +16,16 @@ class MacOsTools extends OperatingSystemTools {
     // Verify Node is installed
     this.runCheck(NodeDetector.getNodeInfo());
 
+    // IOS TOOLS CHECK
+    if (!this.options.androidOnly) {
+      printCheckMessage("\nChecking system setup for iOS ");
+
+      this.runCheck(IosToolsChecker.checkXcodePath());
+      this.runCheck(IosToolsChecker.checkAppleSimUtils());
+      this.runCheck(RubyChecker.checkRubyInstallation());
+      this.runCheck(IosToolsChecker.checkXcrunVersion());
+    }
+
     // Verify Android setup - run only if Android Only is true or no other 'only' flags are passed
     if (!this.options.iosOnly) {
       printCheckMessage("\nChecking system setup for Android 🤖");
@@ -59,15 +69,6 @@ class MacOsTools extends OperatingSystemTools {
       this.runCheck(AndroidToolsChecker.checkAdbVersion());
       this.runCheck(AndroidToolsChecker.checkEmulatorVersion());
       this.runCheck(AndroidToolsChecker.checkAvdVersion());
-    }
-
-    // IOS TOOLS CHECK
-    if (!this.options.androidOnly) {
-      printCheckMessage("\nChecking system setup for iOS ");
-
-      this.runCheck(IosToolsChecker.checkXcodePath());
-      this.runCheck(IosToolsChecker.checkAppleSimUtils());
-      this.runCheck(RubyChecker.checkRubyInstallation());
     }
 
     // NPM TOOLS CHECK

@@ -58,6 +58,31 @@ class IosToolsChecker {
     }
   }
 
+  static checkXcrunVersion() {
+    try {
+      const xcrunVersion = execSync("xcrun --vesion").toString().match(/\d+/g);
+
+      printSuccess(`xcrun version ${printLocation(xcrunVersion[0])} installed`);
+
+      return {
+        name: "iOS xcrun Check",
+        success: true,
+        optional: true,
+      };
+    } catch (error) {
+      printFail(`Could not find xcrun installation: ${error.toString()}`);
+
+      return {
+        name: "iOS applesimutils Check",
+        success: false,
+        optional: true,
+        message: `xcrun is a tool that helps manage Xcode versions and tools. You can download it with ${printLocation(
+          "xcode-select --install"
+        )}`,
+      };
+    }
+  }
+
   // TODO: add xcrun show path, version, build version, platform path and platform version check
   static checkIosSdk() {}
 }
