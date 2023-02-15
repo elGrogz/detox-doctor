@@ -85,7 +85,9 @@ class IosToolsChecker {
 
   static getIosSdkPath() {
     try {
-      const sdkPath = execSync("xcrun --show-sdk-path").toString();
+      const sdkPath = execSync("xcrun --show-sdk-path")
+        .toString()
+        .replace("\n", "");
 
       printSuccess(`iOS SDK installed at: ${printLocation(sdkPath)}`);
 
@@ -95,13 +97,38 @@ class IosToolsChecker {
         optional: false,
       };
     } catch (error) {
-      printFail(`Could not find xcrun installation: ${error.toString()}`);
+      printFail(`Could not find iOS SDK path: ${error.toString()}`);
 
       return {
-        name: "iOS applesimutils Check",
+        name: "iOS SDK Path",
         success: false,
         optional: false,
-        message: `The iOS SDK path should be set.`,
+        message: `The iOS SDK path should be set`,
+      };
+    }
+  }
+
+  static getIosSdkVersion() {
+    try {
+      const sdkPath = execSync("xcrun --show-sdk-version")
+        .toString()
+        .replace("\n", "");
+
+      printSuccess(`iOS SDK version: ${printLocation(sdkPath)}`);
+
+      return {
+        name: "iOS SDK Version",
+        success: true,
+        optional: false,
+      };
+    } catch (error) {
+      printFail(`Could not find iOS SDK Version: ${error.toString()}`);
+
+      return {
+        name: "iOS SDK Version",
+        success: false,
+        optional: false,
+        message: `The iOS SDK should be installed`,
       };
     }
   }

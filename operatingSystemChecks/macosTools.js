@@ -25,6 +25,7 @@ class MacOsTools extends OperatingSystemTools {
       this.runCheck(RubyChecker.checkRubyInstallation());
       this.runCheck(IosToolsChecker.checkXcrunVersion());
       this.runCheck(IosToolsChecker.getIosSdkPath());
+      this.runCheck(IosToolsChecker.getIosSdkVersion());
     }
 
     // Verify Android setup - run only if Android Only is true or no other 'only' flags are passed
