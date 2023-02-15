@@ -8,6 +8,7 @@ import DebugToolsChecker from "../utils/debugToolsChecker.js";
 import RubyChecker from "../utils/rubyChecker.js";
 import ShellChecker from "../utils/shellChecker.js";
 import BrewChecker from "../utils/brewChecker.js";
+import PythonChecker from "../utils/pythonChecker.js";
 
 class MacOsTools extends OperatingSystemTools {
   runMacOsCheck() {
@@ -85,6 +86,8 @@ class MacOsTools extends OperatingSystemTools {
     // FLIPPER CHECK
     printCheckMessage("\nChecking Flipper installation 🐬");
     this.runCheck(DebugToolsChecker.checkFlipperInstallation());
+    this.runCheck(PythonChecker.checkPython3Installation());
+    this.runCheck(PythonChecker.checkPip3Installation());
     this.runCheck(DebugToolsChecker.checkIdbInstallation());
 
     printChecksComplete();
