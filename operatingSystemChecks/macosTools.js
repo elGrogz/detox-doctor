@@ -25,6 +25,7 @@ class MacOsTools extends OperatingSystemTools {
       this.runCheck(IosToolsChecker.getIosSdkPath());
       this.runCheck(IosToolsChecker.getIosSdkVersion());
       this.runCheck(IosToolsChecker.getIosSdkPlatformPath());
+      this.runCheck(IosToolsChecker.getIosSdkPlatformVersion());
       this.runCheck(IosToolsChecker.checkAppleSimUtils());
       this.runCheck(RubyChecker.checkRubyInstallation());
     }

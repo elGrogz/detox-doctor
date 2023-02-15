@@ -135,11 +135,11 @@ class IosToolsChecker {
 
   static getIosSdkVersion() {
     try {
-      const sdkPath = execSync("xcrun --show-sdk-version")
+      const sdkVersion = execSync("xcrun --show-sdk-version")
         .toString()
         .replace("\n", "");
 
-      printSuccess(`iOS SDK version: ${printLocation(sdkPath)}`);
+      printSuccess(`iOS SDK version: ${printLocation(sdkVersion)}`);
 
       return {
         name: "iOS SDK Version",
@@ -160,11 +160,11 @@ class IosToolsChecker {
 
   static getIosSdkPlatformPath() {
     try {
-      const sdkPath = execSync("xcrun --show-sdk-platform-path")
+      const sdkPlatformPath = execSync("xcrun --show-sdk-platform-path")
         .toString()
         .replace("\n", "");
 
-      printSuccess(`iOS SDK Platform path: ${printLocation(sdkPath)}`);
+      printSuccess(`iOS SDK Platform path: ${printLocation(sdkPlatformPath)}`);
 
       return {
         name: "iOS SDK Platform Path",
@@ -183,7 +183,34 @@ class IosToolsChecker {
     }
   }
 
-  // TODO: add xcrun show path, version, build version, platform path and platform version check
+  static getIosSdkPlatformVersion() {
+    try {
+      const sdkPlatformVersion = execSync("xcrun --show-sdk-platform-version")
+        .toString()
+        .replace("\n", "");
+
+      printSuccess(
+        `iOS SDK Platform version: ${printLocation(sdkPlatformVersion)}`
+      );
+
+      return {
+        name: "iOS SDK Platform Version",
+        success: true,
+        optional: false,
+      };
+    } catch (error) {
+      printFail(`Could not find iOS SDK Platform Path: ${error.toString()}`);
+
+      return {
+        name: "iOS SDK Platform Version",
+        success: false,
+        optional: false,
+        message: `The iOS SDK Platform should be installed`,
+      };
+    }
+  }
+
+  // TODO: display what simulators and iOS versions are installed
 }
 
 export default IosToolsChecker;
