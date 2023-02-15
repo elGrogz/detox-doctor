@@ -27,6 +27,29 @@ class PythonChecker {
       };
     }
   }
+
+  static checkPip3Installation() {
+    try {
+      const pip3InstallationPath = execSync("which pip3")
+        .toString()
+        .replace("\n", "");
+      printSuccess(`Pip3 installed at: ${printLocation(pip3InstallationPath)}`);
+
+      return {
+        name: "Pip3 installation check",
+        success: true,
+        optional: true,
+      };
+    } catch (error) {
+      printWarning("Pip3 not installed");
+      return {
+        name: "Pip3 installation check",
+        success: false,
+        optional: true,
+        message: `Pip3 not installed. This is needed to install IDB`,
+      };
+    }
+  }
 }
 
 export default PythonChecker;
