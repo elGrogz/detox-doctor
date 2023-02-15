@@ -60,7 +60,7 @@ class IosToolsChecker {
 
   static checkXcrunVersion() {
     try {
-      const xcrunVersion = execSync("xcrun --vesion").toString().match(/\d+/g);
+      const xcrunVersion = execSync("xcrun --version").toString().match(/\d+/g);
 
       printSuccess(`xcrun version ${printLocation(xcrunVersion[0])} installed`);
 
