@@ -177,7 +177,6 @@ class AndroidToolsChecker {
     }
   }
 
-  // TODO: replace zshrc contents stuff
   static checkJavaHomeEnvVar() {
     try {
       const javahomePath = execSync("printenv JAVA_HOME")
@@ -241,13 +240,12 @@ class AndroidToolsChecker {
     }
   }
 
-  // TODO: replace zshrc contents stuff
   static checkAndroidEmulatorEnvVar(zshrcContents) {
     if (zshrcContents.includes(androidEmulatorVariable)) {
       printSuccess(
-        `Shell profile contains Android Emulator variable: ${printLocation(
+        `${printLocation(
           androidEmulatorVariable
-        )}`
+        )} commands available in your system's PATH`
       );
       return {
         name: "EMULATOR $PATH check",
@@ -282,9 +280,9 @@ class AndroidToolsChecker {
       zshrcContents.includes(androidCommandLineToolsVariable)
     ) {
       printSuccess(
-        `Shell profile contains Android SDK Manager variable: ${printLocation(
+        `${printLocation(
           androidSdkManagerVariable
-        )}`
+        )} commands available in your system's PATH`
       );
       return {
         name: "ANDROID SDK MANAGER $PATH check",
@@ -318,9 +316,9 @@ class AndroidToolsChecker {
   static checkAndroidPlatformToolsEnvVar(zshrcContents) {
     if (zshrcContents.includes(androidPlatformToolsVariable)) {
       printSuccess(
-        `Shell profile contains Android Platform Tools Variable: ${printLocation(
+        `${printLocation(
           androidPlatformToolsVariable
-        )}`
+        )} commands available in your system's PATH`
       );
       return {
         name: "ANDROID_PLATFORM environmental variable check",
@@ -353,9 +351,9 @@ class AndroidToolsChecker {
   static checkAndroidCommandLineToolsEnvVar(zshrcContents) {
     if (zshrcContents.includes(androidCommandLineToolsVariable)) {
       printSuccess(
-        `Shell profile contains Android Command Line Tools Variable: ${printLocation(
+        `${printLocation(
           androidCommandLineToolsVariable
-        )}`
+        )} commands available in your system's PATH`
       );
       return {
         name: "ANDROID_COMMAND_LINE_TOOLS $PATH check",
