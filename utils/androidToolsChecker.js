@@ -511,7 +511,7 @@ class AndroidToolsChecker {
 
   static checkEmulatorVersion() {
     try {
-      const emulatorResult = execSync("emulator -version");
+      const emulatorResult = execSync("emulator -version").toString();
       const emulatorString = emulatorResult.toString();
       const regex = /Android emulator version(.*)/; // separate actual version number from this string (which includes Android emulator version)
       const regexResult = regex.exec(emulatorString);
