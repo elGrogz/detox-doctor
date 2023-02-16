@@ -124,7 +124,7 @@ class AndroidToolsChecker {
           cmakeDirectory
         )}\nAvailable CMake versions: ${printLocation(
           cmakeVersions.toString()
-        )}\n`
+        )}`
       );
 
       return {
@@ -398,7 +398,7 @@ class AndroidToolsChecker {
           commandLineToolsDirectory
         )}\nAvailable Command line tools: ${printLocation(
           cmdlineToolsVersions.toString()
-        )}\n`
+        )}`
       );
 
       return {
@@ -433,7 +433,7 @@ class AndroidToolsChecker {
       printSuccess(
         `Android API Platforms available at: ${printLocation(
           platformsDirectory
-        )}\nAvailable Platforms: ${printLocation(platforms.toString())}\n`
+        )}\nAvailable Platforms: ${printLocation(platforms.toString())}`
       );
       return {
         name: "Android Platforms Check",
@@ -458,7 +458,9 @@ class AndroidToolsChecker {
     try {
       const sdkResult = execSync("sdkmanager --version");
       printSuccess(
-        `SDK Manager version: ${sdkResult.toString().replace(/[\r\n]/gm, "")}` // \r is a windows line break, \n is a UNIX one
+        `SDK Manager version: ${printLocation(
+          sdkResult.toString().replace(/[\r\n]/gm, "")
+        )}` // \r is a windows line break, \n is a UNIX one
       );
 
       return {
