@@ -17,7 +17,6 @@ class LinuxTools extends OperatingSystemTools {
     const shellFileContents = ShellChecker.getShellContents(this.shell);
 
     if (shellFileContents) {
-      this.runCheck(AndroidToolsChecker.checkJavaHomeEnvVar(shellFileContents));
       this.runCheck(
         AndroidToolsChecker.checkAndroidHomeEnvVar(shellFileContents)
       );
