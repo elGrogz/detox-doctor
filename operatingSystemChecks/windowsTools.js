@@ -1,5 +1,5 @@
 import OperatingSystemTools from "./operatingSystemTools.js";
-import { printCheckMessage, printChecksComplete } from "../utils/logger.js";
+import { printChecksComplete } from "../utils/logger.js";
 import NodeDetector from "../utils/nodeChecker.js";
 import AndroidToolsChecker from "../utils/androidToolsChecker.js";
 import ChocolateyChecker from "../utils/chocolateyChecker.js";
@@ -11,7 +11,7 @@ class WindowsTools extends OperatingSystemTools {
     this.runCheck(NodeDetector.getNodeInfo());
 
     // Verify Chocolatey is installed
-    printCheckMessage("\nChecking Chcocolatey installation 🍫");
+    ChocolateyChecker.checkStarting();
     this.runCheck(ChocolateyChecker.checkChocolateyInstallation());
 
     // Verify Android tools are installed

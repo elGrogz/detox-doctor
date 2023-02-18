@@ -1,8 +1,17 @@
 import fs from "fs";
 import chalk from "chalk";
-import { printLocation, printWarning, printSuccess } from "./logger.js";
+import {
+  printLocation,
+  printWarning,
+  printSuccess,
+  printCheckMessage,
+} from "./logger.js";
 
 class NpmToolsChecker {
+  static checkStarting() {
+    printCheckMessage("\nChecking system setup for NPM Tools 🧰");
+  }
+
   static checkForDetoxCli() {
     if (fs.existsSync(`${process.env.NVM_BIN}/detox`)) {
       printSuccess(

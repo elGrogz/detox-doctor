@@ -2,7 +2,7 @@ import NodeDetector from "../utils/nodeChecker.js";
 import AndroidToolsChecker from "../utils/androidToolsChecker.js";
 import IosToolsChecker from "../utils/iosToolsChecker.js";
 import NpmToolsChecker from "../utils/npmToolsChecker.js";
-import { printCheckMessage, printChecksComplete } from "../utils/logger.js";
+import { printChecksComplete } from "../utils/logger.js";
 import OperatingSystemTools from "./operatingSystemTools.js";
 import DebugToolsChecker from "../utils/debugToolsChecker.js";
 import RubyChecker from "../utils/rubyChecker.js";
@@ -47,6 +47,10 @@ class MacOsTools extends OperatingSystemTools {
       this.runCheck(AndroidToolsChecker.checkCommandLineTools());
       this.runCheck(AndroidToolsChecker.checkCmakeInstallation());
       this.runCheck(AndroidToolsChecker.checkNdkInstallion());
+      this.runCheck(AndroidToolsChecker.checkSdkVersion());
+      this.runCheck(AndroidToolsChecker.checkAdbVersion());
+      this.runCheck(AndroidToolsChecker.checkEmulatorVersion());
+      this.runCheck(AndroidToolsChecker.checkAvdVersion());
 
       // Env vars check
       AndroidToolsChecker.envVarCheckStarting();
@@ -72,22 +76,14 @@ class MacOsTools extends OperatingSystemTools {
           )
         );
       }
-
-      // ANDROID TOOLS CHECK
-      printCheckMessage("\nChecking Android tools are installed correctly 🤖");
-
-      this.runCheck(AndroidToolsChecker.checkSdkVersion());
-      this.runCheck(AndroidToolsChecker.checkAdbVersion());
-      this.runCheck(AndroidToolsChecker.checkEmulatorVersion());
-      this.runCheck(AndroidToolsChecker.checkAvdVersion());
     }
 
     // NPM TOOLS CHECK
-    printCheckMessage("\nChecking system setup for NPM Tools 🧰");
+    NpmToolsChecker.checkStarting();
     this.runCheck(NpmToolsChecker.checkForDetoxCli());
 
     // FLIPPER CHECK
-    printCheckMessage("\nChecking Flipper installation 🐬");
+    DebugToolsChecker.flipperCheckStarting();
     this.runCheck(DebugToolsChecker.checkFlipperInstallation());
     if (!this.options.androidOnly) {
       this.runCheck(PythonChecker.checkPython3Installation());

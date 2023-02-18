@@ -11,6 +11,10 @@ const COMMON_CHOCOLATEY_LOCATION = path.join(
 );
 
 class ChocolateyChecker {
+  static checkStarting() {
+    printCheckMessage("\nChecking Chcocolatey installation 🍫");
+  }
+
   static checkChocolateyInstallation() {
     if (existsSync(COMMON_CHOCOLATEY_LOCATION)) {
       printSuccess(

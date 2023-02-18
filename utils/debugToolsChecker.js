@@ -10,6 +10,10 @@ import { execSync } from "child_process";
 const COMMON_FLIPPER_LOCATIONS = ["/Applications/Flipper.app"];
 
 class DebugToolsChecker {
+  static flipperCheckStarting() {
+    printCheckMessage("\nChecking Flipper installation 🐬");
+  }
+
   static checkFlipperInstallation() {
     for (let location of COMMON_FLIPPER_LOCATIONS) {
       if (existsSync(location)) {
