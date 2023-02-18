@@ -17,17 +17,15 @@ class MacOsTools extends OperatingSystemTools {
     this.runCheck(NodeDetector.getNodeInfo());
 
     // Verify Brew is installed (optional)
-    printCheckMessage("\nChecking Homebrew installation 🍺");
+    BrewChecker.brewCheckStarting();
     this.runCheck(BrewChecker.checkBrewInstallation());
 
     // Verify Watchman is installed (optional)
-    printCheckMessage("\nChecking Watchman installation 👁️");
+    DebugToolsChecker.watchmanCheckStarting();
     this.runCheck(DebugToolsChecker.checkWatchmanInstallation());
 
     // IOS TOOLS CHECK
     if (!this.options.androidOnly) {
-      printCheckMessage("\nChecking system setup for iOS ");
-
       this.runCheck(IosToolsChecker.checkXcodePath());
       this.runCheck(IosToolsChecker.checkXcrunVersion());
       this.runCheck(IosToolsChecker.getIosSdkPath());

@@ -1,4 +1,9 @@
-import { printSuccess, printLocation, printWarning } from "./logger.js";
+import {
+  printSuccess,
+  printLocation,
+  printWarning,
+  printCheckMessage,
+} from "./logger.js";
 import { existsSync } from "fs";
 import { execSync } from "child_process";
 
@@ -55,6 +60,10 @@ class DebugToolsChecker {
         )} for install steps (requires Homebrew)`,
       };
     }
+  }
+
+  static watchmanCheckStarting() {
+    printCheckMessage("\nChecking Watchman installation 👁️");
   }
 
   static checkWatchmanInstallation() {

@@ -1,7 +1,16 @@
-import { printSuccess, printLocation, printWarning } from "./logger.js";
+import {
+  printSuccess,
+  printLocation,
+  printWarning,
+  printCheckMessage,
+} from "./logger.js";
 import { execSync } from "child_process";
 
 class BrewChecker {
+  static brewCheckStarting() {
+    printCheckMessage("\nChecking Homebrew installation 🍺");
+  }
+
   static checkBrewInstallation() {
     try {
       const brewInstallationPath = execSync("which brew")
