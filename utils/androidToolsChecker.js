@@ -553,7 +553,11 @@ class AndroidToolsChecker {
       const strippedResult = regexResult.map((result) =>
         result.replace(/Name: /, " ")
       );
-      printSuccess(`Android Virtual Devices available: ${strippedResult}`);
+      printSuccess(
+        `Android Virtual Devices available: ${printLocation(
+          strippedResult.toString().replace(" ", "")
+        )}`
+      );
 
       return {
         name: "Android AVD Check",
