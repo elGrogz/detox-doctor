@@ -7,7 +7,7 @@ import {
 } from "./logger.js";
 
 class NodeDetector {
-  static printNodeCheckBeginning() {
+  static checkStarting() {
     printCheckMessage("\nChecking Node installation 🟢");
   }
 

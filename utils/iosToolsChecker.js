@@ -1,7 +1,16 @@
-import { printSuccess, printLocation, printFail } from "./logger.js";
+import {
+  printSuccess,
+  printLocation,
+  printFail,
+  printCheckMessage,
+} from "./logger.js";
 import { execSync } from "child_process";
 
 class IosToolsChecker {
+  static checkStarting() {
+    printCheckMessage("\nChecking system setup for iOS ");
+  }
+
   static checkXcodePath() {
     try {
       const xcodePathResult = execSync("xcode-select -p");

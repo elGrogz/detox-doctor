@@ -13,11 +13,11 @@ import PythonChecker from "../utils/pythonChecker.js";
 class MacOsTools extends OperatingSystemTools {
   runMacOsCheck() {
     // Verify Node is installed
-    NodeDetector.printNodeCheckBeginning();
+    NodeDetector.checkStarting();
     this.runCheck(NodeDetector.getNodeInfo());
 
     // Verify Brew is installed (optional)
-    BrewChecker.brewCheckStarting();
+    BrewChecker.checkStarting();
     this.runCheck(BrewChecker.checkBrewInstallation());
 
     // Verify Watchman is installed (optional)
@@ -26,6 +26,7 @@ class MacOsTools extends OperatingSystemTools {
 
     // IOS TOOLS CHECK
     if (!this.options.androidOnly) {
+      IosToolsChecker.checkStarting();
       this.runCheck(IosToolsChecker.checkXcodePath());
       this.runCheck(IosToolsChecker.checkXcrunVersion());
       this.runCheck(IosToolsChecker.getIosSdkPath());

@@ -7,7 +7,7 @@ import {
 import { execSync } from "child_process";
 
 class BrewChecker {
-  static brewCheckStarting() {
+  static checkStarting() {
     printCheckMessage("\nChecking Homebrew installation 🍺");
   }
 
