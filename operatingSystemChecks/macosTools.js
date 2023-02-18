@@ -39,7 +39,7 @@ class MacOsTools extends OperatingSystemTools {
 
     // Verify Android setup - run only if Android Only is true or no other 'only' flags are passed
     if (!this.options.iosOnly) {
-      printCheckMessage("\nChecking system setup for Android 🤖");
+      AndroidToolsChecker.checkStarting();
 
       this.runCheck(AndroidToolsChecker.checkAndroidStudioInstallion());
       this.runCheck(AndroidToolsChecker.checkJavaInstallation());
@@ -49,7 +49,7 @@ class MacOsTools extends OperatingSystemTools {
       this.runCheck(AndroidToolsChecker.checkNdkInstallion());
 
       // Env vars check
-      printCheckMessage("\nChecking system environmental variables 📟");
+      AndroidToolsChecker.envVarCheckStarting();
       const shellFileContents = ShellChecker.getShellContents(this.shell);
 
       if (shellFileContents) {

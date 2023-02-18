@@ -6,6 +6,7 @@ import {
   printSuccess,
   printFail,
   printWarning,
+  printCheckMessage,
 } from "./logger.js";
 
 const commonMacosAndroidStudioAppLocation = path.join(
@@ -35,6 +36,10 @@ const commandLineToolsDirectory = `${process.env.ANDROID_HOME}/cmdline-tools/lat
 const platformsDirectory = `${process.env.ANDROID_HOME}/platforms`;
 
 class AndroidToolsChecker {
+  static checkStarting() {
+    printCheckMessage("\nChecking system setup for Android 🤖");
+  }
+
   static checkAndroidStudioInstallion() {
     // add logic for linux
     if (fs.existsSync(commonMacosAndroidStudioAppLocation)) {
@@ -175,6 +180,12 @@ class AndroidToolsChecker {
         message: `The Android NDK is required to run Detox tests on Android, depending on your app. Install via Android Studio > SDK Manager > Tools`,
       };
     }
+  }
+
+  // ******* ENV VARS ********
+
+  static envVarCheckStarting() {
+    printCheckMessage("\nChecking system environmental variables 📟");
   }
 
   static checkJavaHomeEnvVar() {

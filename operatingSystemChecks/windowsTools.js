@@ -15,7 +15,7 @@ class WindowsTools extends OperatingSystemTools {
     this.runCheck(ChocolateyChecker.checkChocolateyInstallation());
 
     // Verify Android tools are installed
-    printCheckMessage("\nChecking system setup for Android 🤖");
+    AndroidToolsChecker.checkStarting();
 
     this.runCheck(AndroidToolsChecker.checkAndroidStudioInstallion());
     this.runCheck(AndroidToolsChecker.checkJavaInstallation());
@@ -25,7 +25,7 @@ class WindowsTools extends OperatingSystemTools {
     // this.runCheck(AndroidToolsChecker.checkNdkInstallion());
 
     // Env vars check
-    printCheckMessage("\nChecking system environmental variables 📟");
+    AndroidToolsChecker.envVarCheckStarting;
     this.runCheck(AndroidToolsChecker.checkAndroidHomeEnvVar());
     // this.runCheck(AndroidToolsChecker.checkAndroidEmulatorEnvVar());
     // this.runCheck(
