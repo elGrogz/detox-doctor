@@ -1,7 +1,16 @@
 import { execSync } from "child_process";
-import { printSuccess, printLocation, printFail } from "./logger.js";
+import {
+  printSuccess,
+  printLocation,
+  printFail,
+  printCheckMessage,
+} from "./logger.js";
 
 class NodeDetector {
+  static printNodeCheckBeginning() {
+    printCheckMessage("\nChecking Node installation 🟢");
+  }
+
   static getNodeInfo() {
     try {
       const nodeVersion = execSync("node -v").toString().replace("\n", "");

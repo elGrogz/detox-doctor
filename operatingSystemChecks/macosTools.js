@@ -13,7 +13,7 @@ import PythonChecker from "../utils/pythonChecker.js";
 class MacOsTools extends OperatingSystemTools {
   runMacOsCheck() {
     // Verify Node is installed
-    printCheckMessage("\nChecking Node installation 🟢");
+    NodeDetector.printNodeCheckBeginning();
     this.runCheck(NodeDetector.getNodeInfo());
 
     // Verify Brew is installed (optional)

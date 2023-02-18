@@ -6,10 +6,8 @@ import { printCheckMessage } from "../utils/logger.js";
 
 class LinuxTools extends OperatingSystemTools {
   runLinuxCheck() {
-    // MAIN SYSTEM CHECKS
-    printCheckMessage("\nChecking Node installation 🟢");
-
     // Verify Node is installed
+    NodeDetector.printNodeCheckBeginning();
     this.runCheck(NodeDetector.getNodeInfo());
 
     // Env vars check
