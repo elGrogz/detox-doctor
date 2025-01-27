@@ -21,7 +21,12 @@ const commonWindowsAndroidStudioAppLocation = path.join(
   "bin",
   "studio64.exe"
 );
-// const commonLinuxAndroidStudioAppLocation = "/Applications/Android Studio.app";
+const commonLinuxAndroidStudioAppLocation = path.join(
+  `${process.env.HOME}`,
+  "android-studio",
+  "bin",
+  "studio.sh"
+);
 const javahomeEnvVariable = "JAVA_HOME";
 const androidHomeEnvVariable = "ANDROID_HOME";
 const androidSdkRootEnvVariable = "ANDROID_SDK_ROOT";
@@ -66,6 +71,18 @@ class AndroidToolsChecker {
         success: true,
         optional: false,
       };
+    } else if (fs.existsSync(commonLinuxAndroidStudioAppLocation)) {
+      printSuccess(
+        `Android Studio installed at: ${printLocation(
+          commonLinuxAndroidStudioAppLocation
+        )}`
+      );
+
+      return {
+        name: "Android Studio Check",
+        success: true,
+        optional: false,
+      };
     } else {
       printFail("Android Studio not installed");
 
@@ -73,9 +90,9 @@ class AndroidToolsChecker {
         name: "Android Studio Check",
         success: false,
         optional: false,
-        message: `Android Studio is required to run Detox tests on Android. Download at the Android website or run ${printLocation(
+        message: `Android Studio is required to run Detox tests on Android and was not found at the expected location. Download at the Android website or run ${printLocation(
           "brew install --cask android-studio"
-        )} if you are on MacOS`,
+        )} if you are on MacOS. If your Android Studio is installed at another location ignore this message`,
       };
     }
   }
