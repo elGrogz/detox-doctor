@@ -78,7 +78,7 @@ class DetoxDoctorCheck {
       );
 
       if (filteredOptionalResults.length > 0) {
-        console.log(chalk.bgYellowBright("Optional Steps to take:"));
+        console.log(chalk.yellow.underline("\nOptional Steps to take:"));
         filteredOptionalResults.forEach((result) => {
           printWarning(chalk.yellow(result.message));
         });

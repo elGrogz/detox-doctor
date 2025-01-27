@@ -6,7 +6,7 @@ import ShellChecker from "../utils/shellChecker.js";
 class LinuxTools extends OperatingSystemTools {
   runLinuxCheck() {
     // Verify Node is installed
-    NodeDetector.printNodeCheckBeginning();
+    NodeDetector.checkStarting();
     this.runCheck(NodeDetector.getNodeInfo());
 
     // Verify Android tools

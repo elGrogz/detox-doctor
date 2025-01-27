@@ -7,7 +7,7 @@ import ChocolateyChecker from "../utils/chocolateyChecker.js";
 class WindowsTools extends OperatingSystemTools {
   runWindowsCheck() {
     // Verify Node is installed
-    NodeDetector.printNodeCheckBeginning();
+    NodeDetector.checkStarting();
     this.runCheck(NodeDetector.getNodeInfo());
 
     // Verify Chocolatey is installed

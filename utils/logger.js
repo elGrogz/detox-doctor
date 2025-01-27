@@ -10,19 +10,19 @@ export const printLocation = (path) => {
 
 export const printSuccess = (message) => {
   console.log(
-    `${chalk.bgGray("info")} ${printDetoxDoctor()} ✔ ${chalk.green(message)}`
+    `${chalk.bgGray("Info")} ${printDetoxDoctor()} ✔ ${chalk.green(message)}`
   );
 };
 
 export const printFail = (message) => {
   console.log(
-    `${chalk.bgRed("warn")} ${printDetoxDoctor()} ✖ ${chalk.red(message)}`
+    `${chalk.bgRed("Critical")} ${printDetoxDoctor()} ✖ ${chalk.red(message)}`
   );
 };
 
 export const printWarning = (message) => {
   console.log(
-    `${chalk.bgYellow("warn")} ${printDetoxDoctor()} ⚠️ ${chalk.yellow(
+    `${chalk.black.bgYellow("Warning")} ${printDetoxDoctor()} ⚠️ ${chalk.yellow(
       message
     )}`
   );
